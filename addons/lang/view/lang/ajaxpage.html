@@ -1,0 +1,47 @@
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th width="5%">ID</th>
+            <th>语言名称</th>
+            <th>后端语言代码</th>
+            <th>前端语言代码</th>
+            <!--<th width="10%">是否默认语言</th>-->
+            <th>备注</th>
+            <th width="15%">创建时间</th>
+            <th width="15%">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        {if condition="$list->isEmpty() == false"}
+        {foreach name="list" item="v"}
+        <tr>
+            <td>{$v.id}</td>
+            <td>{$v.lang_name}</td>
+            <td>{$v.lang_code}</td>
+            <td>{$v.lang_code_front}</td>
+            <!--
+            <td>
+                {switch name="v.is_default"}
+                {case value="0"}
+                <button class="btn btn-danger btn-xs" type="button" onclick="changeTableVal({$v.id}, {$v.is_default});"><i class="fa fa-times"></i></button>
+                {/case}
+                {case value="1"}
+                <button class="btn btn-primary btn-xs" type="button" onclick="changeTableVal({$v.id}, {$v.is_default});"><i class="fa fa-check"></i></button>
+                {/case}
+                {/switch}
+            </td>
+            -->
+            <td>{$v.remark}</td>
+            <td>{$v.create_time}</td>
+            <td>
+                <a href="{:addon_url('lang://Lang/edit',array('id'=>$v['id']))}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i>&nbsp;编辑</a>&nbsp;
+                <button type="button" class="btn btn-danger btn-xs" onclick="delone({$v.id}, this);"><i class="fa fa-close"></i>&nbsp;删除</button></td>
+            </td>
+        </tr>
+        {/foreach}
+        {else/}
+        <tr><td colspan="7" style="text-align:center; font-size:14px;">没有找到相关数据</td></tr>
+        {/if}
+    </tbody>
+</table>
+<div class="row"><div class="pagination" style="float:right; margin-right:20px;">{$page}</div></div>

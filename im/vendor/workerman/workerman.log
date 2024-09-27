@@ -1,0 +1,332 @@
+2022-05-09 12:03:48 pid:71721 Workerman[start.php] start in DEBUG mode
+2022-05-11 12:14:58 pid:67935 Workerman[start.php] start in DEBUG mode
+2022-05-11 12:15:44 pid:67935 Workerman[start.php] stopping ...
+2022-05-11 12:15:44 pid:67935 Workerman[start.php] has been stopped
+2022-05-11 12:15:45 pid:68335 Workerman[start.php] start in DEBUG mode
+2022-12-17 10:13:41 pid:12952 Workerman[start.php] start in DEBUG mode
+2022-12-17 10:13:41 pid:12953 ParseError: syntax error, unexpected ';' in /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/Applications/Front/Events.php:51
+Stack trace:
+#0 [internal function]: Workerman\Autoloader::loadByNamespace('Events')
+#1 [internal function]: spl_autoload_call('Events')
+#2 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/gateway-worker/src/BusinessWorker.php(222): is_callable('Events::onWorke...')
+#3 [internal function]: GatewayWorker\BusinessWorker->onWorkerStart(Object(GatewayWorker\BusinessWorker))
+#4 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(2306): call_user_func(Array, Object(GatewayWorker\BusinessWorker))
+#5 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/gateway-worker/src/BusinessWorker.php(197): Workerman\Worker->run()
+#6 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1452): GatewayWorker\BusinessWorker->run()
+#7 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1282): Workerman\Worker::forkOneWorkerForLinux(Object(GatewayWorker\BusinessWorker))
+#8 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1256): Workerman\Worker::forkWorkersForLinux()
+#9 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(507): Workerman\Worker::forkWorkers()
+#10 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/start.php(37): Workerman\Worker::runAll()
+#11 {main}
+2022-12-17 10:13:42 pid:12953 Worker[12953] process terminated
+2022-12-17 10:13:42 pid:12952 worker[IMWorker:12953] exit with status 64000
+2022-12-17 10:13:42 pid:12959 ParseError: syntax error, unexpected ';' in /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/Applications/Front/Events.php:51
+Stack trace:
+#0 [internal function]: Workerman\Autoloader::loadByNamespace('Events')
+#1 [internal function]: spl_autoload_call('Events')
+#2 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/gateway-worker/src/BusinessWorker.php(222): is_callable('Events::onWorke...')
+#3 [internal function]: GatewayWorker\BusinessWorker->onWorkerStart(Object(GatewayWorker\BusinessWorker))
+#4 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(2306): call_user_func(Array, Object(GatewayWorker\BusinessWorker))
+#5 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/gateway-worker/src/BusinessWorker.php(197): Workerman\Worker->run()
+#6 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1452): GatewayWorker\BusinessWorker->run()
+#7 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1282): Workerman\Worker::forkOneWorkerForLinux(Object(GatewayWorker\BusinessWorker))
+#8 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1256): Workerman\Worker::forkWorkersForLinux()
+#9 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1586): Workerman\Worker::forkWorkers()
+#10 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1535): Workerman\Worker::monitorWorkersForLinux()
+#11 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(509): Workerman\Worker::monitorWorkers()
+#12 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/start.php(37): Workerman\Worker::runAll()
+#13 {main}
+2022-12-17 10:13:43 pid:12959 Worker[12959] process terminated
+2022-12-17 10:13:43 pid:12952 worker[IMWorker:12959] exit with status 64000
+2022-12-17 10:13:43 pid:12960 ParseError: syntax error, unexpected ';' in /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/Applications/Front/Events.php:51
+Stack trace:
+#0 [internal function]: Workerman\Autoloader::loadByNamespace('Events')
+#1 [internal function]: spl_autoload_call('Events')
+#2 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/gateway-worker/src/BusinessWorker.php(222): is_callable('Events::onWorke...')
+#3 [internal function]: GatewayWorker\BusinessWorker->onWorkerStart(Object(GatewayWorker\BusinessWorker))
+#4 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(2306): call_user_func(Array, Object(GatewayWorker\BusinessWorker))
+#5 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/gateway-worker/src/BusinessWorker.php(197): Workerman\Worker->run()
+#6 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1452): GatewayWorker\BusinessWorker->run()
+#7 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1282): Workerman\Worker::forkOneWorkerForLinux(Object(GatewayWorker\BusinessWorker))
+#8 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1256): Workerman\Worker::forkWorkersForLinux()
+#9 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1586): Workerman\Worker::forkWorkers()
+#10 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1535): Workerman\Worker::monitorWorkersForLinux()
+#11 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(509): Workerman\Worker::monitorWorkers()
+#12 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/start.php(37): Workerman\Worker::runAll()
+#13 {main}
+2022-12-17 10:13:44 pid:12960 Worker[12960] process terminated
+2022-12-17 10:13:44 pid:12952 Workerman[start.php] stopping ...
+2022-12-17 10:13:44 pid:12952 worker[IMWorker:12960] exit with status 64000
+2022-12-17 10:13:44 pid:12952 Workerman[start.php] has been stopped
+2022-12-17 10:14:42 pid:12974 Workerman[start.php] start in DEBUG mode
+2022-12-17 10:14:42 pid:12975 PDOException: SQLSTATE[HY000] [1049] Unknown database 'woshop_20221217' in /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/mysql/src/Connection.php:1711
+Stack trace:
+#0 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/mysql/src/Connection.php(1711): PDO->__construct('mysql:dbname=wo...', 'root', '123456', Array)
+#1 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/mysql/src/Connection.php(1698): Workerman\MySQL\Connection->connect()
+#2 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/Applications/Front/Events.php(63): Workerman\MySQL\Connection->__construct('127.0.0.1', '3306', 'root', '123456', 'woshop_20221217')
+#3 [internal function]: Events::onWorkerStart(Object(GatewayWorker\BusinessWorker))
+#4 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/gateway-worker/src/BusinessWorker.php(223): call_user_func('Events::onWorke...', Object(GatewayWorker\BusinessWorker))
+#5 [internal function]: GatewayWorker\BusinessWorker->onWorkerStart(Object(GatewayWorker\BusinessWorker))
+#6 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(2306): call_user_func(Array, Object(GatewayWorker\BusinessWorker))
+#7 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/gateway-worker/src/BusinessWorker.php(197): Workerman\Worker->run()
+#8 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1452): GatewayWorker\BusinessWorker->run()
+#9 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1282): Workerman\Worker::forkOneWorkerForLinux(Object(GatewayWorker\BusinessWorker))
+#10 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1256): Workerman\Worker::forkWorkersForLinux()
+#11 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(507): Workerman\Worker::forkWorkers()
+#12 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/start.php(37): Workerman\Worker::runAll()
+#13 {main}
+2022-12-17 10:14:43 pid:12975 Worker[12975] process terminated
+2022-12-17 10:14:43 pid:12974 worker[IMWorker:12975] exit with status 64000
+2022-12-17 10:14:43 pid:12981 PDOException: SQLSTATE[HY000] [1049] Unknown database 'woshop_20221217' in /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/mysql/src/Connection.php:1711
+Stack trace:
+#0 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/mysql/src/Connection.php(1711): PDO->__construct('mysql:dbname=wo...', 'root', '123456', Array)
+#1 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/mysql/src/Connection.php(1698): Workerman\MySQL\Connection->connect()
+#2 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/Applications/Front/Events.php(63): Workerman\MySQL\Connection->__construct('127.0.0.1', '3306', 'root', '123456', 'woshop_20221217')
+#3 [internal function]: Events::onWorkerStart(Object(GatewayWorker\BusinessWorker))
+#4 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/gateway-worker/src/BusinessWorker.php(223): call_user_func('Events::onWorke...', Object(GatewayWorker\BusinessWorker))
+#5 [internal function]: GatewayWorker\BusinessWorker->onWorkerStart(Object(GatewayWorker\BusinessWorker))
+#6 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(2306): call_user_func(Array, Object(GatewayWorker\BusinessWorker))
+#7 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/gateway-worker/src/BusinessWorker.php(197): Workerman\Worker->run()
+#8 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1452): GatewayWorker\BusinessWorker->run()
+#9 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1282): Workerman\Worker::forkOneWorkerForLinux(Object(GatewayWorker\BusinessWorker))
+#10 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1256): Workerman\Worker::forkWorkersForLinux()
+#11 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1586): Workerman\Worker::forkWorkers()
+#12 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1535): Workerman\Worker::monitorWorkersForLinux()
+#13 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(509): Workerman\Worker::monitorWorkers()
+#14 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/start.php(37): Workerman\Worker::runAll()
+#15 {main}
+2022-12-17 10:14:44 pid:12981 Worker[12981] process terminated
+2022-12-17 10:14:44 pid:12974 Workerman[start.php] stopping ...
+2022-12-17 10:14:44 pid:12974 worker[IMWorker:12981] exit with status 64000
+2022-12-17 10:14:44 pid:12974 Workerman[start.php] has been stopped
+2022-12-17 10:15:02 pid:12988 Workerman[start.php] start in DEBUG mode
+2022-12-17 10:19:51 pid:12988 Workerman[start.php] stopping ...
+2022-12-17 10:19:51 pid:12988 Workerman[start.php] has been stopped
+2022-12-17 10:21:09 pid:13104 Workerman[start.php] start in DEBUG mode
+2022-12-17 12:14:35 pid:13104 Workerman[start.php] stopping ...
+2022-12-17 12:14:35 pid:13104 Workerman[start.php] has been stopped
+2022-12-17 12:22:10 pid:14609 Workerman[start.php] start in DEBUG mode
+2022-12-17 21:15:24 pid:14609 Workerman[start.php] stopping ...
+2022-12-17 21:15:24 pid:14609 Workerman[start.php] has been stopped
+2022-12-17 21:15:26 pid:20062 Workerman[start.php] start in DEBUG mode
+2022-12-18 09:31:21 pid:20062 Workerman[start.php] stopping ...
+2022-12-18 09:31:21 pid:20062 Workerman[start.php] has been stopped
+2022-12-18 09:31:22 pid:26324 Workerman[start.php] start in DEBUG mode
+2022-12-18 09:47:19 pid:26325 PDOException: SQL:INSERT INTO `sp_chat_message` ( `fromid`,`toid`,`usertype`,`message`,`messagetype`,`createtime`) VALUES ( :fromid,:toid,:usertype,:message,:messagetype,:createtime) SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'fromid' cannot be null in /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/mysql/src/Connection.php:1770
+Stack trace:
+#0 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/mysql/src/Connection.php(1828): Workerman\MySQL\Connection->execute('INSERT INTO `sp...', Array)
+#1 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/Applications/Front/Events.php(183): Workerman\MySQL\Connection->query()
+#2 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/redis/src/Client.php(483): Events::{closure}('chat', '{"type":"say","...', Object(Workerman\Redis\Client))
+#3 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/redis/src/Client.php(415): Workerman\Redis\Client->Workerman\Redis\{closure}(Array, Object(Workerman\Redis\Client))
+#4 [internal function]: Workerman\Redis\Client->Workerman\Redis\{closure}(Object(Workerman\Connection\AsyncTcpConnection), Array)
+#5 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Connection/TcpConnection.php(658): call_user_func(Object(Closure), Object(Workerman\Connection\AsyncTcpConnection), Array)
+#6 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #45)
+#7 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Events/Select.php(294): call_user_func_array(Array, Array)
+#8 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(2321): Workerman\Events\Select->loop()
+#9 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/gateway-worker/src/BusinessWorker.php(197): Workerman\Worker->run()
+#10 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1452): GatewayWorker\BusinessWorker->run()
+#11 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1282): Workerman\Worker::forkOneWorkerForLinux(Object(GatewayWorker\BusinessWorker))
+#12 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1256): Workerman\Worker::forkWorkersForLinux()
+#13 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(507): Workerman\Worker::forkWorkers()
+#14 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/start.php(37): Workerman\Worker::runAll()
+#15 {main}
+2022-12-18 09:47:19 pid:26325 Worker[26325] process terminated
+2022-12-18 09:47:19 pid:26324 worker[IMWorker:26325] exit with status 64000
+2022-12-18 09:47:35 pid:26324 Workerman[start.php] stopping ...
+2022-12-18 09:47:35 pid:26324 Workerman[start.php] has been stopped
+2022-12-18 09:48:02 pid:26544 Workerman[start.php] start in DEBUG mode
+2022-12-18 09:49:02 pid:26545 PDOException: SQL:INSERT INTO `sp_chat_message` ( `fromid`,`toid`,`usertype`,`message`,`messagetype`,`createtime`) VALUES ( :fromid,:toid,:usertype,:message,:messagetype,:createtime) SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'fromid' cannot be null in /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/mysql/src/Connection.php:1770
+Stack trace:
+#0 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/mysql/src/Connection.php(1828): Workerman\MySQL\Connection->execute('INSERT INTO `sp...', Array)
+#1 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/Applications/Front/Events.php(183): Workerman\MySQL\Connection->query()
+#2 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/redis/src/Client.php(483): Events::{closure}('chat', '{"type":"say","...', Object(Workerman\Redis\Client))
+#3 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/redis/src/Client.php(415): Workerman\Redis\Client->Workerman\Redis\{closure}(Array, Object(Workerman\Redis\Client))
+#4 [internal function]: Workerman\Redis\Client->Workerman\Redis\{closure}(Object(Workerman\Connection\AsyncTcpConnection), Array)
+#5 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Connection/TcpConnection.php(658): call_user_func(Object(Closure), Object(Workerman\Connection\AsyncTcpConnection), Array)
+#6 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #45)
+#7 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Events/Select.php(294): call_user_func_array(Array, Array)
+#8 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(2321): Workerman\Events\Select->loop()
+#9 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/gateway-worker/src/BusinessWorker.php(197): Workerman\Worker->run()
+#10 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1452): GatewayWorker\BusinessWorker->run()
+#11 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1282): Workerman\Worker::forkOneWorkerForLinux(Object(GatewayWorker\BusinessWorker))
+#12 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1256): Workerman\Worker::forkWorkersForLinux()
+#13 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(507): Workerman\Worker::forkWorkers()
+#14 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/start.php(37): Workerman\Worker::runAll()
+#15 {main}
+2022-12-18 09:49:02 pid:26545 Worker[26545] process terminated
+2022-12-18 09:49:02 pid:26544 worker[IMWorker:26545] exit with status 64000
+2022-12-18 09:50:25 pid:26564 PDOException: SQL:INSERT INTO `sp_chat_message` ( `fromid`,`toid`,`usertype`,`message`,`messagetype`,`createtime`) VALUES ( :fromid,:toid,:usertype,:message,:messagetype,:createtime) SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'fromid' cannot be null in /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/mysql/src/Connection.php:1770
+Stack trace:
+#0 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/mysql/src/Connection.php(1828): Workerman\MySQL\Connection->execute('INSERT INTO `sp...', Array)
+#1 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/Applications/Front/Events.php(183): Workerman\MySQL\Connection->query()
+#2 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/redis/src/Client.php(483): Events::{closure}('chat', '{"type":"say","...', Object(Workerman\Redis\Client))
+#3 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/redis/src/Client.php(415): Workerman\Redis\Client->Workerman\Redis\{closure}(Array, Object(Workerman\Redis\Client))
+#4 [internal function]: Workerman\Redis\Client->Workerman\Redis\{closure}(Object(Workerman\Connection\AsyncTcpConnection), Array)
+#5 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Connection/TcpConnection.php(658): call_user_func(Object(Closure), Object(Workerman\Connection\AsyncTcpConnection), Array)
+#6 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #46)
+#7 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Events/Select.php(294): call_user_func_array(Array, Array)
+#8 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(2321): Workerman\Events\Select->loop()
+#9 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/gateway-worker/src/BusinessWorker.php(197): Workerman\Worker->run()
+#10 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1452): GatewayWorker\BusinessWorker->run()
+#11 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1282): Workerman\Worker::forkOneWorkerForLinux(Object(GatewayWorker\BusinessWorker))
+#12 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1256): Workerman\Worker::forkWorkersForLinux()
+#13 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1586): Workerman\Worker::forkWorkers()
+#14 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1535): Workerman\Worker::monitorWorkersForLinux()
+#15 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(509): Workerman\Worker::monitorWorkers()
+#16 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/start.php(37): Workerman\Worker::runAll()
+#17 {main}
+2022-12-18 09:50:25 pid:26564 Worker[26564] process terminated
+2022-12-18 09:50:25 pid:26544 worker[IMWorker:26564] exit with status 64000
+2022-12-18 09:51:58 pid:26586 PDOException: SQL:INSERT INTO `sp_chat_message` ( `fromid`,`toid`,`usertype`,`message`,`messagetype`,`createtime`) VALUES ( :fromid,:toid,:usertype,:message,:messagetype,:createtime) SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'fromid' cannot be null in /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/mysql/src/Connection.php:1770
+Stack trace:
+#0 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/mysql/src/Connection.php(1828): Workerman\MySQL\Connection->execute('INSERT INTO `sp...', Array)
+#1 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/Applications/Front/Events.php(183): Workerman\MySQL\Connection->query()
+#2 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/redis/src/Client.php(483): Events::{closure}('chat', '{"type":"say","...', Object(Workerman\Redis\Client))
+#3 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/redis/src/Client.php(415): Workerman\Redis\Client->Workerman\Redis\{closure}(Array, Object(Workerman\Redis\Client))
+#4 [internal function]: Workerman\Redis\Client->Workerman\Redis\{closure}(Object(Workerman\Connection\AsyncTcpConnection), Array)
+#5 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Connection/TcpConnection.php(658): call_user_func(Object(Closure), Object(Workerman\Connection\AsyncTcpConnection), Array)
+#6 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #47)
+#7 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Events/Select.php(294): call_user_func_array(Array, Array)
+#8 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(2321): Workerman\Events\Select->loop()
+#9 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/gateway-worker/src/BusinessWorker.php(197): Workerman\Worker->run()
+#10 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1452): GatewayWorker\BusinessWorker->run()
+#11 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1282): Workerman\Worker::forkOneWorkerForLinux(Object(GatewayWorker\BusinessWorker))
+#12 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1256): Workerman\Worker::forkWorkersForLinux()
+#13 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1586): Workerman\Worker::forkWorkers()
+#14 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1535): Workerman\Worker::monitorWorkersForLinux()
+#15 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(509): Workerman\Worker::monitorWorkers()
+#16 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/start.php(37): Workerman\Worker::runAll()
+#17 {main}
+2022-12-18 09:51:58 pid:26586 Worker[26586] process terminated
+2022-12-18 09:51:58 pid:26544 worker[IMWorker:26586] exit with status 64000
+2022-12-18 09:53:06 pid:26611 PDOException: SQL:INSERT INTO `sp_chat_message` ( `fromid`,`toid`,`usertype`,`message`,`messagetype`,`createtime`) VALUES ( :fromid,:toid,:usertype,:message,:messagetype,:createtime) SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'fromid' cannot be null in /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/mysql/src/Connection.php:1770
+Stack trace:
+#0 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/mysql/src/Connection.php(1828): Workerman\MySQL\Connection->execute('INSERT INTO `sp...', Array)
+#1 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/Applications/Front/Events.php(183): Workerman\MySQL\Connection->query()
+#2 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/redis/src/Client.php(483): Events::{closure}('chat', '{"type":"say","...', Object(Workerman\Redis\Client))
+#3 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/redis/src/Client.php(415): Workerman\Redis\Client->Workerman\Redis\{closure}(Array, Object(Workerman\Redis\Client))
+#4 [internal function]: Workerman\Redis\Client->Workerman\Redis\{closure}(Object(Workerman\Connection\AsyncTcpConnection), Array)
+#5 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Connection/TcpConnection.php(658): call_user_func(Object(Closure), Object(Workerman\Connection\AsyncTcpConnection), Array)
+#6 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #48)
+#7 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Events/Select.php(294): call_user_func_array(Array, Array)
+#8 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(2321): Workerman\Events\Select->loop()
+#9 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/gateway-worker/src/BusinessWorker.php(197): Workerman\Worker->run()
+#10 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1452): GatewayWorker\BusinessWorker->run()
+#11 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1282): Workerman\Worker::forkOneWorkerForLinux(Object(GatewayWorker\BusinessWorker))
+#12 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1256): Workerman\Worker::forkWorkersForLinux()
+#13 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1586): Workerman\Worker::forkWorkers()
+#14 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1535): Workerman\Worker::monitorWorkersForLinux()
+#15 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(509): Workerman\Worker::monitorWorkers()
+#16 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/start.php(37): Workerman\Worker::runAll()
+#17 {main}
+2022-12-18 09:53:06 pid:26611 Worker[26611] process terminated
+2022-12-18 09:53:06 pid:26544 worker[IMWorker:26611] exit with status 64000
+2022-12-18 09:56:40 pid:26635 PDOException: SQL:INSERT INTO `sp_chat_message` ( `fromid`,`toid`,`usertype`,`message`,`messagetype`,`createtime`) VALUES ( :fromid,:toid,:usertype,:message,:messagetype,:createtime) SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'fromid' cannot be null in /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/mysql/src/Connection.php:1770
+Stack trace:
+#0 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/mysql/src/Connection.php(1828): Workerman\MySQL\Connection->execute('INSERT INTO `sp...', Array)
+#1 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/Applications/Front/Events.php(183): Workerman\MySQL\Connection->query()
+#2 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/redis/src/Client.php(483): Events::{closure}('chat', '{"type":"say","...', Object(Workerman\Redis\Client))
+#3 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/redis/src/Client.php(415): Workerman\Redis\Client->Workerman\Redis\{closure}(Array, Object(Workerman\Redis\Client))
+#4 [internal function]: Workerman\Redis\Client->Workerman\Redis\{closure}(Object(Workerman\Connection\AsyncTcpConnection), Array)
+#5 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Connection/TcpConnection.php(658): call_user_func(Object(Closure), Object(Workerman\Connection\AsyncTcpConnection), Array)
+#6 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #49)
+#7 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Events/Select.php(294): call_user_func_array(Array, Array)
+#8 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(2321): Workerman\Events\Select->loop()
+#9 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/gateway-worker/src/BusinessWorker.php(197): Workerman\Worker->run()
+#10 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1452): GatewayWorker\BusinessWorker->run()
+#11 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1282): Workerman\Worker::forkOneWorkerForLinux(Object(GatewayWorker\BusinessWorker))
+#12 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1256): Workerman\Worker::forkWorkersForLinux()
+#13 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1586): Workerman\Worker::forkWorkers()
+#14 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1535): Workerman\Worker::monitorWorkersForLinux()
+#15 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(509): Workerman\Worker::monitorWorkers()
+#16 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/start.php(37): Workerman\Worker::runAll()
+#17 {main}
+2022-12-18 09:56:40 pid:26635 Worker[26635] process terminated
+2022-12-18 09:56:40 pid:26544 worker[IMWorker:26635] exit with status 64000
+2022-12-18 10:10:28 pid:26544 Workerman[start.php] stopping ...
+2022-12-18 10:10:28 pid:26544 Workerman[start.php] has been stopped
+2022-12-18 10:10:29 pid:26792 Workerman[start.php] start in DEBUG mode
+2022-12-18 17:52:02 pid:26793 PDOException: SQL:INSERT INTO `sp_chat_message` ( `fromid`,`toid`,`usertype`,`message`,`messagetype`,`createtime`) VALUES ( :fromid,:toid,:usertype,:message,:messagetype,:createtime) SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'fromid' cannot be null in /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/mysql/src/Connection.php:1770
+Stack trace:
+#0 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/mysql/src/Connection.php(1828): Workerman\MySQL\Connection->execute('INSERT INTO `sp...', Array)
+#1 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/Applications/Front/Events.php(183): Workerman\MySQL\Connection->query()
+#2 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/redis/src/Client.php(483): Events::{closure}('chat', '{"type":"say","...', Object(Workerman\Redis\Client))
+#3 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/redis/src/Client.php(415): Workerman\Redis\Client->Workerman\Redis\{closure}(Array, Object(Workerman\Redis\Client))
+#4 [internal function]: Workerman\Redis\Client->Workerman\Redis\{closure}(Object(Workerman\Connection\AsyncTcpConnection), Array)
+#5 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Connection/TcpConnection.php(658): call_user_func(Object(Closure), Object(Workerman\Connection\AsyncTcpConnection), Array)
+#6 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #45)
+#7 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Events/Select.php(294): call_user_func_array(Array, Array)
+#8 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(2321): Workerman\Events\Select->loop()
+#9 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/gateway-worker/src/BusinessWorker.php(197): Workerman\Worker->run()
+#10 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1452): GatewayWorker\BusinessWorker->run()
+#11 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1282): Workerman\Worker::forkOneWorkerForLinux(Object(GatewayWorker\BusinessWorker))
+#12 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1256): Workerman\Worker::forkWorkersForLinux()
+#13 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(507): Workerman\Worker::forkWorkers()
+#14 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/start.php(37): Workerman\Worker::runAll()
+#15 {main}
+2022-12-18 17:52:02 pid:26793 Worker[26793] process terminated
+2022-12-18 17:52:02 pid:26792 worker[IMWorker:26793] exit with status 64000
+2022-12-18 17:52:12 pid:26792 Workerman[start.php] stopping ...
+2022-12-18 17:52:12 pid:26792 Workerman[start.php] has been stopped
+2022-12-18 17:52:14 pid:29514 Workerman[start.php] start in DEBUG mode
+2022-12-18 17:52:44 pid:29515 PDOException: SQL:INSERT INTO `sp_chat_message` ( `fromid`,`toid`,`usertype`,`message`,`messagetype`,`createtime`) VALUES ( :fromid,:toid,:usertype,:message,:messagetype,:createtime) SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'fromid' cannot be null in /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/mysql/src/Connection.php:1770
+Stack trace:
+#0 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/mysql/src/Connection.php(1828): Workerman\MySQL\Connection->execute('INSERT INTO `sp...', Array)
+#1 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/Applications/Front/Events.php(183): Workerman\MySQL\Connection->query()
+#2 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/redis/src/Client.php(483): Events::{closure}('chat', '{"type":"say","...', Object(Workerman\Redis\Client))
+#3 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/redis/src/Client.php(415): Workerman\Redis\Client->Workerman\Redis\{closure}(Array, Object(Workerman\Redis\Client))
+#4 [internal function]: Workerman\Redis\Client->Workerman\Redis\{closure}(Object(Workerman\Connection\AsyncTcpConnection), Array)
+#5 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Connection/TcpConnection.php(658): call_user_func(Object(Closure), Object(Workerman\Connection\AsyncTcpConnection), Array)
+#6 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #45)
+#7 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Events/Select.php(294): call_user_func_array(Array, Array)
+#8 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(2321): Workerman\Events\Select->loop()
+#9 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/gateway-worker/src/BusinessWorker.php(197): Workerman\Worker->run()
+#10 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1452): GatewayWorker\BusinessWorker->run()
+#11 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1282): Workerman\Worker::forkOneWorkerForLinux(Object(GatewayWorker\BusinessWorker))
+#12 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1256): Workerman\Worker::forkWorkersForLinux()
+#13 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(507): Workerman\Worker::forkWorkers()
+#14 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/start.php(37): Workerman\Worker::runAll()
+#15 {main}
+2022-12-18 17:52:44 pid:29515 Worker[29515] process terminated
+2022-12-18 17:52:44 pid:29514 worker[IMWorker:29515] exit with status 64000
+2022-12-18 18:08:23 pid:29514 Workerman[start.php] stopping ...
+2022-12-18 18:08:23 pid:29514 Workerman[start.php] has been stopped
+2022-12-18 18:08:24 pid:29710 Workerman[start.php] start in DEBUG mode
+2022-12-18 18:27:47 pid:29710 Workerman[start.php] stopping ...
+2022-12-18 18:27:47 pid:29710 Workerman[start.php] has been stopped
+2022-12-18 18:27:49 pid:29929 Workerman[start.php] start in DEBUG mode
+2022-12-18 18:46:28 pid:29929 Workerman[start.php] stopping ...
+2022-12-18 18:46:28 pid:29929 Workerman[start.php] has been stopped
+2022-12-18 18:46:29 pid:30153 Workerman[start.php] start in DEBUG mode
+2022-12-18 18:48:20 pid:30153 Workerman[start.php] stopping ...
+2022-12-18 18:48:20 pid:30153 Workerman[start.php] has been stopped
+2022-12-18 18:48:21 pid:30179 Workerman[start.php] start in DEBUG mode
+2022-12-20 09:55:29 pid:5489 Workerman[start.php] start in DEBUG mode
+2022-12-22 15:18:51 pid:10638 Workerman[start.php] start in DEBUG mode
+2022-12-22 16:53:23 pid:10639 PDOException: SQL:SELECT * FROM `sp_member` WHERE id=  SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 in /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/mysql/src/Connection.php:1770
+Stack trace:
+#0 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/mysql/src/Connection.php(1898): Workerman\MySQL\Connection->execute('SELECT * FROM `...', Array)
+#1 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/Applications/Front/Events.php(182): Workerman\MySQL\Connection->row()
+#2 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/redis/src/Client.php(483): Events::{closure}('chat', '{"type":"say","...', Object(Workerman\Redis\Client))
+#3 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/redis/src/Client.php(415): Workerman\Redis\Client->Workerman\Redis\{closure}(Array, Object(Workerman\Redis\Client))
+#4 [internal function]: Workerman\Redis\Client->Workerman\Redis\{closure}(Object(Workerman\Connection\AsyncTcpConnection), Array)
+#5 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Connection/TcpConnection.php(658): call_user_func(Object(Closure), Object(Workerman\Connection\AsyncTcpConnection), Array)
+#6 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #46)
+#7 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Events/Select.php(294): call_user_func_array(Array, Array)
+#8 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(2321): Workerman\Events\Select->loop()
+#9 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/gateway-worker/src/BusinessWorker.php(197): Workerman\Worker->run()
+#10 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1452): GatewayWorker\BusinessWorker->run()
+#11 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1282): Workerman\Worker::forkOneWorkerForLinux(Object(GatewayWorker\BusinessWorker))
+#12 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(1256): Workerman\Worker::forkWorkersForLinux()
+#13 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/vendor/workerman/workerman/Worker.php(507): Workerman\Worker::forkWorkers()
+#14 /Applications/MxSrvs/wwwroot/WoShop/CBEC/woshop-cbec-backend/im/start.php(37): Workerman\Worker::runAll()
+#15 {main}
+2022-12-22 16:53:23 pid:10639 Worker[10639] process terminated
+2022-12-22 16:53:23 pid:10638 worker[IMWorker:10639] exit with status 64000
+2022-12-22 17:00:39 pid:10638 Workerman[start.php] stopping ...
+2022-12-22 17:00:39 pid:10638 Workerman[start.php] has been stopped
+2022-12-22 17:00:41 pid:12191 Workerman[start.php] start in DEBUG mode
+2022-12-24 15:02:40 pid:3687 Workerman[start.php] start in DEBUG mode
+2022-12-24 15:09:42 pid:3687 Workerman[start.php] stopping ...
+2022-12-24 15:09:42 pid:3687 Workerman[start.php] has been stopped
+2022-12-24 15:09:43 pid:3955 Workerman[start.php] start in DEBUG mode

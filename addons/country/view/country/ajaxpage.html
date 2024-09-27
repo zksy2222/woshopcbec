@@ -1,0 +1,65 @@
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th width="5%">ID</th>
+            <th>中文名称</th>
+            <th>英文名称</th>
+            <th>英文首字母</th>
+            <th>本国名称</th>
+            <th>国家代码</th>
+            <th>国旗</th>
+            <th>默认语言</th>
+            <th>默认货币</th>
+            <th style="width:6%">是否默认国家</th>
+            <th style="width:6%">是否开启</th>
+            <th width="15%">创建时间</th>
+            <th width="15%">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        {if condition="$list->isEmpty() == false"}
+        {foreach name="list" item="v"}
+        <tr>
+            <td>{$v.id}</td>
+            <td>{$v.country_cname}</td>
+            <td>{$v.country_ename}</td>
+            <td>{$v.country_initials}</td>
+            <td>{$v.country_bname}</td>
+            <td>{$v.country_code}</td>
+            <td>
+                <a target="_blank"><img src="{$v.country_img}" width="80px" /></a>
+            <td>{$v.lang_name}</td>
+            <td>{$v.currency_name}</td>
+            <td>
+                {switch name="v.status"}
+                {case value="0"}
+                <button class="btn btn-danger btn-xs" type="button" onclick="changeTableVal({$v.id},{$v.status});"><i class="fa fa-times"></i></button>
+                {/case}
+                {case value="1"}
+                <button class="btn btn-primary btn-xs" type="button" onclick="changeTableVal({$v.id},{$v.status});"><i class="fa fa-check"></i></button>
+                {/case}
+                {/switch}
+            </td>
+            <td>
+                {switch name="v.checked"}
+                {case value="0"}
+                <button class="btn btn-danger btn-xs" type="button" onclick="changeTableVal1({$v.id},{$v.checked});"><i class="fa fa-times"></i></button>
+                {/case}
+                {case value="1"}
+                <button class="btn btn-primary btn-xs" type="button" onclick="changeTableVal1({$v.id},{$v.checked});"><i class="fa fa-check"></i></button>
+                {/case}
+                {/switch}
+            </td>
+            <td>{$v.create_time}</td>
+            <td>
+                <a href="{:addon_url('country://Country/edit',array('id'=>$v['id']))}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i>&nbsp;编辑</a>&nbsp;
+                <button type="button" class="btn btn-danger btn-xs" onclick="delone({$v.id}, this);"><i class="fa fa-close"></i>&nbsp;删除</button></td>
+            </td>
+        </tr>
+        {/foreach}
+        {else/}
+        <tr><td colspan="12" style="text-align:center; font-size:14px;">没有找到相关数据</td></tr>
+        {/if}
+    </tbody>
+</table>
+<div class="row"><div class="pagination" style="float:right; margin-right:20px;">{$page}</div></div>

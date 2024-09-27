@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="__PUBLIC__/admin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/style.css?v=4.1.0" rel="stylesheet">
+<!--    <link href="__PUBLIC__/uploadify/uploadify.css" rel="stylesheet" type="text/css"/>-->
+</head>
+
+<body class="gray-bg">
+<style>
+    input.error{
+        border:1px solid red;
+    }
+    span.error{
+        padding-top:10px;
+        color: #f00;
+        font-size:12px;
+    }
+    #video{
+        width: 400px !important;
+        height: 450px !important;
+    }
+    .img-box{
+        margin-bottom:7px;
+        margin-top:5px;
+    }
+</style>
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>视频上传</h5>
+                </div>
+                <div class="ibox-content">
+                    <form method="post" class="form-horizontal" id="form">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">选择商家:</label>
+                            <div class="col-sm-6">
+                                <select class="form-control" name="shop_id" onchange="removeGoods();">
+                                    <option value="0">选择商家</option>
+                                    {foreach name="shop_list" item="v"}
+                                    <option value="{$v.id}">{$v.shop_name}</option>
+                                    {/foreach}
+                                </select>
+                            </div>
+                            <label class="col-sm-1" style="padding-top:7px; color:#F00; font-size:16px;">*</label>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">选择商品:</label>
+                            <div class="col-sm-6">
+                                <button type="button" class="btn btn-success" onclick="selectGoods();">选择商品信息</button>
+                            </div>
+                            <label class="col-sm-1" style="padding-top:7px; color:#F00; font-size:16px;">*</label>
+                        </div>
+                        
+                        <div class="form-group goods-box">
+                            <label class="col-sm-2 control-label">已选商品信息:</label>
+                            <div class="col-sm-8">
+                                <table class="table table-hover table-bordered">
+                                    <thead class="biaoge">
+                                        <tr>
+                                            <th style="width:30%">商品名称</th>
+                                            <th style="width:20%">缩略图</th>
+                                            <th style="width:15%">所属分类</th>
+                                            <th style="width:20%">金额</th>
+                                            <th style="width:15%">操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="goods_list">
+                                        
+                                    </tbody>	
+                                </table>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <input type="hidden" name="goods_id" value="" />
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">标题:</label>
+                            <div class="col-sm-6">
+                                <input type="text" name="title" class="form-control">
+                            </div>
+                            <label class="col-sm-1" style="padding-top:7px; color:#F00; font-size:16px;">*</label>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">点赞数:</label>
+                            <div class="col-sm-6">
+                                <input type="text" name="praise_num" class="form-control">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        
+                        <div class="form-group">
+                            <label  class="col-sm-2 control-label">封面图:</label>
+                            <div class="col-sm-6">
+                                <div class="img-box">
+                                    <img id="cover_image" src="__PUBLIC__/admin/img/nopic.jpg" width="100" height="100" />
+                                </div>
+                                <div id="uploadCoverImage"></div>
+                            </div>
+                            <input type="hidden" name="cover_img">
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        
+                        <div class="form-group">
+                            <label  class="col-sm-2 control-label">商品视频:</label>
+                            <div class="col-sm-6">
+                                <div class="video" style="width:592px; height:100%; overflow:hidden;">
+                                    <video id="video" src="" controls="controls"></video>
+                                </div>
+                                <div id="uploadVideo"></div>
+                            </div>
+                            <input type="hidden" name="video_path">
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">简介:</label>
+                            <div class="col-sm-6">
+                                <textarea name="describe" class="form-control"></textarea>
+                            </div>
+                            <label class="col-sm-1" style="padding-top:7px; color:#F00; font-size:16px;">*</label>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">状态:</label>
+                            <div class="col-sm-6">
+                                <label class="radio-inline"><input type="radio" name="status" checked="checked" value="1">审核通过</label>
+                                <label class="radio-inline"><input type="radio" name="status" value="2">审核拒绝</label>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <button class="btn btn-primary" type="submit" id="doSubmit">保存内容</button>
+                                <button class="btn btn-primary" type="button" onclick="goBack();">返回</button>
+                                <button type="reset" class="btn btn-default">重置</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 全局js -->
+<script src="__PUBLIC__/admin/js/jquery.min.js?v=2.1.4"></script>
+<script src="__PUBLIC__/admin/js/bootstrap.min.js?v=3.3.6"></script>
+<!-- 自定义js -->
+<script src="__PUBLIC__/admin/Huploadify/jquery.Huploadify.js"></script>
+<script src="__PUBLIC__/admin/js/plugins/layer/layer.min.js"></script>
+<script src="__PUBLIC__/admin/js/plugins/validate/jquery.validate.min.js"></script>
+<!-- iCheck -->
+<script src="__PUBLIC__/admin/js/plugins/iCheck/icheck.min.js"></script>
+<script src="__PUBLIC__/admin/js/common/ajax.js"></script>
+<script type="text/javascript">
+
+    $('.i-checks').iCheck({
+        checkboxClass: 'icheckbox_square-green',
+        radioClass: 'iradio_square-green',
+    });
+
+    var icon = "<i class='fa fa-times-circle'></i>&nbsp;&nbsp;";
+    $('#form').validate({
+        errorElement : 'span',
+        debug: true,//只验证不提交表单
+        //layer ajax提交表单
+        submitHandler:function(){
+            // 序列化 表单数据 后提交 ，太简洁了
+            post("{:url('Video/add')}",'POST',$('#form').serialize(),1);
+            return false;
+        },//这是关键的语句，配置这个参数后表单不会自动提交，验证通过之后会去调用的方法
+
+        rules:{
+            shop_id:{required:true},
+            goods_id:{required:true},
+            title:{required:true},
+            praise_num:{number:true},
+            cover_img:{required:true},
+            video_path:{required:true},
+            describe:{required:true}
+        },
+
+        messages:{
+            shop_id:{required:icon+'必填'},
+            goods_id:{required:icon+'必填'},
+            title:{required:icon+'必填'},
+            praise_num:{number:icon+'请填写数字'},
+            cover_img:{required:icon+'请上传封面图'},
+            video_path:{required:icon+'请上传视频'},
+            describe:{required:icon+'必填'},
+        }
+    });
+    
+    $('#uploadCoverImage').Huploadify({
+        uploader: '{:url("Common/Upload/uploadPic")}',
+        method: 'post',
+        formData: {name:'short_video'},//发送给服务端的参数，格式：{key1:value1,key2:value2}
+        buttonText: '上传封面图', 
+        removeTimeout: 2000,
+        fileTypeDesc: '*.jpg;*.jpeg;*.gif;*.png;*.JPG;*.JPEG;*.GIF;*.PNG;',  
+        fileTypeExts: '*.jpg;*.jpeg;*.gif;*.png;*.JPG;*.JPEG;*.GIF;*.PNG;', 
+        fileObjName: 'file',  //上传附件$_FILE标识
+        fileSizeLimit: 2048,
+        showUploadedPercent: false,   //是否实时显示上传的百分比，如20%
+        auto: true, //开启,自动上传
+        multi: false, //开启,多选文件
+        //开始上传
+        onUploadStart:function(file){
+            layer.load(2);
+        },
+        onUploadSuccess : function(file, data, response) {
+            eval('var data='+data);
+            if(data.status == 200){
+                var res = data.data;
+                $('#cover_image').attr('src', res.path);
+                $('input[name=cover_img]').val(res.path);
+            }else{
+                layer.msg(data.mess, {icon: 2,time: 2000});
+            }
+        },
+        //上传完成后执行的操作
+        onUploadComplete:function(file){
+            layer.closeAll('loading');
+        },
+        onUploadError : function(file, errorCode, errorMsg, errorString) { 
+            layer.msg('文件' + file.name + '上传失败:' + errorString, {icon: 2,time: 2000}); 
+        }
+    });
+    
+    $('#uploadVideo').Huploadify({
+        uploader: '{:url("Common/Upload/uploadVideo")}',
+        method: 'post',
+        formData: {name:'short_video'},
+        buttonText: '上传视频', 
+        removeTimeout: 2000,
+        fileTypeDesc:'*.mp4;*.avi;*.rmvb;*.mkv;',  
+        fileTypeExts:'*.mp4;*.avi;*.rmvb;*.mkv;', 
+        fileObjName: 'file', //上传附件$_FILE标识
+        fileSizeLimit: 31457280,
+        showUploadedPercent: false, //是否实时显示上传的百分比，如20%
+        auto: true, //开启,自动上传
+        multi: false, //开启,多选文件
+        //开始上传
+        onUploadStart:function(file){
+            layer.load(2);
+        },
+        onUploadSuccess : function(file, data, response) {
+            //解析成json对象
+            eval('var data='+data);
+            if(data.status == 200){
+                var res  = data.data;
+                $("input[name='video_path']").val(res.path);
+                $('#video').attr('src', res.path);
+            }else{
+                layer.msg(data.mess, {icon: 2,time: 2000});
+            }
+        },
+        //上传完成后执行的操作
+        onUploadComplete:function(file){
+            layer.closeAll('loading');
+        },
+        //上传错误  
+        onUploadError : function(file, errorCode, errorMsg, errorString) { 
+            layer.msg('文件' + file.name + '上传失败:' + errorString, {icon: 2,time: 2000}); 
+        }
+    });
+
+    function selectGoods(){
+        var goods_id = $('input[name*=goods_id]').val();
+        var shop_id = $("select[name='shop_id']").val();
+        var params = '';
+        if (goods_id) {
+            params += '/goods_id/' + goods_id;
+        }
+        if (shop_id) {
+            params += '/shop_id/' + shop_id;
+        }
+        var goodsurl = "/{$Request.module}/hdgoods/lst" + params;
+        layer.open({
+            type: 2,
+            title: '选择商品信息',
+            shadeClose: true,
+            shade: 0.3,
+            area: ['70%', '80%'],
+            content: goodsurl
+        });
+    }
+
+    function call_backgoods(goods_id,table_html) {
+        layer.closeAll('iframe');
+        $('#goods_list').html(table_html);
+        if (goods_id == null) {
+            layer.msg('请选择商品', {icon: 2, time: 1000});
+            return false;
+        }
+
+        $('input[name="goods_id"]').val(goods_id);
+    }
+    
+    function yichu(obj){
+        $(obj).parent().parent().remove();
+    }
+    
+    function removeGoods() {
+        $('#goods_list').html('');
+    }
+
+    function cl(){
+        location.href = "{:url('Video/lst')}";
+    }
+</script>
+
+</body>
+</html>

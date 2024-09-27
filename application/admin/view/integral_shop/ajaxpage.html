@@ -1,0 +1,49 @@
+<script>
+	var pnum = {$pnum};
+	{if condition="(isset($filter)) AND ($filter)"}
+	var filter = {$filter};
+	{/if}
+	{if condition="(!isset($search)) OR (!$search)"}
+	var search = 0;
+	var goUrl = "/{$Request.module}/integral_shop/lst/filter/"+filter+".html?page="+pnum;
+	{else/}
+	var search = {$search};
+	var goUrl = "/{$Request.module}/integral_shop/search.html?page="+pnum;
+	{/if}
+</script>    
+
+                  
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width:5%">ID</th>
+                                    <th style="width:10%">活动名称</th>
+                                    <th style="width:25%">商品信息</th>
+                                    <th style="width:5%">已售</th>
+                                    <th style="width:5%">所属商家</th>
+<!--                                    <th style="width:5%">推荐</th>-->
+                                    <th style="width:16%">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {if condition="!empty($list)"}
+							{foreach name="list" item="v"}
+                                <tr>
+                                    <td>{$v.id}</td>
+                                    <td>{$v.activity_name}</td>
+                                    <td>{$v.goods_name}</td>
+                                    <td>{$v.sold}</td>
+                                    <td>{$v.shop_name}</td>
+
+                                    <td>
+                                    <button type="button" class="btn btn-info btn-xs" onclick="rush_info({$v.id},this);"><i class="fa fa-paste"></i>&nbsp;详细</button>&nbsp;&nbsp;&nbsp;&nbsp;                                  
+                                    <button type="button" class="btn btn-danger btn-xs" onclick="delone({$v.id},this);"><i class="fa fa-close"></i>&nbsp;删除</button>
+                                    </td>
+                                </tr>
+							{/foreach}
+							{else/}
+							<tr><td colspan="10" style="text-align:center; font-size:14px;">没有找到相关数据</td></tr>
+							{/if}				
+                            </tbody>
+                        </table>
+                        <div class="row"><div class="pagination" style="float:right; margin-right:20px;">{$page}</div></div>

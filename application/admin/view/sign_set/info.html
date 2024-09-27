@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="favicon.ico"> 
+	<link href="__PUBLIC__/admin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/style.css?v=4.1.0" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/uploadify/uploadify.css"/>
+    <script src="__PUBLIC__/admin/js/jquery.min.js?v=2.1.4"></script>
+    <script type="text/javascript" src="__PUBLIC__/admin/js/jquery.cityselect.js?1"></script>
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/ueditor/ueditor.all.min.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/ueditor/lang/zh-cn/zh-cn.js"></script>
+</head>
+
+<script>
+var url = "{:url('sign_set/info')}";
+var infoUrl = "{:url('sign_set/info')}";
+</script>
+
+<body class="gray-bg">
+<style>
+input.error{
+	border:1px solid red;
+}
+span.error{
+	padding-top:10px;
+	color: #f00;
+	font-size:12px;
+}
+</style>
+    <div class="wrapper wrapper-content">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>签到规则信息配置</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <form method="post" enctype="multipart/form-data" class="form-horizontal" id="form">
+<!--                            <div class="form-group">-->
+<!--                                <label class="col-sm-2 control-label">是否开启补签:</label>-->
+<!--                                <div class="col-sm-6">-->
+<!--                                    <label class="radio-inline"><input type="radio" name="signold" {if condition="$sign_set['signold'] eq 1"}checked="checked"{/if} value="1">是</label>-->
+<!--                                    <label class="radio-inline"><input type="radio" name="signold" {if condition="$sign_set['signold'] eq 0"}checked="checked"{/if} value="0">否</label>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="hr-line-dashed"></div>                          							                                                                                                 -->
+
+<!--                            <div class="form-group">-->
+<!--                                <label class="col-sm-2 control-label">补签扣除（每天/次）</label>-->
+<!--                                <div class="col-sm-6">-->
+<!--                                    <input type="text" name="signold_price" {if condition="isset($sign_set['signold_price'])"}value="{$sign_set['signold_price']}"{else/}value=""{/if} class="form-control">-->
+<!--                                </div>-->
+<!--                                <label class="col-sm-1" style="padding-top:7px; color:#F00; font-size:16px;">*</label>-->
+<!--                            </div>-->
+<!--                            <div class="hr-line-dashed"></div>-->
+
+<!--                            <div class="form-group">-->
+<!--                                <label class="col-sm-2 control-label">补签扣除类型:</label>-->
+<!--                                <div class="col-sm-6">-->
+<!--                                    <label class="radio-inline"><input type="radio" name="signold_type" {if condition="$sign_set['signold_type'] eq 1"}checked="checked"{/if} value="1">积分</label>-->
+<!--                                    <label class="radio-inline"><input type="radio" name="signold_type" {if condition="$sign_set['signold_type'] eq 0"}checked="checked"{/if} value="0">余额</label>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="hr-line-dashed"></div>-->
+
+<!--                            <div class="form-group">-->
+<!--                                <label class="col-sm-2 control-label">自定义签到名称</label>-->
+<!--                                <div class="col-sm-6">-->
+<!--                                    <input type="text" name="textsign" {if condition="isset($sign_set['textsign'])"}value="{$sign_set['textsign']}"{else/}value=""{/if} class="form-control">-->
+<!--                                </div>-->
+<!--                                <label class="col-sm-1" style="padding-top:7px; color:#F00; font-size:16px;">*</label>-->
+<!--                            </div>-->
+<!--                            <div class="hr-line-dashed"></div>-->
+
+<!--                            <div class="form-group">-->
+<!--                                <label class="col-sm-2 control-label">自定义补签名称</label>-->
+<!--                                <div class="col-sm-6">-->
+<!--                                    <input type="text" name="textsignold" {if condition="isset($sign_set['textsignold'])"}value="{$sign_set['textsignold']}"{else/}value=""{/if} class="form-control">-->
+<!--                                </div>-->
+<!--                                <label class="col-sm-1" style="padding-top:7px; color:#F00; font-size:16px;">*</label>-->
+<!--                            </div>-->
+<!--                            <div class="hr-line-dashed"></div>-->
+
+<!--                            <div class="form-group">-->
+<!--                                <label class="col-sm-2 control-label">自定义已签名称</label>-->
+<!--                                <div class="col-sm-6">-->
+<!--                                    <input type="text" name="textsigned" {if condition="isset($sign_set['textsigned'])"}value="{$sign_set['textsigned']}"{else/}value=""{/if} class="form-control">-->
+<!--                                </div>-->
+<!--                                <label class="col-sm-1" style="padding-top:7px; color:#F00; font-size:16px;">*</label>-->
+<!--                            </div>-->
+<!--                            <div class="hr-line-dashed"></div>-->
+
+<!--                            <div class="form-group">-->
+<!--                                <label class="col-sm-2 control-label">自定义漏签名称</label>-->
+<!--                                <div class="col-sm-6">-->
+<!--                                    <input type="text" name="textsignforget" {if condition="isset($sign_set['textsignforget'])"}value="{$sign_set['textsignforget']}"{else/}value=""{/if} class="form-control">-->
+<!--                                </div>-->
+<!--                                <label class="col-sm-1" style="padding-top:7px; color:#F00; font-size:16px;">*</label>-->
+<!--                            </div>-->
+<!--                            <div class="hr-line-dashed"></div>-->
+
+<!--                            <div class="form-group">-->
+<!--                                <label class="col-sm-2 control-label">签到页面主色调</label>-->
+<!--                                <div class="col-sm-6">-->
+<!--                                    <input type="text" name="maincolor" class="form-control colorpicker-demo1 colorpicker-element" value="{$sign_set['maincolor']}">-->
+<!--                                </div>-->
+<!--                            </div>-->
+
+<!--                            <div class="form-group">-->
+<!--                                <label class="col-sm-2 control-label">签到周期:</label>-->
+<!--                                <div class="col-sm-6">-->
+<!--                                    <label class="radio-inline"><input type="radio" name="cycle" {if condition="$sign_set['cycle'] eq 1"}checked="checked"{/if} value="1">不限</label>-->
+<!--                                    <label class="radio-inline"><input type="radio" name="cycle" {if condition="$sign_set['cycle'] eq 0"}checked="checked"{/if} value="0">自然月</label>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="hr-line-dashed"></div>-->
+
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">首次奖励</label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="reward_default_first" {if condition="isset($sign_set['reward_default_first'])"}value="{$sign_set['reward_default_first']}"{else/}value=""{/if} class="form-control">
+                                </div>
+                                <label class="col-sm-1" style="padding-top:7px; color:#F00; font-size:16px;">*</label>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">日常奖励</label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="reward_default_day" {if condition="isset($sign_set['reward_default_day'])"}value="{$sign_set['reward_default_day']}"{else/}value=""{/if} class="form-control">
+                                </div>
+                                <label class="col-sm-1" style="padding-top:7px; color:#F00; font-size:16px;">*</label>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="form-group" id="add">
+                                <label class="col-sm-2 control-label">连续签到奖励规则</label>
+                                {foreach name="reword_order" item="v"}
+                                <div class="input-group m-b" style="width: 50%; margin-left: 17%;" >
+                                    <span class="input-group-addon">连续签到</span>
+                                    <input type="text" name="today[]" value="{$v.today}" class="form-control">
+                                    <span class="input-group-addon">天奖励</span>
+                                    <input type="text" name="num[]" value="{$v.num}" class="form-control">
+                                    <span class="input-group-addon"><a href="#" onclick="addrow(this);">+</a></span>
+                                    <span class="input-group-addon"><a href="javascript:;" onclick="yichu(this);" style="font-size: 20px;font-weight: bold">-</a></span>
+                                </div>
+                                {/foreach}
+                            </div>
+                            <div class="hr-line-dashed" id="addi" style="display: none;"></div>
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="panel-body">
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">签到规则说明</label>
+                                    <div class="col-sm-6">
+                                        <textarea id="goods_desc" name="sign_rule">{$sign_set.sign_rule}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                           {if condition="!empty($sign_set['id'])"}
+                           <input type="hidden" name="id" value="{$sign_set.id}">
+                           {/if}
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <button class="btn btn-primary" type="submit" id="doSubmit" style="margin-right:100px;">保存内容</button>
+                                    <button type="reset" class="btn btn-default">重置</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 全局js -->
+    <script src="__PUBLIC__/admin/js/bootstrap.min.js?v=3.3.6"></script>
+    <!-- 自定义js -->
+    <script type="text/javascript" src="__PUBLIC__/uploadify/jquery.uploadify.min.js"></script>
+    <script src="__PUBLIC__/admin/js/plugins/layer/layer.min.js"></script>
+    <script src="__PUBLIC__/admin/js/plugins/validate/jquery.validate.min.js"></script>	
+    <!-- iCheck -->
+    <script src="__PUBLIC__/admin/js/plugins/iCheck/icheck.min.js"></script>
+    <script src="__PUBLIC__/admin/js/common/ajax.js"></script>
+    <script src="__PUBLIC__/admin/js/plugins/pace/pace.min.js"></script>
+    <script src="__PUBLIC__/admin/js/plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
+    <script src="__PUBLIC__/admin/js/plugins/clockpicker/clockpicker.js"></script>
+    <script type="text/javascript">
+        //实例化编辑器
+        UE.getEditor('goods_desc', {initialFrameWidth:'100%', initialFrameHeight:300});
+    </script>
+
+
+	<script>
+            function addrow(o){
+            var div = $(o).parent().parent().clone();
+            $('#add').append(div)
+        }
+
+        function yichu(obj){
+            $(obj).parent().parent().remove();
+        }
+
+    	$(function(){    		
+    	    var icon = "<i class='fa fa-times-circle'></i>&nbsp;&nbsp;";
+        	$('#form').validate({
+	        	errorElement : 'span',
+	        	debug: true,//只验证不提交表单
+	        	//layer ajax提交表单
+	            submitHandler:function(){
+	               // 序列化 表单数据 后提交 ，太简洁了
+	            	post(infoUrl,'POST',$('#form').serialize(),1);
+	                return false;
+	            },//这是关键的语句，配置这个参数后表单不会自动提交，验证通过之后会去调用的方法
+	                
+	        	rules:{
+                    signold:{required:true},
+                    signold_price:{required:true},
+                    signold_type:{required:true},
+                    textsign:{required:true},
+                    textsignold:{required:true},
+                    textsigned:{required:true},
+                    maincolor:{required:true},
+                    cycle:{required:true},
+                    reward_default_first:{required:true},
+                    reward_default_day:{required:true},
+                    sign_rule:{required:true}
+	        	},
+	        		
+	        	messages:{
+                    signold:{required:icon+'必填'},
+                    signold_price:{required:icon+'必填'},
+                    signold_type:{required:icon+'必填'},
+                    textsign:{required:icon+'必填'},
+                    textsignold:{required:icon+'必填'},
+                    textsigned:{required:icon+'必填'},
+                    maincolor:{required:icon+'必填'},
+                    cycle:{required:icon+'必填'},
+                    reward_default_first:{required:icon+'必填'},
+                    reward_default_day:{required:icon+'必填'},
+                    sign_rule:{required:icon+'必填'},
+	        	}
+        	});
+      });
+
+      function cl(){
+         location.href = url;
+      }
+    </script>
+        
+
+</body>
+</html>

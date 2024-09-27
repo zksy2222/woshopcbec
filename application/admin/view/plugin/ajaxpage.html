@@ -1,0 +1,51 @@
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th width="5%">ID</th>
+            <th>插件名称</th>
+            <th>分类</th>
+            <th>标题</th>
+            <th width="10%">描述</th>
+            <th>作者</th>
+            <th>版本</th>
+            <th width="15%">状态</th>
+            <th width="10%">是否开启</th>
+            <th width="15%">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        {if condition="!empty($plugins)"}
+        {foreach name="plugins" item="v"}
+        <tr>
+            <td>{$v.id}</td>
+            <td>{$v.name}</td>
+            <td>{if condition="$v.category_id eq 0"}免费{else}付费{/if}</td>
+            <td>{$v.title}</td>
+            <td>{$v.intro}</td>
+            <td>{$v.author}</td>
+            <td>{$v.version}</td>
+            <td>{if condition="$v.status eq 0"}未安装{else}已安装{/if}</td>
+            <td>
+                {switch name="v.isclose"}
+                {case value="1"}
+                <button class="btn btn-primary btn-xs" type="button" onclick="changeTableVal({$v.id}, {$v.isclose});"><i class="fa fa-check"></i></button>
+                {/case}
+                {case value="0"}
+                <button class="btn btn-danger btn-xs" type="button" onclick="changeTableVal({$v.id}, {$v.isclose});"><i class="fa fa-times"></i></button>
+                {/case}
+                {/switch}
+            </td>
+            <td>
+                <button type="button"  {if condition="$v.status eq 1"} class="btn btn-danger  btn-xs" {else} class="btn btn-primary btn-xs"  onclick="install({$v.id}, this);" {/if} ><i class="fa fa-pencil"></i>&nbsp;{if condition="$v.status eq 0"}安装{else}已安装{/if}</button>&nbsp;
+
+                <button type="button" class="btn {if condition="$v.status eq 1"} btn-primary {else}btn-danger{/if} btn-xs" onclick="uninstall({$v.id}, this);"><i class="fa fa-close"></i>&nbsp;卸载</button>
+                <button type="button" class="btn  btn-danger  btn-xs" {if condition="$v.status eq 0"} onclick="delone({$v.id}, this){/if};"><i class="fa fa-close"></i>&nbsp;删除</button>
+            </td>
+        </tr>
+        {/foreach}
+        {else/}
+        <tr><td colspan="8" style="text-align:center; font-size:14px;">没有找到相关数据</td></tr>
+        {/if}
+    </tbody>
+</table>
+<div class="row"><div class="pagination" style="float:right; margin-right:20px;">{$page}</div></div>

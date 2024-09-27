@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="favicon.ico"> 
+	<link href="__PUBLIC__/admin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/style.css?v=4.1.0" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/uploadify/uploadify.css"/>
+    <script src="__PUBLIC__/admin/js/jquery.min.js?v=2.1.4"></script>
+</head>
+
+
+<body class="gray-bg">
+<style>
+input.error{
+	border:1px solid red;
+}
+span.error{
+	padding-top:10px;
+	color: #f00;
+	font-size:12px;
+}
+</style>
+
+    <div class="wrapper wrapper-content">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>入驻保证金订单详情</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="form-horizontal">
+                             <div class="form-group">
+                                 <label class="col-sm-2 control-label">订单号：</label>
+                                 <div class="col-sm-6">
+                                     <div style="font-size:14px; width:200px; height:35px; line-height:35px;">{$orders.ordernumber}</div>
+                                 </div>
+                             </div>
+                             <div class="hr-line-dashed"></div>
+                        
+                             <div class="form-group">
+                                <label class="col-sm-2 control-label">支付状态：</label>
+                                <div class="col-sm-6">
+                                <div style="font-size:14px; width:200px; height:35px; line-height:35px;">
+                                {switch name="orders.state"}
+                                {case value="0"}
+                                    {if condition="$orders.zf_type eq 0"}
+                                    <span style="color:#1c84c6;">待支付</span>
+                                    {else}
+                                    <span style="color:#1c84c6;">待审核支付</span>
+                                    {/if}
+                                {/case}
+                                {case value="1"}
+                                <span style="color:#1992FC;">已支付</span>                                  
+                                {/case}                                                              
+                                {/switch}
+                                </div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">联系人：</label>
+                                <div class="col-sm-6">
+                                    <div style="font-size:14px; width:200px; height:35px; line-height:35px;">{$orders.contacts}</div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">手机号：</label>
+                                <div class="col-sm-6">
+                                    <div style="font-size:14px; width:200px; height:35px; line-height:35px;">{:mix_phone($orders.telephone)}</div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                        
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">商家名称：</label>
+                                <div class="col-sm-6">
+                                    <div style="font-size:14px; width:200px; height:35px; line-height:35px;">{$orders.shop_name}</div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">行业名称：</label>
+                                <div class="col-sm-6">
+                                    <div style="font-size:14px; width:200px; height:35px; line-height:35px;">{$orders.industry_name}</div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">总价：</label>
+                                <div class="col-sm-6">
+                                    <div style="font-size:14px; width:200px; height:35px; line-height:35px;">{$orders.total_price}&nbsp;元</div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">所在省市区：</label>
+                                <div class="col-sm-6">
+                                    <div style="font-size:14px; width:200px; height:35px; line-height:35px;">{$orders.pro_name}&nbsp;{$orders.city_name}&nbsp;{$orders.area_name}</div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">提交时间：</label>
+                                <div class="col-sm-6">
+                                    <div style="font-size:14px; width:200px; height:35px; line-height:35px;">{:date('Y-m-d H:s:i',$orders['addtime'])}</div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            {if condition="$orders['state'] eq 1"}
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">支付时间：</label>
+                                <div class="col-sm-6">
+                                    <div style="font-size:14px; width:200px; height:35px; line-height:35px;">{:date('Y-m-d H:s:i',$orders['pay_time'])}</div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            {/if}
+
+                            {if condition="$orders['zf_type'] eq 5 && !empty($order_card)"}
+                            <div class="wrapper wrapper-content" style="padding-bottom:0px;">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="ibox float-e-margins">
+                                            <div class="ibox-title">
+                                                <h5>银行卡支付信息</h5>
+                                            </div>
+                                            <div class="ibox-content">
+                                                <table class="table table-bordered table1">
+                                                    <tbody>
+                                                    <tr><td class="xinxiinfo1">姓名：</td><td>{$order_card.card_name}</td></tr>
+                                                    <tr><td class="xinxiinfo1">卡号：</td><td>{$order_card.card_number}</td></tr>
+                                                    {if condition="$orders['state'] eq 0"}
+                                                    <tr>
+                                                        <input type="hidden" name="id" value="{$orders.id}">
+                                                        <td colspan="2" style="text-align:center; font-size:14px;">{if condition="$orders['state'] eq 0"}<button type="button" class="btn btn-success" id="zfSubmitqr">确认支付</button>{/if}</td>
+                                                    </tr>
+                                                    {/if}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {/if}
+
+                            {if condition="in_array($orders['zf_type'],[6,7]) && !empty($usdt_img)"}
+                            <div class="wrapper wrapper-content" style="padding-bottom:0px;">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="ibox float-e-margins">
+                                            <div class="ibox-title">
+                                                <h5>USDT支付凭证</h5>
+                                            </div>
+                                            <div class="ibox-content">
+                                                <table class="table table-bordered table1">
+                                                    <tbody>
+                                                    <tr><td class="xinxiinfo1">支付截图：</td><td><a class="fancybox" href="{$usdt_img.usdt_img}" title="{$v.title}">
+                                                        <img src="{$usdt_img.usdt_img}" style="max-width:100px; max-height: 100px;"/>
+                                                    </a></td></tr>
+                                                    {if condition="$orders['state'] eq 0"}
+                                                    <tr>
+                                                        <input type="hidden" name="id" value="{$orders.id}">
+                                                        <td colspan="2" style="text-align:center; font-size:14px;">{if condition="$orders['state'] eq 0"}<button type="button" class="btn btn-success" id="zfSubmitqr">确认支付</button>{/if}</td>
+                                                    </tr>
+                                                    {/if}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {/if}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 全局js -->
+    <script src="__PUBLIC__/admin/js/bootstrap.min.js?v=3.3.6"></script>
+    <!-- 自定义js -->
+    <script type="text/javascript" src="__PUBLIC__/uploadify/jquery.uploadify.min.js"></script>
+    <script src="__PUBLIC__/admin/js/plugins/layer/layer.min.js"></script>
+    <script src="__PUBLIC__/admin/js/plugins/validate/jquery.validate.min.js"></script>	
+    <!-- iCheck -->
+    <script src="__PUBLIC__/admin/js/plugins/iCheck/icheck.min.js"></script>
+    <script src="__PUBLIC__/admin/js/common/ajax.js"></script>
+
+    <script>
+
+        $(function (){
+            {if condition="$orders['state'] eq 0 && in_array($orders['zf_type'],[6,7]) && $orders['order_status'] eq 0"}
+            $('#zfSubmitqr').click(function(){
+                layer.confirm('确定支付了么？', {
+                    skin: 'layui-layer-molv',
+                    closeBtn: 0,
+                    shadeClose : true,
+                    btn: ['确定','取消'] //按钮
+                },function(){
+
+                    var order_id = $('input[name=id]').val();
+
+                    if(!order_id){
+                        layer.msg('缺少订单信息', {icon: 2,time: 2000});
+                        return false;
+                    }
+
+                    layer.load(2);
+
+                    $.ajax({
+                        url:"{:url('rz_order/usdtCheck')}",
+                        type:'POST',
+                        data:{'order_id':order_id},
+                        dataType:'json',
+                        success:function(data){
+                            if(data.status == 1){
+                                layer.closeAll('loading');
+                                layer.msg(data.mess, {icon: 1,time: 1000},function(){
+                                    location.reload();
+                                });
+                            }else{
+                                layer.closeAll('loading');
+                                layer.msg(data.mess, {icon: 2,time: 2000});
+                            }
+                        },
+                        error:function(){
+                            layer.closeAll('loading');
+                            layer.msg('操作失败或您没有权限，请重试', {icon: 2,time: 2000});
+                        }
+                    });
+                });
+            });
+
+            {/if}
+                {if condition="$orders['state'] eq 0 && $orders['zf_type'] eq 5 && $orders['order_status'] eq 0"}
+                $('#zfSubmitqr').click(function(){
+                    layer.confirm('确定支付了么？', {
+                        skin: 'layui-layer-molv',
+                        closeBtn: 0,
+                        shadeClose : true,
+                        btn: ['确定','取消'] //按钮
+                    },function(){
+
+                        var order_id = $('input[name=id]').val();
+
+                        if(!order_id){
+                            layer.msg('缺少订单信息', {icon: 2,time: 2000});
+                            return false;
+                        }
+
+                        layer.load(2);
+
+                        $.ajax({
+                            url:"{:url('rz_order/cardCheck')}",
+                            type:'POST',
+                            data:{'order_id':order_id},
+                            dataType:'json',
+                            success:function(data){
+                                if(data.status == 1){
+                                    layer.closeAll('loading');
+                                    layer.msg(data.mess, {icon: 1,time: 1000},function(){
+                                        location.reload();
+                                    });
+                                }else{
+                                    layer.closeAll('loading');
+                                    layer.msg(data.mess, {icon: 2,time: 2000});
+                                }
+                            },
+                            error:function(){
+                                layer.closeAll('loading');
+                                layer.msg('操作失败或您没有权限，请重试', {icon: 2,time: 2000});
+                            }
+                        });
+                    });
+                });
+
+                {/if}
+        })
+    </script>
+</body>
+</html>

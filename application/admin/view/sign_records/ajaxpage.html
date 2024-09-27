@@ -1,0 +1,57 @@
+<script>
+	var pnum = {$pnum};
+	{if condition="(isset($filter)) AND ($filter)"}
+	var filter = {$filter};
+	{/if}
+	{if condition="(!isset($search)) OR (!$search)"}
+	var search = 0;
+	var goUrl = "/{$Request.module}/order_zong/lst/filter/"+filter+".html?page="+pnum;
+	{else/}
+	var search = {$search};
+	var goUrl = "/{$Request.module}/order_zong/search.html?page="+pnum;
+	{/if}
+</script> 
+
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width:5%">id</th>
+                                    <th style="width:15%">用户名</th>
+                                    <th style="width:15%">奖励积分</th>
+                                    <th style="width:15%">奖励类型</th>
+                                    <th style="width:15%">签到天数</th>
+                                    <th style="width:15%">签到时间</th>
+<!--                                    <th style="width:10%">操作</th>-->
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {if condition="$list->isEmpty() == false"}
+							{foreach name="list" item="v"} 
+                                <tr>
+                                    <td>{$v.id}</td>
+                                    <td>
+                                        {$v.user_name}
+                                    </td>
+                                    <td>
+                                    {$v.credit}
+                                    </td>
+                                    <td>
+                                        {if condition="$v['type'] eq 1"}
+                                        <font style="color:#1992FC;">连续</font>
+                                        {elseif condition="$v['type'] eq 0"/}
+                                        <font style="color:#1c84c6;">日常</font>
+                                        {/if}
+                                    </td>
+                                    <td>{$v.day}</td>
+                                    <td>{:date('Y-m-d H:i:s',$v['time'])}</td>
+<!--                                    <td>-->
+<!--                                    <button type="button" class="btn btn-danger btn-xs" onclick="delone({$v.id},this);"><i class="fa fa-close"></i>&nbsp;删除</button>-->
+<!--                                    </td>-->
+                                </tr>
+							{/foreach}
+							{else/}
+							<tr><td colspan="6" style="text-align:center; font-size:14px;">没有找到相关数据</td></tr>
+							{/if}						
+                            </tbody>
+                        </table>
+                        <div class="row"><div class="pagination" style="float:right; margin-right:20px;">{$page}</div></div>

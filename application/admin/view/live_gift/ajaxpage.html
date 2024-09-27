@@ -1,0 +1,44 @@
+<script>
+  var pnum = {$pnum};
+  var goUrl = "/{$Request.module}/live_gift/lst?page="+pnum;
+</script>
+
+
+  <table class="table table-hover table-bordered">
+    <thead>
+    <tr>
+      <th style="width:5%">礼物ID</th>
+      <th style="width:10%">分类名称</th>
+      <th style="width:10%">礼物名称</th>
+      <th style="width:10%">消耗金币</th>
+      <th style="width:15%">礼物图片</th>
+      <!--                                    <th style="width:15%">礼物动图</th>-->
+      <!--                                    <th style="width:5%">持续秒数</th>-->
+      <th style="width:15%">创建时间</th>
+      <th style="width:15%">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    {if condition="$list->isEmpty() == false"}
+    {foreach name="list" item="v"}
+    <tr>
+      <td>{$v.id}</td>
+      <td>{$v.cate_name}</td>
+      <td>{$v.name}</td>
+      <td>{$v.gift_coin}</td>
+      <td><img src="{$v.pic}" width="60px"/></td>
+      <!--                                    <td><img src="{$v.picgif}" width="60px"/></td>-->
+      <!--                                    <td>{$v.play}</td>-->
+      <td>{$v.createtime|date="Y-m-d H:i:s",###}</td>
+      <td>
+        <a href="{:url('edit',array('id'=>$v['id']))}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-danger btn-xs" onclick="delone({$v.id},this);"><i class="fa fa-trash-o"></i>&nbsp;删除</button>
+      </td>
+    </tr>
+    {/foreach}
+    {else/}
+    <tr><td colspan="9" style="text-align:center; font-size:14px;">没有找到相关数据</td></tr>
+    {/if}
+    </tbody>
+  </table>
+  <div class="row"><div class="pagination" style="float:right; margin-right:20px;">{$page}</div></div>

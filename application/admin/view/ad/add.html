@@ -1,0 +1,305 @@
+<!--
+ * @Descripttion: 
+ * @Author: cbing
+ * @Date: 2019-06-17 09:55:00
+ * @LastEditors: cbing
+ * @LastEditTime: 2019-09-05 10:05:36
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="favicon.ico"> 
+	<link href="__PUBLIC__/admin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/style.css?v=4.1.0" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/admin/Huploadify/Huploadify.css"/>
+    <script src="__PUBLIC__/admin/js/jquery.min.js?v=2.1.4"></script>
+</head>
+
+<script>
+{if condition="(!isset($cate_id)) OR (!$cate_id)"}
+var url = "{:url('ad/lst')}";
+{else/}
+var cate_id = {$cate_id};
+var url = "/{$Request.module}/ad/poslist/cate_id/"+cate_id;
+{/if}
+var checkAdname = "{:url('ad/checkAdname')}";
+var insertUrl = "{:url('ad/add')}";
+</script>
+
+<body class="gray-bg">
+<style>
+input.error{
+	border:1px solid red;
+}
+span.error{
+	padding-top:10px;
+	color: #f00;
+	font-size:12px;
+}
+</style>
+
+    <div class="wrapper wrapper-content">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>增加广告</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <form method="post" class="form-horizontal" id="form">
+                                                                              
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">广告名称：</label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="ad_name" class="form-control">
+                                </div>
+                                <label class="col-sm-1" style="padding-top:7px; color:#F00; font-size:16px;">*</label>
+                            </div>						
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">广告位置：</label>
+
+                                <div class="col-sm-6">
+                                    <select class="form-control m-b" name="cate_id">
+                                        <option value="">请选择</option>
+                                        {foreach name="adCateList" item="v"}
+                                        <option value="{$v.id}" {if condition="(isset($cate_id)) AND ($cate_id eq $v['id'])"}selected = "selected"{/if}>{$v.cate_name}&nbsp;&nbsp;{$v.width}*{$v.height}</option>
+                                        {/foreach}
+                                    </select>
+                                </div>
+                                <label class="col-sm-1" style="padding-top:7px; color:#F00; font-size:16px;">*</label>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="guanggao">
+                            <div class="form-group">
+							<label  class="col-sm-2 control-label">上传广告图片:</label>
+							<div class="col-sm-6">
+                            <div style="margin-bottom:7px; margin-top:5px;">
+                            <img id="imageinfo" src="__PUBLIC__/admin/img/nopic.jpg" width="180" height="120" border="0" />
+                            <br/><button type="button" class="btn btn-danger btn-xs del" style="display:none;">删除</button>
+                            </div>
+                            <div id="uploaderInput"></div>
+                            <input type="hidden" name="ad_pic" value="" >
+                            </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>                                                                
+							</div>
+
+							<div class="adurl">
+							<div class="form-group">
+                                <label class="col-sm-2 control-label">链接：</label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="ad_url" class="form-control">
+                                </div>
+                            </div>	
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"></label>
+                                <div class="col-sm-6" style="color:#999;">
+                                    商品分类列表页面：/pagesC/goods/categoryGoods?id=商品分类id <br>
+                                    商品详情页面：/pagesC/goods/goodsDetails?id=商品id  <br>
+                                    个人中心页面：/pages/tabBar/my  <br>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div> 
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">排序：</label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="sort" class="form-control">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">是否开启：</label>
+                                <div class="col-sm-6">
+                                        <label class="radio-inline"><input type="radio" name="is_on" value="1">是</label>
+                                        <label class="radio-inline"><input type="radio" name="is_on" checked="checked" value="0">否</label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                              
+                                                                                                                          
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <button class="btn btn-primary" type="submit" id="doSubmit" style="margin-right:20px;">保存内容</button>
+                                    <button type="reset" class="btn btn-default">重置</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 全局js -->
+    <script src="__PUBLIC__/admin/js/bootstrap.min.js?v=3.3.6"></script>
+    <!-- 自定义js -->
+    <script type="text/javascript" src="__PUBLIC__/admin/Huploadify/jquery.Huploadify.js"></script>    
+    <script src="__PUBLIC__/admin/js/plugins/layer/layer.min.js"></script>
+    <script src="__PUBLIC__/admin/js/plugins/validate/jquery.validate.min.js"></script>	
+    <!-- iCheck -->
+    <script src="__PUBLIC__/admin/js/plugins/iCheck/icheck.min.js"></script>
+    <script src="__PUBLIC__/admin/js/common/ajax.js"></script>
+
+	<script>
+    	$(function(){   	    
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+            
+            $('.guanggao').hide();
+            $('.guanggao').eq(0).show();
+            $('.adurl').hide();
+            $('.adurl').eq(0).show();
+            $('#atype .radio-inline').click(function(){
+            	var i = $(this).index();
+            	$('.guanggao').hide();
+            	$('.guanggao').eq(i).show();
+            	$('.adurl').hide();
+            	$('.adurl').eq(i).show();
+            });
+            
+    		//上传缩略图
+	        $('#uploaderInput').Huploadify({
+	            uploader : '{:url("Common/Upload/uploadPic")}',
+		        method:'post',
+		        formData: {name:'ad'},//发送给服务端的参数，格式：{key1:value1,key2:value2}
+		        buttonText : '上传图像', 
+		        removeTimeout: 2000,
+		        fileTypeDesc:'*.jpg;*.jpeg;*.gif;*.png;*.JPG;*.JPEG;*.GIF;*.PNG;',  
+		        fileTypeExts:'*.jpg;*.jpeg;*.gif;*.png;*.JPG;*.JPEG;*.GIF;*.PNG;', 
+		        fileObjName: 'file', //上传附件$_FILE标识
+		        fileSizeLimit : 2048,
+		        //showUploadedPercent:false,//是否实时显示上传的百分比，如20%
+		        auto : true, //开启,自动上传
+		        multi : false, //开启,多选文件
+		        //开始上传
+				onUploadStart:function(file){
+					layer.load(2);
+				},
+		        onUploadSuccess : function(file, data, response) {
+		        	//解析成json对象
+		        	eval('var data='+data);
+		        	if(data.status == 200){
+		        		var picpath = data.data.path;
+	    	        	$('#imageinfo').attr('src', picpath);
+	    	        	$('.del').show();
+	    	        	$('input[name=ad_pic]').val(picpath);
+		        	}else{
+		        		layer.msg(data.mess, {icon: 2,time: 2000});
+		        	}
+		        },
+		        //上传完成后执行的操作
+		        onUploadComplete:function(file){
+		        	layer.closeAll('loading');
+		        },
+		        //上传错误  
+		        onUploadError : function(file, errorCode, errorMsg, errorString) { 
+		        	layer.msg('文件' + file.name + '上传失败:' + errorString, {icon: 2,time: 2000}); 
+		        }
+		    });
+                    
+                    //上传缩略图
+	        $('#uploaderBgImage').Huploadify({
+	            uploader : '{:url("Common/Upload/uploadPic")}',
+		        method:'post',
+		        formData:null,//发送给服务端的参数，格式：{key1:value1,key2:value2}
+		        buttonText : '上传背景图', 
+		        removeTimeout: 2000,
+		        fileTypeDesc:'*.jpg;*.jpeg;*.gif;*.png;*.JPG;*.JPEG;*.GIF;*.PNG;',  
+		        fileTypeExts:'*.jpg;*.jpeg;*.gif;*.png;*.JPG;*.JPEG;*.GIF;*.PNG;', 
+		        fileObjName: 'filedata', //上传附件$_FILE标识  
+		        fileSizeLimit : 2048,
+		        //showUploadedPercent:false,//是否实时显示上传的百分比，如20%
+		        auto : true, //开启,自动上传
+		        multi : false, //开启,多选文件
+		        //开始上传
+                        onUploadStart:function(file){
+                                layer.load(2);
+                        },
+		        onUploadSuccess : function(file, data, response) {
+		        	//解析成json对象
+		        	eval('var data='+data);
+		        	if(data.status == 200){
+		        		var picpath = data.data.path;
+	    	        	$('#bgimage').attr('src',picpath);
+	    	        	$('input[name=bg_image]').val(picpath);
+		        	}else{
+		        		layer.msg(data.mess, {icon: 2,time: 2000});
+		        	}
+		        },
+		        //上传完成后执行的操作
+		        onUploadComplete:function(file){
+		        	layer.closeAll('loading');
+		        },
+		        //上传错误  
+		        onUploadError : function(file, errorCode, errorMsg, errorString) { 
+		        	layer.msg('文件' + file.name + '上传失败:' + errorString, {icon: 2,time: 2000}); 
+		        }
+		    });
+    		
+    		$('.del').click(function(){
+                $('input[name=ad_pic]').val('');
+                $('#imageinfo').attr('src','__PUBLIC__/admin/img/nopic.jpg');
+                $('.del').hide();
+    		});
+
+    	    var icon = "<i class='fa fa-times-circle'></i>&nbsp;&nbsp;";
+        	$('#form').validate({
+	        	errorElement : 'span',
+	        	debug: true,//只验证不提交表单
+	            //layer ajax提交表单
+	            submitHandler:function(){	            	
+	                // 序列化 表单数据 后提交 ，太简洁了
+	                post(insertUrl,'POST',$('#form').serialize(),1);
+	                return false;
+	            },//这是关键的语句，配置这个参数后表单不会自动提交，验证通过之后会去调用的方法
+	                
+	        	rules:{
+	        		ad_name:{
+	        			required:true,
+		        		remote : {
+			        	    url : checkAdname,
+			        	    type : 'post',
+			        		dataType : 'json',
+			        		data : {
+			        			ad_name : function () {
+			        			    return $('input[name=ad_name]').val();
+			        	        }
+			        		}
+			        	}	        			
+	        		},
+	        		cate_id:{required:true}
+	        	},
+	        		
+	        	messages:{
+	        		ad_name:{
+	        			required:icon+'必填',
+	        			remote:icon+'广告名称已存在'
+	        		},
+	        		cate_id:{required:icon+'必选'},
+	        	}
+            });
+      });
+    	
+      function cl(){
+    	  location.href = url;
+      }
+    </script>
+
+</body>
+</html>

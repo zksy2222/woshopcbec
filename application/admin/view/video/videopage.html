@@ -1,0 +1,57 @@
+
+<table class="table table-hover table-bordered">
+  <thead>
+  <tr>
+    <th style="width:"></th>
+    <th style="width:">标题</th>
+    <th style="width:">简介</th>
+    <th style="width:">封面图</th>
+    <th style="width:">视频url</th>
+    <th style="width:">操作</th>
+  </tr>
+  </thead>
+  <tbody id="video_table">
+  {if condition="$list->isEmpty() == false"}
+  {foreach name="list" item="v"}
+  <tr>
+    <td><input type="checkbox" class="text_id" name="video_id[]" value="{$v.id}" /></td>
+    <td>{$v.title}</td>
+    <td>{$v.describe}</td>
+    <td>
+      <img src="{$cos_domain}{$v.cover_img}" width="100px" height="100px" onerror="this.src='__PUBLIC__/admin/img/nopic.jpg'"/>
+    </td>
+    <td>
+      <a href="{$cos_domain}{$v.video_path}" target="_bank">...{$v.video_path}</a>
+    </td>
+    <td>
+      <button type="button" class="btn btn-danger btn-xs" onclick="$(this).parent().parent().remove();"><i class="fa fa-close"></i>&nbsp;移除</button>
+    </td>
+  </tr>
+  {/foreach}
+  {else/}
+  <tr><td colspan="6" style="text-align:center; font-size:14px;">没有找到相关数据</td></tr>
+  {/if}
+  </tbody>
+</table>
+<div class="row"><div class="pagination" style="float:right; margin-right:20px;">{$page}</div></div>
+<div><button type="button" class="btn btn-primary" onclick="select_video();">提交</button></div>
+
+<script>
+  function select_video() {
+    if ($('input[class=text_id]:checked').length == 0) {
+      layer.msg('请选择视频', {icon: 2, time: 1000});
+      return false;
+    }
+    //将没选中的复选框所在的  tr  remove  然后隐藏复选框
+    $('input[class=text_id]:checkbox').each(function () {
+      var checked = $(this).prop('checked');
+      if (!checked) {
+        $(this).parent().parent().remove();
+      } else {
+        $(this).parent().css('display', 'none');
+        $(this).attr("checked", "checked");
+      }
+    });
+    javascript:window.parent.call_backvideo($('#video_table').html());
+  }
+</script>                        

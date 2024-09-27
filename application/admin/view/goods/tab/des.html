@@ -1,0 +1,50 @@
+
+
+
+<div class="tabs-container">
+  <ul class="nav nav-tabs">
+    {foreach name="langs" item="v"}
+    <li {if condition="$key eq 0"}class="active" {else} class="" {/if}><a data-toggle="tab" onclick="set_desc_lang({$v.id});" aria-expanded="true">{$v.lang_name}</a></li>
+    {/foreach}
+  </ul>
+</div>
+
+{foreach name="langs" item="v"}
+<div class="panel-body" id="goods_desc_{$v.id}">
+  <div class="form-group">
+    <div class="col-sm-10">
+      {if condition="!empty($goodsLangs)"}
+      {foreach name="goodsLangs" item="v1"}
+      {if condition="$v1.lang_id eq $v.id"}
+      <textarea id="goods_desc{$v.id}" name="goods_desc_{$v.lang_code}">{$v1.goods_desc}</textarea>
+      {/if}
+      {/foreach}
+      {else}
+      <textarea id="goods_desc{$v.id}" name="goods_desc_{$v.lang_code}">{$goodss.goods_desc}</textarea>
+      {/if}
+    </div>
+  </div>
+</div>
+{/foreach}
+
+<script>
+  $(function () {
+    {foreach name="langs" item="v"}
+    if({$key} == 0){
+      $('#goods_desc_'+{$v.id}).show();
+    }else{
+      $('#goods_desc_'+{$v.id}).hide();
+    }
+    {/foreach}
+    });
+
+  function set_desc_lang(langId){
+    $('#goods_desc_'+langId).show();
+    {foreach name="langs" item="v"}
+    if(langId != {$v.id}){
+      $('#goods_desc_'+{$v.id}).hide();
+    }
+    {/foreach}
+    }
+
+</script>

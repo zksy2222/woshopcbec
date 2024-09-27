@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="favicon.ico"> 
+    <link href="__PUBLIC__/admin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/page.css" rel="stylesheet">
+    <link href="__PUBLIC__/admin/Huploadify/Huploadify.css" rel="stylesheet" type="text/css"/>
+</head>
+
+<script>
+    var deleteUrl = "{:url('goods_import/delete')}";
+    var url = "{:url('goods_import/lst')}";
+</script>
+
+<body class="gray-bg" >
+    <div class="wrapper wrapper-content" id="server">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>商品导入记录列表</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row" style="margin-top:10px;margin-bottom:10px;">  
+                            <div class="col-sm-3 m-b-xs">
+                                <div id="uploaderInput" style="margin-right:10px; float:left;"></div>
+                                <button type="button" class="btn btn-sm btn-primary" style="float:left;margin-right:15px;" onclick="downLoadTemp();">下载导入模板</button>
+                            </div> 
+                        
+                            <form action="" method="post" id="form_search">
+                                                
+                       
+                            </form>
+                           
+                        </div>  
+
+                        <div id="ajaxpagetest">
+                        {include file="goods_import/ajaxpage" /}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 全局js -->
+    <script src="__PUBLIC__/admin/js/jquery.min.js?v=2.1.4"></script>
+    <script src="__PUBLIC__/admin/Huploadify/jquery.Huploadify.js"></script>
+    <script src="__PUBLIC__/admin/js/plugins/layer/layer.min.js"></script>
+    <script src="__PUBLIC__/admin/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="__PUBLIC__/admin/js/plugins/validate/jquery.validate.min.js"></script>
+    <!-- iCheck -->
+    <script src="__PUBLIC__/admin/js/plugins/iCheck/icheck.min.js"></script>
+    <script src="__PUBLIC__/admin/js/common/admin.js"></script>    
+    <script src="__PUBLIC__/admin/js/common/ajax.js"></script>
+
+
+    <script>
+    	$(function(){
+            //导入数据
+            $('#uploaderInput').Huploadify({
+                uploader : '{:url("goods_import/import")}',
+                method:'post',
+                formData:null,//发送给服务端的参数，格式：{key1:value1,key2:value2}
+                buttonText : '商品数据导入', 
+                removeTimeout: 2000,
+                fileTypeDesc:'*.xls;*.xlsx;',  
+                fileTypeExts:'*.xls;*.xlsx;', 
+                fileObjName: 'filedata', //上传附件$_FILE标识  
+                fileSizeLimit : 2048,
+                //showUploadedPercent:false,//是否实时显示上传的百分比，如20%
+                auto : true, //开启,自动上传
+                multi : false, //开启,多选文件
+                //开始上传
+                onUploadStart:function(file){
+                    layer.load(2);
+                },
+                onUploadSuccess : function(file, data, response) {
+                    //解析成json对象
+                    eval('var data='+data);
+                    if(data.status == 1){
+                        layer.msg(data.mess, {icon: 1,time: 1000},function(){
+                            cl();
+                        });
+                    }else{
+                        layer.msg(data.mess, {icon: 2,time: 2000});
+                    }
+                },
+                //上传完成后执行的操作
+                onUploadComplete:function(file){
+                    layer.closeAll('loading');
+                },
+                //上传错误  
+                onUploadError : function(file, errorCode, errorMsg, errorString) { 
+                    layer.msg('文件' + file.name + '上传失败:' + errorString, {icon: 2,time: 2000}); 
+                }
+            }); 
+        });
+    	
+        function cl(){
+            location.href = url;
+        }
+        
+        function downLoadTemp() {
+            window.location.href = "/download/goods_temp/商品数据导入模板.xlsx";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th>等级名称</th>
+            <th>一级佣金比例</th>
+            <th>二级佣金比例</th>
+            <th>三级佣金比例</th>
+            <th>升级条件</th>
+            <th>启用/停用</th>
+            <th>创建时间</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        {if condition="$list->isEmpty() == false"}
+        {foreach name="list" item="v"}
+        <tr>
+            <td>{$v.grade_name}</td>
+            <td>{$v.one_level_rate}%</td>
+            <td>{$v.two_level_rate}%</td>
+            <td>{$v.three_level_rate}%</td>
+            <td>
+                {if condition="$v.upgrade eq 1"}
+                    邀请人数达到{$v.user_count}人
+                {elseif condition="$v.upgrade eq 2"}
+                    邀请人消费金额达到{$v.consume_amount}元
+                {elseif condition="$v.upgrade eq 3"}
+                <img src="{$v.thumb_url}" width="70px" height="70px">
+                    购买指定商品【{$v.goods_name}】，价格{$v.shop_price}
+                {else}
+                    默认等级
+                {/if}
+            </td>
+            <td>
+                {if condition="$v['status'] eq 1"}
+                <button class="btn btn-primary btn-xs" type="button" onclick="changeTableVal({$v.id}, {$v['status']});"><i class="fa fa-check"></i></button>
+                {elseif condition="$v['status'] eq 0"}
+                <button class="btn btn-danger btn-xs" type="button" onclick="changeTableVal({$v.id}, {$v['status']});"><i class="fa fa-times"></i></button>
+                {/if}
+            </td>
+            <td>{$v.create_time}</td>
+            <td>
+                <a href="{:url('DistributionGrade/edit',array('id'=>$v['id']))}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-danger btn-xs" onclick="delone({$v.id}, this);"><i class="fa fa-close"></i>&nbsp;删除</button></td>
+            </td>
+        </tr>
+        {/foreach}
+        {else/}
+        <tr><td colspan="7" style="text-align:center; font-size:14px;">没有找到相关数据</td></tr>
+        {/if}
+    </tbody>
+</table>
+<div class="row"><div class="pagination" style="float:right; margin-right:20px;">{$page}</div></div>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="favicon.ico"> 
+    <link href="__PUBLIC__/admin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/page.css" rel="stylesheet">
+    <link href="__PUBLIC__/admin/Huploadify/Huploadify.css" rel="stylesheet" type="text/css"/>
+</head>
+<script>
+    var uninstallUrl = "{:url('Plugin/uninstall')}";
+    var installUrl = "{:url('Plugin/install')}";
+    var deleteUrl = "{:url('Plugin/delete')}";
+</script>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content" id="server">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>本地插件列表</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row" style="margin-top:10px;margin-bottom:10px;">
+                            <div class="col-sm-3 m-b-xs" style="display: flex;">
+                                <!-- <a href="{:url('LangTranslate/add')}" class="btn btn-sm btn-primary"><i class="fa fa-plus" style="color:#FFF;"></i>&nbsp;添加翻译</a>&nbsp;&nbsp; -->
+                                <!-- <a href="javascript:createLangPackage();" class="btn btn-sm btn-primary">一键生成语言包</a>&nbsp;&nbsp; -->
+                                <!-- <button type="button" class="btn btn-sm btn-primary" onclick="downLoadTemp();">下载导入模板</button>&nbsp;&nbsp; -->
+                                <div id="uploaderInput" style="margin-right:10px; float:left;"></div>
+                                <!-- <div style="float:right; margin-right:10px; font-size:15px;">
+                                    <select style="height:30px; line-height:30px; border:1px solid #e5e6e7;" name="lang_id">
+                                        <option value="">请选择语言</option>
+                                        {foreach name="lang_list" item="v"}
+                                        <option value="{$v.id}" lang-code="{$v.lang_code}">{$v.lang_code}.{$v.lang_name}</option>
+                                        {/foreach}
+                                    </select>
+                                </div> -->
+                            </div>
+                            
+                            <form action="{:url('LangTranslate/lst')}" method="post">
+                            <div class="col-sm-3" style="float:right;">
+                                <div class="input-group">
+                                    <input type="text" name="keyword" placeholder="请输入插件name" value="{$keyword}" class="input-sm form-control">
+                                    <span class="input-group-btn"><button type="submit" class="btn btn-sm btn-primary">搜索</button></span>
+                                </div>
+                            </div>
+                           </form>
+                        </div>
+                        <div id="ajaxpagetest">
+                            {include file="plugin/ajaxpage" /}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 全局js -->
+    <script src="__PUBLIC__/admin/js/jquery.min.js?v=2.1.4"></script>
+    <script src="__PUBLIC__/admin/Huploadify/jquery.Huploadify_1.js"></script>
+    <script src="__PUBLIC__/admin/js/plugins/layer/layer.min.js"></script>
+    <script src="__PUBLIC__/admin/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="__PUBLIC__/admin/js/plugins/validate/jquery.validate.min.js"></script>
+    <!-- iCheck -->
+    <script src="__PUBLIC__/admin/js/plugins/iCheck/icheck.min.js"></script>
+    <script src="__PUBLIC__/admin/js/common/admin.js?2"></script>
+    <script src="__PUBLIC__/admin/js/common/ajax.js"></script>
+    
+    <script type="text/javascript">
+        
+        $(function(){
+            //导入数据
+            $('#uploaderInput').Huploadify({
+                uploader : '{:url("Plugin/upload")}',
+                method:'post',
+                buttonText : '本地插件导入', 
+                removeTimeout: 2000,
+                fileTypeDesc:'*.zip;',  
+                fileTypeExts:'*.zip;', 
+                fileObjName: 'filedata', //上传附件$_FILE标识  
+                fileSizeLimit : 15671238,
+                auto : true, //开启,自动上传
+                multi : false, //开启,多选文件
+                //开始上传
+                onUploadStart:function(file){
+                    var lang_id = $("select[name='lang_id']").find('option:selected').val();
+                    var lang_code = $("select[name='lang_id']").find('option:selected').attr('lang-code');
+                    option.formData = {lang_id: lang_id, lang_code: lang_code};
+                    layer.load(2);
+                },
+                onUploadSuccess : function(file, data, response) {
+                    //解析成json对象
+                    eval('var data='+data);
+                    if(data.status == 1){
+                        layer.msg(data.mess, {icon: 1,time: 3000},function(){
+                            cl();
+                        });
+                    }else{
+                        layer.msg(data.mess, {icon: 2,time: 2000});
+                    }
+                },
+                //上传完成后执行的操作
+                onUploadComplete:function(file){
+                    layer.closeAll('loading');
+                },
+                //上传错误  
+                onUploadError : function(file, errorCode, errorMsg, errorString) { 
+                    layer.msg('文件' + file.name + '上传失败:' + errorString, {icon: 2,time: 2000}); 
+                }
+            }); 
+        });
+
+        function changeTableVal(id, isclose) {
+            $.ajax({
+                url:"{:url('Plugin/changeIsClose')}",
+                type:'POST',
+                data:{id: id, isclose: isclose},
+                dataType:'json',
+                success:function(data) {
+                    if (!data.status) {
+                        layer.msg(data.mess, {icon: 2,time: 2000});
+                    } else {
+                        location.reload();
+                    }
+                }
+            });
+        }
+
+
+        function createLangPackage() {
+            layer.load(2);
+            $.ajax({
+                url:"{:url('LangTranslate/createLangPackage')}",
+                type:'POST',
+                data:{},
+                dataType:'json',
+                success:function(data) {
+                    layer.closeAll('loading');
+                    layer.msg(data.mess, {icon: data.status,time: 2000});
+                }
+            });
+        }
+        
+        function cl(){
+            location.href = "{:url('Plugin/lst')}";
+        }
+        
+    </script>
+    
+    
+	
+</body>
+</html>

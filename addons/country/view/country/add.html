@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="__PUBLIC__/admin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/style.css?v=4.1.0" rel="stylesheet">
+</head>
+
+<body class="gray-bg">
+<style>
+    input.error{
+        border:1px solid red;
+    }
+    span.error{
+        padding-top:10px;
+        color: #f00;
+        font-size:12px;
+    }
+</style>
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>添加国家</h5>
+                </div>
+                <div class="ibox-content">
+                    <form  method="post"  class="form-horizontal" id="form">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">中文名称:</label>
+                            <div class="col-sm-6">
+                                <input type="text" name="country_cname" class="form-control">
+                            </div>
+                            <label class="col-sm-1" style="padding-top:7px; color:#F00; font-size:16px;">*</label>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">英文名称:</label>
+                            <div class="col-sm-6">
+                                <input type="text" name="country_ename" class="form-control">
+                            </div>
+                            <label class="col-sm-1" style="padding-top:7px; color:#F00; font-size:16px;">*</label>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">英文首字母:</label>
+                            <div class="col-sm-6">
+                                <input type="text" name="country_initials" class="form-control">
+                            </div>
+                            <label class="col-sm-1" style="padding-top:7px; color:#F00; font-size:16px;">*</label>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">本国名称:</label>
+                            <div class="col-sm-6">
+                                <input type="text" name="country_bname" class="form-control">
+                            </div>
+                            <label class="col-sm-1" style="padding-top:7px; color:#F00; font-size:16px;">*</label>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">默认语言:</label>
+
+                            <div class="col-sm-6">
+                                <select class="form-control m-b" name="lang_id">
+                                    <option value="">请选择</option>
+                                    {foreach name="langRes" item="v"}
+                                    <option value="{$v.id}">{$v.lang_name}</option>
+                                    {/foreach}
+                                </select>
+                            </div>
+                            <label class="col-sm-1" style="padding-top:7px; color:#F00; font-size:16px;">*</label>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">默认货币:</label>
+
+                            <div class="col-sm-6">
+                                <select class="form-control m-b" name="currency_id">
+                                    <option value="">请选择</option>
+                                    {foreach name="$currencyRes" item="v"}
+                                    <option value="{$v.id}">{$v.currency_name}</option>
+                                    {/foreach}
+                                </select>
+                            </div>
+                            <label class="col-sm-1" style="padding-top:7px; color:#F00; font-size:16px;">*</label>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">国家代码:</label>
+                            <div class="col-sm-6">
+                                <input type="text" name="country_code" class="form-control">
+                            </div>
+                            <label class="col-sm-1" style="padding-top:7px; color:#F00; font-size:16px;">*</label>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="form-group">
+                            <label  class="col-sm-2 control-label">国旗:</label>
+                            <div class="col-sm-6">
+                                <div style="margin-bottom:7px; margin-top:5px;">
+                                    <img id="imageinfo" src="__PUBLIC__/admin/img/nopic.jpg" width="180" height="180" border="0" />
+                                    <br/><button type="button" class="btn btn-danger btn-xs del" style="display:none;">删除</button>
+                                </div>
+                                <div id="uploaderInput"></div>
+                                <input type="hidden" name="country_img" value="" >
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <button class="btn btn-primary" type="submit" id="doSubmit">保存内容</button>
+                                <button class="btn btn-primary" type="button" onclick="goBackLst('/{$Request.module}/lang/lst');">返回</button>
+                                <button type="reset" class="btn btn-default">重置</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 全局js -->
+<script src="__PUBLIC__/admin/js/jquery.min.js?v=2.1.4"></script>
+<script src="__PUBLIC__/admin/js/bootstrap.min.js?v=3.3.6"></script>
+<!-- 自定义js -->
+<script src="__PUBLIC__/admin/Huploadify/jquery.Huploadify.js"></script>
+<script src="__PUBLIC__/admin/js/plugins/layer/layer.min.js"></script>
+<script src="__PUBLIC__/admin/js/plugins/validate/jquery.validate.min.js"></script>
+<!-- iCheck -->
+<script src="__PUBLIC__/admin/js/plugins/iCheck/icheck.min.js"></script>
+<script src="__PUBLIC__/admin/js/common/ajax.js"></script>
+<script type="text/javascript">
+
+    $('.i-checks').iCheck({
+        checkboxClass: 'icheckbox_square-green',
+        radioClass: 'iradio_square-green'
+    });
+
+    var icon = "<i class='fa fa-times-circle'></i>&nbsp;&nbsp;";
+    $('#form').validate({
+        errorElement : 'span',
+        debug: true,//只验证不提交表单
+        //layer ajax提交表单
+        submitHandler:function(){
+            // 序列化 表单数据 后提交 ，太简洁了
+            post("{:addon_url('country://Country/add')}",'POST',$('#form').serialize(),1);
+            return false;
+        },//这是关键的语句，配置这个参数后表单不会自动提交，验证通过之后会去调用的方法
+
+        rules:{
+            country_cname:{required:true},
+            country_ename:{required:true},
+            country_initials:{required:true},
+            country_bname:{required:true},
+            country_code:{required:true},
+            lang_id:{required:true},
+            currency_id:{required:true},
+        },
+
+        messages:{
+            country_cname:{required:icon+'必填'},
+            country_ename:{required:icon+'必填'},
+            country_initials:{required:icon+'必填'},
+            country_bname:{required:icon+'必填'},
+            country_code:{required:icon+'必填'},
+            lang_id:{required:icon+'必填'},
+            currency_id:{required:icon+'必填'}
+        }
+    });
+
+    //上传国旗
+    $('#uploaderInput').Huploadify({
+        uploader : '{:url("Common/Upload/uploadPic")}',
+        method:'post',
+        formData: {name:'country'},//发送给服务端的参数，格式：{key1:value1,key2:value2}
+        buttonText : '上传国旗',
+        removeTimeout: 2000,
+        fileTypeDesc:'*.jpg;*.jpeg;*.gif;*.png;*.JPG;*.JPEG;*.GIF;*.PNG;',
+        fileTypeExts:'*.jpg;*.jpeg;*.gif;*.png;*.JPG;*.JPEG;*.GIF;*.PNG;',
+        fileObjName: 'file', //上传附件$_FILE标识
+        fileSizeLimit : 2048,
+        //showUploadedPercent:false,//是否实时显示上传的百分比，如20%
+        auto : true, //开启,自动上传
+        multi : false, //开启,多选文件
+        //开始上传
+        onUploadStart:function(file){
+            layer.load(2);
+        },
+        onUploadSuccess : function(file, data, response) {
+            //解析成json对象
+            eval('var data='+data);
+            if(data.status == 200){
+                var picpath = data.data.path;
+                $('#imageinfo').attr('src', picpath);
+                $('.del').show();
+                $('input[name=country_img]').val(picpath);
+            }else{
+                layer.msg(data.mess, {icon: 2,time: 2000});
+            }
+        },
+        //上传完成后执行的操作
+        onUploadComplete:function(file){
+            layer.closeAll('loading');
+        },
+        //上传错误
+        onUploadError : function(file, errorCode, errorMsg, errorString) {
+            layer.msg('文件' + file.name + '上传失败:' + errorString, {icon: 2,time: 2000});
+        }
+    });
+
+    $('.del').click(function(){
+        layer.load(2);
+        $.ajax({
+            url:'{:url("admin/ad/delfile")}',
+            type:'POST',
+            data:{'zspic_id':$('input[name=pic_id]').val()},
+            dataType:'json',
+            success:function(data){
+                if(data == 1){
+                    layer.closeAll('loading');
+                    $('input[name=pic_id]').val('');
+                    $('#imageinfo').attr('src','__PUBLIC__/admin/img/nopic.jpg');
+                    $('.del').hide();
+                }else{
+                    layer.closeAll('loading');
+                    layer.msg('删除临时图片失败', {icon: 2,time: 1000});
+                }
+            },
+            error:function(){
+                layer.closeAll('loading');
+                layer.msg('操作失败，请重试', {icon: 2,time: 2000});
+            }
+        });
+    });
+    function cl(){
+        location.href = "{:addon_url('country://Country/lst')}";
+    }
+</script>
+
+</body>
+</html>

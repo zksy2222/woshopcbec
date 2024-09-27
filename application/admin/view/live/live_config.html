@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="__PUBLIC__/admin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/style.css?v=4.1.0" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/admin/Huploadify/Huploadify.css"/>
+</head>
+
+<script>
+    var url = "{:url('Live/liveConfig')}";
+    var setUrl = "{:url('Live/liveConfig')}";
+</script>
+
+<body class="gray-bg">
+<style>
+    input.error{
+        border:1px solid red;
+    }
+    span.error{
+        padding-top:10px;
+        color: #f00;
+        font-size:12px;
+    }
+</style>
+<div class="wrapper wrapper-content">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>直播基础配置</h5>
+                </div>
+                <div class="ibox-content">
+                    <form method="post" enctype="multipart/form-data" class="form-horizontal" id="form">
+                        <div class="tabs-container">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a data-toggle="tab" href="#tab_jc" aria-expanded="true">直播基础配置</a></li>
+                                <li class=""><a data-toggle="tab" href="#tab_fs" aria-expanded="false">直播间粉丝规则</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="tab_jc" class="tab-pane active">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">腾讯云COS APPID:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" name="cos_appid" class="form-control" value="{$list.cos_appid}">
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">腾讯云COS SecretId:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" name="cos_secretid" class="form-control" value="{$list.cos_secretid}">
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">腾讯云COS SecretKey:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" name="cos_secretkey" class="form-control" value="{$list.cos_secretkey}">
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">推流域名:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" name="pushdomain" class="form-control" value="{$list.pushdomain}">
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">播放域名:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" name="playdomain" class="form-control" value="{$list.playdomain}">
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">API Key:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" name="apikey" class="form-control" value="{$list.apikey}">
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">截图地址:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" name="cutpic" class="form-control" value="{$list.cutpic}">
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">直播公告:</label>
+                                        <div class="col-sm-6">
+                                <textarea name="livenotice" class="form-control">{$list.livenotice}</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">默认视频地址:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" name="default_live_video_url" class="form-control" value="{$list.default_live_video_url}">
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                </div>
+                                <div id="tab_fs" class="tab-pane ">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">关注主播:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" name="fans_follow" class="form-control" value="{$list.fans_follow}">
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">点赞上限:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" name="fans_love_max" class="form-control" value="{$list.fans_love_max}">
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">点赞满10次:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" name="fans_love" class="form-control" value="{$list.fans_love}">
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">分享直播间上限:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" name="fans_share_max" class="form-control" value="{$list.fans_share_max}">
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">分享直播间:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" name="fans_share" class="form-control" value="{$list.fans_share}">
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">发言上限:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" name="fans_msg_10min_max" class="form-control" value="{$list.fans_msg_10min_max}">
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">发言每10次:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" name="fans_msg_10min" class="form-control" value="{$list.fans_msg_10min}">
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">观看60分钟:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" name="fans_60min" class="form-control" value="{$list.fans_60min}">
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">观看30分钟:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" name="fans_30min" class="form-control" value="{$list.fans_30min}">
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">观看10分钟:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" name="fans_10min" class="form-control" value="{$list.fans_10min}">
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <input type="hidden" name="id" value="{$list.id}">
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <button class="btn btn-primary" type="submit" id="doSubmit">保存内容</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 全局js -->
+<script src="__PUBLIC__/admin/js/jquery.min.js?v=2.1.4"></script>
+<script src="__PUBLIC__/admin/js/bootstrap.min.js?v=3.3.6"></script>
+<!-- 自定义js -->
+<script type="text/javascript" src="__PUBLIC__/admin/Huploadify/jquery.Huploadify.js"></script>
+<script src="__PUBLIC__/admin/js/plugins/layer/layer.min.js"></script>
+<script src="__PUBLIC__/admin/js/plugins/validate/jquery.validate.min.js"></script>
+<!-- iCheck -->
+<script src="__PUBLIC__/admin/js/plugins/iCheck/icheck.min.js"></script>
+<script src="__PUBLIC__/admin/js/common/ajax.js"></script>
+
+<script>
+    $(function(){
+        var icon = "<i class='fa fa-times-circle'></i>&nbsp;&nbsp;";
+        $('#form').validate({
+            errorElement : 'span',
+            debug: true,    //只验证不提交表单
+            //layer ajax提交表单
+            submitHandler:function(){
+                // 序列化 表单数据 后提交 ，太简洁了
+                post(setUrl,'POST',$('#form').serialize(),1);
+                return false;
+            }
+        });
+    });
+
+    $('input[type=radio][name=become_distrib]').change(function(){
+        var val = this.value;
+        if (val == 2) {
+            $('.count-box').show();
+            $('.amount-box').hide();
+            $('.goods-box').hide();
+        } else if (val == 3) {
+            $('.amount-box').show();
+            $('.count-box').hide();
+            $('.goods-box').hide();
+        } else if (val == 4) {
+            $('.goods-box').show();
+            $('.count-box').hide();
+            $('.amount-box').hide();
+        } else {
+            $('.count-box').hide();
+            $('.amount-box').hide();
+            $('.goods-box').hide();
+        }
+    });
+
+    function selectGoods(){
+        var goods_id = new Array();
+        //过滤选择重复信息
+        $('input[name*=goods_id]').each(function(i,o){
+            goods_id.push($(o).val());
+        });
+
+        var goodsurl = "/{$Request.module}/getptgoods/lst/goods_id/"+goods_id;
+
+        layer.open({
+            type: 2,
+            title: '选择商品信息',
+            shadeClose: true,
+            shade: 0.3,
+            area: ['70%', '80%'],
+            content: goodsurl
+        });
+    }
+
+    function call_backgoods(table_html){
+        layer.closeAll('iframe');
+        $('#goods_list').append(table_html);
+    }
+
+    function cl(){
+        location.href = url;
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+<script>
+    {if condition="isset($pnum)"}
+    var pnum = {$pnum};
+    {else/}
+    var pnum = 0;
+    {/if}
+    {if condition="(!isset($search)) OR (!$search)"}
+    var search = 0;
+    var goUrl = "/{$Request.module}/dispatch/lst.html?page="+pnum;
+    {else/}
+    var search = {$search};
+    var goUrl = "/{$Request.module}/dispatch/search.html?page="+pnum;
+    {/if}
+    $(function(){
+        $("#checkAll").click(function () {
+            $("input[class='text_id']:checkbox").prop("checked", this.checked);
+        });
+    });
+</script>
+
+<table class="table table-hover table-bordered">
+    <thead>
+    <tr>
+        <th style="width:5%"><input type="checkbox" id="checkAll"></th>
+        <th style="width:25%">名称</th>
+        <th style="width:20%">计费方式</th>
+        <th style="width:10%">首重(首件)价格</th>
+        <th style="width:10%">续重(续件)价格</th>
+        <th style="width:10%">状态</th>
+        <th style="width:5%">默认</th>
+        <th style="width:5%">排序</th>
+        <th style="width:10%">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    {if condition="$list->isEmpty() == false"}
+    {foreach name="list" item="v"}
+    <tr>
+        <td><input type="checkbox" class="text_id" name="id" value="{$v.id}"></td>
+        <td>{$v.dispatch_name}</td>
+        {if $v['calculate_type']==0}
+        <td>按重量计费</td>
+        <td>{$v['first_price']}</td>
+        <td>{$v['second_price']}</td>
+        {else}
+        <td>按件计费</td>
+        <td>{$v['first_num_price']}</td>
+        <td>{$v['second_num_price']}</td>
+        {/if}
+        <td>
+            {switch name="v.enabled"}
+            {case value="0"}
+            <button class="btn btn-danger btn-xs" type="button" onclick="changeTableVal({$v.id},'enabled',this);"><i class="fa fa-times"></i></button>
+            {/case}
+            {case value="1"}
+            <button class="btn btn-primary btn-xs" type="button" onclick="changeTableVal({$v.id},'enabled',this);"><i class="fa fa-check"></i></button>
+            {/case}
+            {/switch}
+        </td>
+        <td>
+            {switch name="v.is_default"}
+            {case value="0"}
+            <button class="btn btn-danger btn-xs dispatch_is_default" type="button" onclick="changeTableVal({$v.id},'is_default',this);"><i class="fa fa-times"></i></button>
+            {/case}
+            {case value="1"}
+            <button class="btn btn-primary btn-xs dispatch_is_default" type="button" onclick="changeTableVal({$v.id},'is_default',this);"><i class="fa fa-check"></i></button>
+            {/case}
+            {/switch}
+        </td>
+        <td><input name="{$v.id}" typed="text" value="{$v.sort}" class="sort" size="5" /></td>
+        <td>
+            <button type="button" class="btn btn-primary btn-xs" onclick="edit2({$v.id},this);"><i class="fa fa-pencil"></i>&nbsp;编辑</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-danger btn-xs" onclick="delone({$v.id},this);"><i class="fa fa-close"></i>&nbsp;删除</button>
+        </td>
+    </tr>
+    {/foreach}
+    {else/}
+    <tr><td colspan="6" style="text-align:center; font-size:14px;">没有找到相关数据</td></tr>
+    {/if}
+    </tbody>
+</table>
+<div class="row"><div class="pagination" style="float:right; margin-right:20px;">{$page}</div></div>

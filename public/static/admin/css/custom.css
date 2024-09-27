@@ -1,0 +1,193 @@
+body{
+    touch-action: none;
+}
+body.fixed-sidebar .navbar-static-side, body.canvas-menu .navbar-static-side{
+    width: 170px;
+}
+#page-wrapper{
+    margin-left: 290px;
+}
+.content-tabs{
+    border: none;
+}
+.navbar-form-custom{
+    width: 100%;
+}
+.fa-sign-out{
+    font-size: 16px;
+    font-weight: bold;
+}
+.icon{
+    width: 20px;
+    display: inline-block;
+}
+.roll-right.btn-group{
+    right: 0;
+}
+.roll-right.J_tabRight {
+    right: 40px;
+}
+.roll-right.btn-group,.roll-right.btn-group button {
+    width: 40px;
+}
+.lang-box{
+
+}
+.lang-content{
+    z-index: 100;
+    position: absolute;
+    box-shadow: 0 2px 4px rgba(0,0,0,.12);
+    border: 1px solid #d2d2d2;
+    background-color: #fff;
+    border-radius: 2px;
+    width: 100%;
+    text-align: center;
+    padding: 5px;
+    line-height: 2.5;
+    cursor: pointer;
+    display: none;
+}
+li:hover .lang-content{
+    display: block;
+}
+.page-tabs a.active,.page-tabs a.active:hover{
+    background: #1992FC;
+    color: #fff;
+}
+
+.page-tabs a.active i{
+    color: #fff;
+}
+.page-tabs a:hover{
+    background: #dfeaf8;
+}
+.page-tabs a:hover i{
+    /*color: #333;*/
+}
+nav.page-tabs,.content-tabs,.content-tabs .roll-nav, .page-tabs-list,.content-tabs button{
+    height: 35px;
+    line-height: 35px;
+}
+.row-top,.row-top .navbar{
+    height: 50px;
+}
+.minimalize-styl-2 {
+    margin: 10px 5px 5px 5px;
+}
+.navbar-top-links li a {
+    padding: 15px 10px;
+    min-height: 50px;
+}
+#content-main {
+    height: calc(100% - 85px);
+}
+.nav > li > a {
+    padding: 14px 8px 14px 15px;
+}
+.sub-nav{
+    border-right: 1px solid #e6e6e6;
+    left: 120px;
+    background: #fff;
+    overflow: auto;
+}
+.sub-nav  li  a {
+    padding: 12px;
+}
+.sub-nav .sub-nav-1-title{
+    font-size: 17px;
+    font-weight: bold;
+    border-bottom: 1px solid #e6e6e6;
+    line-height: 50px;
+    padding-left: 20px;
+    color: #3c4a54;
+}
+.sub-nav .sub-nav-2-title{
+    font-size: 14px;
+    line-height: 40px;
+    padding-left: 20px;
+    font-weight: normal;
+}
+.sub-nav-ul{
+    display: none;
+    padding-left: 0;
+}
+.sub-nav-ul li a{
+    color: #676a6c;
+    border-left: 4px solid transparent;
+}
+.nav-second-level li:last-child{
+    margin-bottom: 0;
+}
+.sub-nav .nav-second-level li a{
+    padding-left: 20px;
+    line-height: 20px;
+}
+.sub-nav .nav-third-level li a{
+    padding-left: 30px;
+    line-height: 15px;
+    font-weight: normal;
+}
+.sub-nav .nav > li > a:hover{
+    background-color: #ecf5ff;
+    color: #409eff;
+    font-weight: bold;
+    border-left: 4px solid transparent;
+}
+.sub-nav .nav > li > a:focus,
+.sub-nav .nav > li > a.active{
+    background-color: #ecf5ff;
+    color: #409eff;
+    font-weight: bold;
+    border-left: 4px solid #409eff;
+}
+
+.parent-nav .nav > li > a.active{
+    background-color: #1992FC;
+    color: #fff;
+}
+.sub-nav-ul-0{
+    display: block;
+}
+.parent-nav{
+    width: 120px!important;
+}
+.navbar-default li a{
+    padding-left: 10px;
+}
+#wrapper {
+    background-color: #fff;
+}
+.wrapper-content{
+    padding: 0;
+}
+
+/*css主要部分的样式*/
+/*定义滚动条宽高及背景，宽高分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar {
+    width: 5px; /*对垂直流动条有效*/
+    height: 5px; /*对水平流动条有效*/
+}
+
+/*定义滚动条的轨道颜色、内阴影及圆角*/
+::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #f3f3f3;
+    border-radius: 3px;
+}
+
+/*定义滑块颜色、内阴影及圆角*/
+::-webkit-scrollbar-thumb{
+    border-radius: 7px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #E8E8E8;
+}
+
+/*定义两端按钮的样式*/
+::-webkit-scrollbar-button {
+    background-color:cyan;
+}
+
+/*定义右下角汇合处的样式*/
+::-webkit-scrollbar-corner {
+    background:khaki;
+}

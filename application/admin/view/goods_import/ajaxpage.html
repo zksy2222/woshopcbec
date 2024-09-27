@@ -1,0 +1,35 @@
+
+
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th style="width:5%"><input type="checkbox" id="checkAll"/></th>
+            <th style="width:45%">文件存放路径</th>
+            <th style="width:10%">导入状态</th>
+            <th style="width:15%">导入时间</th>
+            <th style="width:20%">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        {if condition="$list->isEmpty() == false"}
+        {foreach name="list" item="v"}
+        <tr>
+            <td><input type="checkbox" class="text_id" name="id" value="{$v.id}" /></td>
+            <td><a href="{$weburl}{$v.file_path}">...{$v.file_path}</a></td>
+            <td>
+                {if condition="$v['status'] eq 1"}
+                    <font style="color:#1ab394;">导入成功</font>
+                {elseif condition="$v['status'] eq 0"/}
+                    <font style="color:#F00;">导入失败</font>
+                {/if}
+            </td>
+            <td>{$v.create_time}</td>
+            <td><button type="button" class="btn btn-danger btn-xs" onclick="delone({$v.id}, this);"><i class="fa fa-close"></i>&nbsp;删除</button></td>
+        </tr>
+        {/foreach}
+        {else/}
+        <tr><td colspan="5" style="text-align:center; font-size:14px;">没有找到相关数据</td></tr>
+        {/if}						
+    </tbody>
+</table>
+<div class="row"><div class="pagination" style="float:right; margin-right:20px;">{$page}</div></div>

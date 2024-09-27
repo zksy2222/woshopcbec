@@ -1,0 +1,373 @@
+<!--
+ * @Descripttion: 总后台框架视图
+ * @Copyright: 武汉一一零七科技有限公司©版权所有
+ * @Contact: QQ:2487937004
+ * @Date: 2020-03-09 17:51:33
+ * @LastEditors: cbing
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <title>总台管理-{$webconfig.webtitle}</title>
+    <meta name="keywords" content="{$webconfig.keywords}">
+    <meta name="description" content="{$webconfig.description}">
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+    <link rel="shortcut icon" href="__PUBLIC__/favicon.ico"> 
+	<link href="__PUBLIC__/admin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/animate.css" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/custom.css?v=1.0.0" rel="stylesheet">
+    <link href="__PUBLIC__/admin/js/layui/css/layui.css" rel="stylesheet">
+</head>
+<style>
+    .translateSelectLanguage{width: 120px;height: 24px;font-size: 13px;border-color: #d7d7d7;border-radius: 4px;}
+</style>
+
+
+<body class="fixed-sidebar full-height-layout white-bg" style="overflow:hidden">
+    <div id="wrapper">
+        <!--左侧导航开始-->
+        <nav class="navbar-default navbar-static-side parent-nav" role="navigation">
+            <div class="nav-close"><i class="fa fa-times-circle"></i>
+            </div>
+            <div class="sidebar-collapse">
+                <div class="profile-element p-sm">
+                    <img class="img-preview m-t-sm m-b-sm" src="__PUBLIC__/images/logo_white.png" />
+                </div>
+                <div class="logo-element">总台
+                </div>
+                <ul class="nav" id="side-menu">
+                    {foreach name="menu" item="v" key="k"}
+                    <li>
+                        <a class="parent-menu-item {eq name='k' value='0'}active{/eq}" href="javascript:;" data-id="{$k}">
+                            <span class="icon"><i class="{$v['icon']}"></i></span>
+                            <span class="nav-label"><?php echo $v['pri_name'];?></span></a>
+                    </li>
+                    {/foreach}
+                </ul>
+            </div>
+        </nav>
+        <nav class="navbar-default navbar-static-side sub-nav" role="navigation">
+            {foreach name="menu" item="v" key="k"}
+            <ul class="sub-nav-ul sub-nav-ul-{$k}">
+
+                <li class="sub-nav-1-title">{$v['pri_name']}</li>
+                    <ul class="nav nav-second-level">
+
+                        {foreach name="v['child']" item="v2"}
+                        {empty name="v2['child']"}
+                        <li><a class="J_menuItem sub-nav-2-title" href="{:url($v2['cname'].'/'.$v2['aname'])}">{$v2['pri_name']}</a></li>
+                        {else/}
+                        <li><span class="sub-nav-2-title"><b>{$v2['pri_name']}</b></span></li>
+                        <ul class="nav nav-third-level">
+                            {foreach name="v2['child']" item="v3"}
+                            {eq name="v['pri_name']" value="插件管理"}
+                            <li><a class="J_menuItem" href="{:addon_url($v3['mname'].'://'.$v3['cname'].'/'.$v3['aname'])}">{$v3['pri_name']}</a></li>
+                            {else/}
+                            <li><a class="J_menuItem" href="{:url($v3['cname'].'/'.$v3['aname'])}">{$v3['pri_name']}</a></li>
+                            {/eq}
+                            {/foreach}
+                        </ul>
+                        {/empty}
+                        {/foreach}
+                    </ul>
+                </li>
+            </ul>
+            {/foreach}
+        </nav>
+        <!--左侧导航结束-->
+        <!--右侧部分开始-->
+        <div id="page-wrapper" class="gray-bg dashbard-1">
+            <div class="row border-bottom row-top">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+
+                    <div class="navbar-header">
+<!--                         <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-dedent"></i> </a>-->
+                    </div>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li>
+                            <span id="translate"></span>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#" aria-expanded="false">
+                                <i class="fa fa-bell"></i>
+                                <span class="label label-primary">{$countNum}</span>
+
+                            </a>
+                            <ul class="dropdown-menu dropdown-alerts">
+                                <li>
+                                    <a class="J_menuItem" href="{:url('order/lst','filter=1')}">
+                                        <div>
+                                            <i class="fa fa-comment fa-fw"></i> 待发货订单
+                                            <span class="pull-right text-muted small">{$deliverOrderNum}个</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="J_menuItem" href="{:url('order/lst','filter=4')}">
+                                        <div>
+                                            <i class="fa fa-commenting fa-fw"></i> 待付款订单
+                                            <span class="pull-right text-muted small">{$paymentOrderNum}个</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="J_menuItem" href="{:url('th_apply/lst','filter=1')}">
+                                        <div>
+                                            <i class="fa fa-commenting fa-fw"></i> 售后申请订单
+                                            <span class="pull-right text-muted small">{$thApplyNum}个</span>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown hidden-xs">
+                            <a href="{:url('admin/loginOut')}" class="right-sidebar-toggle" aria-expanded="false">
+                                 <!--<i class="fa fa-power-off"></i>-->  
+                                <i class="fa fa fa-sign-out"></i> 退出
+                            </a>
+                        </li>
+
+                    </ul>
+                </nav>
+            </div>
+            <div class="row content-tabs">
+                <button class="roll-nav roll-left J_tabLeft border-bottom border-top"><i class="fa fa-backward"></i></button>
+                <nav class="page-tabs J_menuTabs border-bottom border-top">
+                    <div class="page-tabs-content" style="margin-left: 0px;">
+                        <a href="javascript:;" class="active J_menuTab" data-id="{:url('dashboard')}">控制台</a>
+                    </div>
+                </nav>
+                <button class="roll-nav roll-right J_tabRight border-bottom border-top"><i class="fa fa-forward"></i></button>
+                <div class="btn-group roll-nav roll-right">
+
+                    <button class="dropdown J_tabClose border-bottom border-top" data-toggle="dropdown" aria-expanded="false"><span class="fa fa-close"></span>
+                    </button>
+                    <ul role="menu" class="dropdown-menu dropdown-menu-right">
+                        <li class="J_tabShowActive"><a>定位当前选项卡</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li class="J_tabCloseAll"><a>关闭全部选项卡</a>
+                        </li>
+                        <li class="J_tabCloseOther"><a>关闭其他选项卡</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="row J_mainContent" id="content-main">
+                <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="{:url('dashboard')}" frameborder="0" data-id="{:url('dashboard')}" seamless></iframe>
+            </div>
+            
+<!--            <div class="footer">-->
+<!--                <div class="text-center">{:lang($webconfig.web_banquan)}</div>-->
+<!--            </div>-->
+        </div>
+        <!--右侧部分结束-->
+    </div>
+    <!-- 全局js -->
+    <script src="__PUBLIC__/admin/js/jquery.min.js?v=2.1.4"></script>
+    <script src="__PUBLIC__/admin/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="__PUBLIC__/admin/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="__PUBLIC__/admin/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="__PUBLIC__/admin/js/plugins/layer/layer.min.js"></script>
+    <!-- 自定义js -->
+    <script src="__PUBLIC__/admin/js/hplus.js?v=4.1.0"></script>
+    <script type="text/javascript" src="__PUBLIC__/admin/js/contabs.js"></script>
+    <!-- 第三方插件 -->
+    <script src="__PUBLIC__/admin/js/plugins/pace/pace.min.js"></script>
+    <!-- 引入多语言切换的js -->
+    <script src="//res.zvo.cn/translate/translate.js"></script>
+    <script>
+        translate.selectLanguageTag.languages = 'zh-CN,zh-TW,en,vi,pt,th,ru,es,de,ja,ko,fr';  //注意要放到 translate.execute(); 上面
+        translate.execute();
+    </script>
+
+    <script src="__PUBLIC__/layui/layui.js"></script>
+    <script>
+        $('.parent-menu-item').click(function(){
+            var sub_id = $(this).data('id')
+            $('.sub-nav-ul').hide();
+            $('.sub-nav-ul-'+sub_id).show();
+            $('.parent-menu-item').removeClass('active');
+            $(this).addClass('active');
+        })
+
+        layui.use('layim', function(layim){
+            //基础配置
+            layim.config({
+
+                //获取主面板列表信息
+                init: {
+                    url: "{:url('Im/getList')}" //接口地址（返回的数据格式见下文）
+                    ,type: 'get' //默认get，一般可不填
+                    ,data: {} //额外参数
+                }
+                //获取群员接口
+                ,members: {
+                    url: "" //接口地址（返回的数据格式见下文）
+                    ,type: 'get' //默认get，一般可不填
+                    ,data: {} //额外参数
+                },
+                uploadFile: {
+                    url: "{:url('Common/Upload/uploadPic')}"
+                }
+                ,uploadImage: {
+                    url: "{:url('Common/Upload/uploadPic')}"
+                }
+                ,brief: false //是否简约模式（默认false，如果只用到在线客服，且不想显示主面板，可以设置 true）
+                ,title: '客服窗口' //主面板最小化后显示的名称
+                ,maxLength: 3000 //最长发送的字符长度，默认3000
+                ,isfriend: true //是否开启好友（默认true，即开启）
+                ,isgroup: false //是否开启群组（默认true，即开启）
+                ,right: '20px' //默认0px，用于设定主面板右偏移量。该参数可避免遮盖你页面右下角已经的bar。
+                ,chatLog: "{:url('Im/userChatLog')}" //聊天记录地址（如果未填则不显示）
+                ,find: "" //查找好友/群的地址（如果未填则不显示）
+                ,copyright: true //是否授权，如果通过官网捐赠获得LayIM，此处可填true
+            });
+
+            //建立WebSocket通讯
+            var socket = new WebSocket('wsss://cbec.lo:8273');
+
+            //连接成功时触发
+            socket.onopen = function(){
+                console.log("websocket握手成功!");
+            };
+
+            //监听收到的消息
+            socket.onmessage = function(res){
+                console.log('onmessage==============')
+                var data = eval("("+res.data+")");
+                console.log(data)
+                switch(data['type']){
+                    // 服务端ping客户端
+                    case 'ping':
+                        socket.send('{"type":"ping"}');
+                        break;
+                    // 登录 更新用户列表
+                    case 'init':
+                        console.log("init成功" + data.data.client_id);
+                        var client_id = data.data.client_id
+                        var sendData = {
+                            type: "bind_id",
+                            id: "{:session('shopadmin_token')}",
+                            client_id:client_id,
+                        }
+                        socket.send(JSON.stringify(sendData));
+                        break;
+                    case 'say':
+                        console.log('say==========');
+                        console.log(data);
+                        var msgData = {
+                            avatar: data.data.from_headimgurl,
+                            id: data.data.fromid,
+                            name: data.data.from_username,
+                            sign: "2222",
+                            type: "friend",
+                            username: data.data.from_username,
+                            content: data.data.message
+                        };
+
+                        layim.getMessage(msgData); //res.data即你发送消息传递的数据（阅读：监听发送的消息）
+                        break;
+                    //添加 用户
+                    case 'addUser':
+                        //console.log(data.data);
+                        layim.addList(data.data);
+                        break;
+                    //删除 用户
+                    case 'delUser':
+                        layim.removeList({
+                            type: 'friend'
+                            ,id: data.data.id //好友或者群组ID
+                        });
+                        break;
+                    // 添加 分组信息
+                    case 'addGroup':
+                        // console.log(data.data);
+                        layim.addList(data.data);
+                        break;
+                    case 'delGroup':
+                        layim.removeList({
+                            type: 'group'
+                            ,id: data.data.id //好友或者群组ID
+                        });
+                        break;
+                    // 检测聊天数据
+                    case 'chatMessage':
+                        layim.getMessage(data.data);
+
+                        break;
+                    // 离线消息推送
+                    case 'logMessage':
+                        setTimeout(function(){layim.getMessage(data.data)}, 1000);
+                        break;
+                    // 用户退出 更新用户列表
+                    case 'logout':
+                        break;
+                    //聊天还有不在线
+                    case 'ctUserOutline':
+                        console.log('11111');
+                        layer.msg('好友不在线', {'time' : 1000});
+                        break;
+
+                }
+            };
+
+            //layim建立就绪
+            layim.on('ready', function(res){
+
+                layim.on('sendMessage', function(res){
+                    console.log('sendMessage------------');
+                    console.log(res);
+                    // 发送消息
+                    var mine = JSON.stringify(res.mine);
+                    var to = JSON.stringify(res.to);
+                    var typeStr = res.mine.content.substr(0,3);
+                    var messageType = '';
+                    if(typeStr == 'img'){
+                        messageType = 'img';
+                    }else{
+                        messageType = 'text';
+                    }
+                    var sendData = {
+                        type:"say",
+                        data: {
+                            userType: 'customer',
+                            fromid: "{:session('shopadmin_token')}",
+                            toid: res.to.toid,
+                            message: res.mine.content,
+                            message_type: messageType
+                        }
+                    };
+                    socket.send( JSON.stringify(sendData) );
+
+                });
+            });
+
+
+            layim.on('chatChange', function(data){
+                // 监听每次点击的事件
+                console.log('change');
+            });
+
+            // layim.chat({ //自定义的聊天版面，可以随时调用
+            //     avatar: "/uploads/default.jpg",
+            //     id: 1,
+            //     name: "商家客服",
+            //     sign: "111222333",
+            //     type: "friend",
+            //     username: "商家客服"
+            // });
+
+        });
+    </script>
+</body>
+</html>

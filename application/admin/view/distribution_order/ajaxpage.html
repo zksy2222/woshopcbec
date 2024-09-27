@@ -1,0 +1,57 @@
+
+<table class="table table-hover table-bordered">
+    <thead>
+    <tr>
+        <th style="width:14%">订单号</th>
+        <th style="width:7%">订单状态</th>
+        <th style="width:8%">用户姓名</th>
+        <th style="width:10%">用户手机</th>
+        <th style="width:10%">订单总价</th>
+        <th style="width:12%">下单时间</th>
+        <th style="width:12%">结算时间</th>
+        <th>等级</th>
+        <th>佣金</th>
+        <th>分销商</th>
+        <!--<th>操作</th>-->
+    </tr>
+    </thead>
+    <tbody>
+    {if($orders)}
+    {foreach name="orders" item="v"}
+    <tr>
+        <td>{$v.ordernumber}</td>
+        <td>
+            {if condition="$v['state'] eq 1 && $v['fh_status'] eq 0 && $v['order_status'] eq 0"}
+            <font style="color:#1c84c6;">待发货</font>
+            {elseif condition="$v['state'] eq 1 && $v['fh_status'] eq 1 && $v['order_status'] eq 0"/}
+            <font style="color:#1c84c6;">已发货</font>
+            {elseif condition="$v['state'] eq 1 && $v['fh_status'] eq 1 && $v['order_status'] eq 1"/}
+            <font style="color:#1992FC;">已完成</font>
+            {elseif condition="$v['state'] eq 0 && $v['fh_status'] eq 0 && $v['order_status'] eq 0"/}
+            <font style="color:#1c84c6;">待支付</font>
+            {elseif condition="$v['order_status'] eq 2"/}
+            <font style="color:#F00;">已关闭</font>
+            {/if}
+        </td>
+        <td>{$v.user_name}</td>
+        <td>{$v.phone}</td>
+        <td>{$v.total_price}</td>
+        <td>{$v['create_time']}</td>
+        <td>
+            {if condition="$v.complete_time neq 0"}{:date('Y-m-d H:i:s',$v['complete_time'])}{else}未结算{/if}
+        </td>
+        <td>{$v.level}</td>
+        <td>{$v.amount}</td>
+        <td>姓名：{$v.real_name}<br>手机号：{$v.dis_phone}</td>
+        <!--<td>-->
+        <!--<a href="{:url('DistributionOrder/info',array('user_id'=>$v['user_id']))}" class="btn btn-primary btn-xs">&nbsp;订单详情</a>-->
+        <!--<a href="{:url('DistributionOrder/delete',array('user_id'=>$v['user_id']))}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i>&nbsp;删除</a>-->
+        <!--</td>-->
+    </tr>
+    {/foreach}
+    {else/}
+    <tr><td colspan="10" style="text-align:center; font-size:14px;">没有找到相关数据</td></tr>
+    {/if}
+    </tbody>
+</table>
+<div class="row"><div class="pagination" style="float:right; margin-right:20px;">{$page}</div></div>

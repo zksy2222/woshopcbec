@@ -1,0 +1,48 @@
+<script type="text/plain" id="editorupload"></script>
+<input type="text" id="picture" name="thumbnail"  style="width:400px" /> <input type=button value="上传图片" onClick="upImage();">
+
+<script>
+
+  //实例化编辑器
+  var ueditorupload = UE.getEditor('editorupload',
+          {
+            autoHeightEnabled:false
+          });
+  ueditorupload.ready(function ()
+  {
+
+    ueditorupload.hide();//隐藏编辑器
+
+//监听图片上传
+    ueditorupload.addListener('beforeInsertImage', function (t,arg)
+    {
+      $("#picture").attr("value", arg[0].src);
+// alert('图片地址'+arg[0].src);
+    });
+
+    ueditorupload.addListener('afterUpfile', function (t, arg)
+    {
+      $("#picture").attr("value", arg[0].src);
+      //alert('文件地址：'+arg[0].url);
+    });
+
+    /* 文件上传监听
+     * 需要在ueditor.all.min.js文件中找到
+     * d.execCommand("insertHtml",l)
+     * 之后插入d.fireEvent('afterUpfile',b)
+     */
+  });
+
+  //弹出图片上传的对话框
+  function upImage()
+  {
+    var myImage = ueditorupload.getDialog("insertimage");
+    myImage.open();
+  }
+  //弹出文件上传的对话框
+  function upFiles()
+  {
+    var myFiles = ueditorupload.getDialog("attachment");
+    myFiles.open();
+  }
+</script>

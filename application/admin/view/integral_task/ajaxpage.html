@@ -1,0 +1,53 @@
+<script>
+    {if condition="isset($pnum)"}
+    var pnum = {$pnum};
+    {else/}
+    var pnum = 0;
+    {/if}
+    var goUrl = "/{$Request.module}/integral_task/lst.html?page="+pnum;
+</script>
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th width="5%">ID</th>
+            <th>任务名称</th>
+            <th>标签名称</th>
+            <th>获得积分</th>
+            <th>是否开启</th>
+            <th>排序</th>
+            <th width="15%">创建时间</th>
+            <th width="15%">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        {if condition="$list->isEmpty() == false"}
+        {foreach name="list" item="v"}
+        <tr>
+            <td>{$v.id}</td>
+            <td>{$v.task_name}</td>
+            <td>{$v.tag_name}</td>
+            <td>{$v.integral}{if condition="$v.id eq 8"}%{/if}</td>
+            <td>
+                {switch name="v.status"}
+                {case value="0"}
+                <button class="btn btn-danger btn-xs" type="button" onclick="changeTableVal({$v.id}, {$v.status});"><i class="fa fa-times"></i></button>
+                {/case}
+                {case value="1"}
+                <button class="btn btn-primary btn-xs" type="button" onclick="changeTableVal({$v.id}, {$v.status});"><i class="fa fa-check"></i></button>
+                {/case}
+                {/switch}
+            </td>
+            <td><input name="{$v.id}" type="text" value="{$v.sort}" class="sort" size="3"></td>
+            <td>{$v.create_time}</td>
+            <td>
+                <a href="{:url('IntegralTask/edit',array('id'=>$v['id']))}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i>&nbsp;编辑</a>&nbsp;
+<!--                <button type="button" class="btn btn-danger btn-xs" onclick="delone({$v.id}, this);"><i class="fa fa-close"></i>&nbsp;删除</button></td>-->
+            </td>
+        </tr>
+        {/foreach}
+        {else/}
+        <tr><td colspan="8" style="text-align:center; font-size:14px;">没有找到相关数据</td></tr>
+        {/if}
+    </tbody>
+</table>
+<div class="row"><div class="pagination" style="float:right; margin-right:20px;">{$page}</div></div>

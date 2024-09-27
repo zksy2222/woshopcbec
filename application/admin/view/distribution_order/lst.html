@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="favicon.ico"> 
+    <link href="__PUBLIC__/admin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/page.css" rel="stylesheet">
+</head>
+
+<style>
+    .alert-primary {
+        color: #259fdc;
+        background-color: #d9edf7;
+        border-color: #c5dce7;
+    }
+    .qiehuan{
+        width:120px; height:40px; line-height:40px; font-size:14px; font-weight:bold; color:#333; background-color:#F5F5F6; float:left; margin-top:15px; margin-right:10px; text-align:center; cursor:pointer;
+    }
+</style>
+<body class="gray-bg">
+
+    <div class="wrapper wrapper-content" id="server">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>分销订单列表</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-sm-5 m-b-xs">
+                                <div style="width:1300px; height:40px; margin-bottom:25px;">
+                                    <a href="{:url('DistributionOrder/lst',array('filter'=>10))}"><div class="qiehuan" {if condition="$filter && $filter eq 10"}style="background-color: #1992FC;color: #FFF;"{/if}>全部</div></a>
+                                    <a href="{:url('DistributionOrder/lst',array('filter'=>1))}"><div class="qiehuan" {if condition="$filter && $filter eq 1"}style="background-color: #1992FC;color: #FFF;"{/if}>已结算</div></a>
+                                    <a href="{:url('DistributionOrder/lst',array('filter'=>2))}"><div class="qiehuan" {if condition="$filter && $filter eq 2"}style="background-color: #1992FC;color: #FFF;"{/if}>未结算</div></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:15px;">
+                        <form action="{:url('DistributionOrder/lst')}" method="post" id="form_search">
+                            <div class="col-sm-2" style="float:right;">
+                                <div class="input-group">
+                                    <input type="text" name="keyword" placeholder="请输入分销商姓名" {if condition="(isset($keyword)) AND ($keyword)"}value="{$keyword}"{/if} class="input-sm form-control" /><span class="input-group-btn">
+                                    <button type="submit" class="btn btn-sm btn-primary">搜索</button></span>
+                                </div>
+                            </div>
+                            <div style="float:right; font-size:15px; margin-right:10px;">
+                                <select style="height:30px; line-height:30px; border:1px solid #e5e6e7;" name="filter">
+                                    <option value="10" {if condition="isset($filter) && $filter eq 0"}selected="selected"{/if}>全部</option>
+                                    <option value="1" {if condition="isset($filter) && $filter eq 1"}selected="selected"{/if}>已结算</option>
+                                    <option value="2" {if condition="isset($filter) && $filter eq 2"}selected="selected"{/if}>未结算</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                    <div class="ibox-content">
+                        <div id="ajaxpagetest">
+                            {include file="distribution_order/ajaxpage" /}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 全局js -->
+    <script src="__PUBLIC__/admin/js/jquery.min.js?v=2.1.4"></script>
+    <script src="__PUBLIC__/admin/js/plugins/layer/layer.min.js"></script>
+    <script src="__PUBLIC__/admin/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="__PUBLIC__/admin/js/plugins/validate/jquery.validate.min.js"></script>
+    <!-- iCheck -->
+    <script src="__PUBLIC__/admin/js/plugins/iCheck/icheck.min.js"></script>
+    <script src="__PUBLIC__/admin/js/common/admin.js"></script>
+    <script src="__PUBLIC__/admin/js/common/ajax.js"></script>
+
+    <script type="text/javascript">
+
+        function cl(){
+            location.href = "{:url('DistributionOrder/lst')}";
+        }
+
+    </script>
+	
+</body>
+</html>

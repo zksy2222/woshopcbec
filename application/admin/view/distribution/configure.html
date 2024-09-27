@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="favicon.ico"> 
+    <link href="__PUBLIC__/admin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/style.css?v=4.1.0" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/admin/Huploadify/Huploadify.css"/>
+</head>
+
+<script>
+    var url = "{:url('Distribution/configure')}";
+    var setUrl = "{:url('Distribution/setConfig')}";
+</script>
+
+<body class="gray-bg">
+<style>
+    input.error{
+        border:1px solid red;
+    }
+    span.error{
+        padding-top:10px;
+        color: #f00;
+        font-size:12px;
+    }
+</style>
+    <div class="wrapper wrapper-content">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>分销基础配置</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <form method="post" enctype="multipart/form-data" class="form-horizontal" id="form"> 
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">是否开启分销:</label>
+                                <div class="col-sm-6">
+                                    <label class="radio-inline"><input type="radio" name="is_open" {if condition="$distrib['is_open'] eq 1"}checked="checked"{/if} value="1">开启</label>
+                                    <label class="radio-inline"><input type="radio" name="is_open" {if condition="$distrib['is_open'] eq 0"}checked="checked"{/if} value="0">关闭</label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">分销层级:</label>
+                                <div class="col-sm-6">
+                                    <label class="radio-inline"><input type="radio" name="level" {if condition="$distrib['level'] eq 1"}checked="checked"{/if} value="1">一级分销</label>
+                                    <label class="radio-inline"><input type="radio" name="level" {if condition="$distrib['level'] eq 2"}checked="checked"{/if} value="2">二级分销</label>
+                                    <label class="radio-inline"><input type="radio" name="level" {if condition="$distrib['level'] eq 3"}checked="checked"{/if} value="3">三级分销</label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">成为下线条件:</label>
+                                <div class="col-sm-6">
+                                    <label class="radio-inline"><input type="radio" name="become_child" {if condition="$distrib['become_child'] eq 1"}checked="checked"{/if} value="1">首次点击分享链接</label>
+<!--                                    <label class="radio-inline"><input type="radio" name="become_child" {if condition="$distrib['become_child'] eq 2"}checked="checked"{/if} value="2">首次下单</label>-->
+<!--                                    <label class="radio-inline"><input type="radio" name="become_child" {if condition="$distrib['become_child'] eq 3"}checked="checked"{/if} value="3">首次付款</label>-->
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                                                                         
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">成为分销商:</label>
+                                <div class="col-sm-6">
+                                    <label class="radio-inline"><input type="radio" name="become_distrib" {if condition="$distrib['become_distrib'] eq 0"}checked="checked"{/if} value="0">无条件</label>
+                                    <label class="radio-inline"><input type="radio" name="become_distrib" {if condition="$distrib['become_distrib'] eq 1"}checked="checked"{/if} value="1">申请</label>
+                                    <label class="radio-inline"><input type="radio" name="become_distrib" {if condition="$distrib['become_distrib'] eq 2"}checked="checked"{/if} value="2">消费次数</label>
+                                    <label class="radio-inline"><input type="radio" name="become_distrib" {if condition="$distrib['become_distrib'] eq 3"}checked="checked"{/if} value="3">消费金额</label>
+                                    <label class="radio-inline"><input type="radio" name="become_distrib" {if condition="$distrib['become_distrib'] eq 4"}checked="checked"{/if} value="4">购买商品</label>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group count-box" {if condition="$distrib['become_distrib'] eq 2"}style="display: block"{else}style="display: none"{/if}>
+                                <label class="col-sm-2 control-label">消费次数达到:</label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="consume_count" value="{$distrib.consume_count}" class="form-control">
+                                </div>
+                                <label class="col-sm-1" style="padding-top:7px;padding-left: 0;">次</label>
+                            </div>
+                            
+                            <div class="form-group amount-box" {if condition="$distrib['become_distrib'] eq 3"}style="display: block"{else}style="display: none"{/if}>
+                                <label class="col-sm-2 control-label">消费金额达到:</label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="consume_amount" value="{$distrib.consume_amount}" class="form-control">
+                                </div>
+                                <label class="col-sm-1" style="padding-top:7px;padding-left: 0;">元</label>
+                            </div>
+                            
+                            <div class="form-group goods-box" {if condition="$distrib['become_distrib'] eq 4"}style="display: block"{else}style="display: none"{/if}>
+                                <label class="col-sm-2 control-label">选择商品信息:</label>
+                                <div class="col-sm-6">
+                                <button type="button" class="btn btn-success" onclick="selectGoods();">选择商品信息</button>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group goods-box" {if condition="$distrib['become_distrib'] eq 4"}style="display: block"{else}style="display: none"{/if}>
+                                <label class="col-sm-2 control-label">已选商品信息:</label>
+                                <div class="col-sm-8">
+                                    <table class="table table-hover table-bordered">
+                                        <thead class="biaoge">
+                                            <tr>
+                                                <th style="width:30%">商品名称</th>
+                                                <th style="width:20%">缩略图</th>
+                                                <th style="width:15%">所属分类</th>
+                                                <th style="width:20%">金额</th>
+                                                <th style="width:15%">操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="goods_list">
+                                            {foreach name="goods_list" item="v"}
+                                            <tr>
+                                                <td style="display:none;"><input type="checkbox" class="text_id" name="goods_id[]" checked="checked" value="{$v.id}"></td>
+                                                <td>{$v.goods_name}</td>
+                                                <td><img src="{$v.thumb_url}" width="100px" height="100px" onerror="this.src='__PUBLIC__/admin/img/nopic.jpg'"/></td>
+                                                <td>{$v.cate_name}</td>
+                                                <td>{$v.shop_price}&nbsp;元</td>                                                                   
+                                                <td><button type="button" class="btn btn-danger btn-xs" onclick="$(this).parent().parent().remove();"><i class="fa fa-close"></i>&nbsp;移除</button></td>
+                                            </tr>
+                                            {/foreach}  
+                                        </tbody>	
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <button class="btn btn-primary" type="submit" id="doSubmit">保存内容</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 全局js -->
+    <script src="__PUBLIC__/admin/js/jquery.min.js?v=2.1.4"></script>
+    <script src="__PUBLIC__/admin/js/bootstrap.min.js?v=3.3.6"></script>
+    <!-- 自定义js -->
+    <script type="text/javascript" src="__PUBLIC__/admin/Huploadify/jquery.Huploadify.js"></script>
+    <script src="__PUBLIC__/admin/js/plugins/layer/layer.min.js"></script>
+    <script src="__PUBLIC__/admin/js/plugins/validate/jquery.validate.min.js"></script>	
+    <!-- iCheck -->
+    <script src="__PUBLIC__/admin/js/plugins/iCheck/icheck.min.js"></script>
+    <script src="__PUBLIC__/admin/js/common/ajax.js"></script>      
+
+    <script>
+        $(function(){
+    	    var icon = "<i class='fa fa-times-circle'></i>&nbsp;&nbsp;";
+            $('#form').validate({
+                errorElement : 'span',
+                debug: true,    //只验证不提交表单
+                //layer ajax提交表单
+                submitHandler:function(){
+                    // 序列化 表单数据 后提交 ，太简洁了
+                    post(setUrl,'POST',$('#form').serialize(),1);
+                    return false;
+                }
+            });
+        });
+        
+        $('input[type=radio][name=become_distrib]').change(function(){
+            var val = this.value;
+            if (val == 2) {
+                $('.count-box').show();
+                $('.amount-box').hide();
+                $('.goods-box').hide();
+            } else if (val == 3) {
+                $('.amount-box').show();
+                $('.count-box').hide();
+                $('.goods-box').hide();
+            } else if (val == 4) {
+                $('.goods-box').show();
+                $('.count-box').hide();
+                $('.amount-box').hide();
+            } else {
+                $('.count-box').hide();
+                $('.amount-box').hide();
+                $('.goods-box').hide();
+            }
+        });
+        
+        function selectGoods(){
+            var goods_id = new Array();
+            //过滤选择重复信息
+            $('input[name*=goods_id]').each(function(i,o){
+                goods_id.push($(o).val());
+            });
+            
+            var goodsurl = "/{$Request.module}/getptgoods/lst/goods_id/"+goods_id;
+            
+            layer.open({
+                type: 2,
+                title: '选择商品信息',
+                shadeClose: true,
+                shade: 0.3,
+                area: ['70%', '80%'],
+                content: goodsurl
+            });
+        }
+
+        function call_backgoods(table_html){
+            layer.closeAll('iframe');
+            $('#goods_list').append(table_html);
+        }
+        
+        function cl(){
+            location.href = url;
+        }
+    </script>
+
+</body>
+</html>

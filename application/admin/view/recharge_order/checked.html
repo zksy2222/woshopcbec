@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="favicon.ico"> 
+	<link href="__PUBLIC__/admin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/double-date.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/uploadify/uploadify.css"/>
+    <script src="__PUBLIC__/admin/js/jquery.min.js?v=2.1.4"></script>
+    <script src="__PUBLIC__/admin/js/double-date.js"></script>
+</head>
+
+<script>
+var pnum = {$pnum};
+var filter = {$filter};
+{if condition="(!isset($search)) OR (!$search)"}
+var url = "/{$Request.module}/comment/lst/filter/"+filter+".html?page="+pnum;
+{else/}
+var url = "/{$Request.module}/comment/search.html?page="+pnum;
+{/if}
+var deletecpUrl = "{:url('comment/deletecp')}";
+</script>
+
+<body class="gray-bg">
+<style>
+input.error{
+	border:1px solid red;
+}
+span.error{
+	padding-top:10px;
+	color: #f00;
+	font-size:12px;
+}
+</style>
+
+    <div class="wrapper wrapper-content">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>订单审核</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <form method="post" class="form-horizontal" id="form">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">交易编号：</label>
+                                <div class="col-sm-6">
+                                    <div style="font-size:14px; height:35px; line-height:35px;">{$rechargeOrderInfo.order_number}</div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">会员名称：</label>
+                                <div class="col-sm-6">
+                                    <div style="font-size:14px; width:200px; height:35px; line-height:35px;">{$rechargeOrderInfo.user_name}</div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">充值金额：</label>
+                                <div class="col-sm-6">
+                                    <div style="font-size:14px; width:200px; height:35px; line-height:35px;">{$rechargeOrderInfo.order_price}元</div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+
+                            {if condition="!empty($rechargeOrderInfo['order_card'])"}
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">银行卡姓名：</label>
+                                <div class="col-sm-6">
+                                    <div style="font-size:14px; width:200px; height:35px; line-height:35px;">{$rechargeOrderInfo.order_card.card_name}</div>
+                                </div>                       
+                            </div>
+                            <div class="hr-line-dashed"></div>
+           
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">银行卡卡号：</label>
+                                <div class="col-sm-6">
+                                    <div style="font-size:14px; width:500px; height:35px; line-height:35px;">{$rechargeOrderInfo.order_card.card_number}</div>
+                                </div>          
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            {/if}
+
+                            {if condition="!empty($rechargeOrderInfo['order_usdt'])"}
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">usdt支付截图：</label>
+                                <div class="col-sm-6">
+                                    <a class="fancybox" href="{$rechargeOrderInfo.order_usdt.usdt_img}" title="usdt支付截图">
+                                        <img class="image comment_pic" src="{$rechargeOrderInfo.order_usdt.usdt_img}">
+                                    </a>
+                                    <div style="font-size:14px; width:200px; height:35px; line-height:35px;"></div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            {/if}
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">下单时间：</label>
+                                <div class="col-sm-6">
+                                    <div style="font-size:14px; width:500px; height:35px; line-height:35px;">{:date('Y-m-d H:i:s',$rechargeOrderInfo['create_time'])}</div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">是否支付：</label>
+                                <div class="col-sm-6">
+                                        <label class="radio-inline"><input type="radio" name="checked" {if condition="$rechargeOrderInfo['pay_status'] eq 1"}checked="checked"{/if} value="1">是</label>
+                                        <label class="radio-inline"><input type="radio" name="checked" {if condition="$rechargeOrderInfo['pay_status'] eq 0"}checked="checked"{/if} value="0">否</label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                           
+                           <input type="hidden" name="id" value="{$rechargeOrderInfo.id}" />
+                           {if condition="$rechargeOrderInfo['pay_status'] eq 0"}
+                           <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <button class="btn btn-primary" type="button" id="doSubmit" style="margin-right:50px;">保存设置</button>
+                                </div>
+                            </div>
+                           {/if}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 全局js -->
+    <script src="__PUBLIC__/admin/js/bootstrap.min.js?v=3.3.6"></script>
+    <!-- 自定义js -->
+    <script type="text/javascript" src="__PUBLIC__/uploadify/jquery.uploadify.min.js"></script>
+    <script src="__PUBLIC__/admin/js/plugins/layer/layer.min.js"></script>
+    <script src="__PUBLIC__/admin/js/plugins/validate/jquery.validate.min.js"></script>	
+    <!-- iCheck -->
+    <script src="__PUBLIC__/admin/js/plugins/iCheck/icheck.min.js"></script>
+    <script src="__PUBLIC__/admin/js/common/ajax.js"></script>
+
+	<script>
+      $(function(){ 
+    	  $('#doSubmit').click(function(){
+		      $.ajax({
+			      url:"{:url('recharge_order/checked')}",
+			      type:'POST',
+			      data:$('#form').serialize(),
+			      dataType:'json',
+			      success:function(data){
+			    	  if(data.status == 1){
+			    		  layer.msg(data.mess, {icon: 1,time: 1000}, function(){
+                               parent.location.href = url;
+			    		  });
+			    	  }else if(data.status == 0){
+			    		  layer.msg(data.mess, {icon: 2,time: 1000});
+			    	  }
+			      },
+			      error:function(){
+			    	  layer.msg('操作失败，请重试', {icon: 2,time: 2000});
+			      }
+			  });
+    	  });
+    	  
+      });
+
+    	
+      function cl(){
+    	  parent.location.href = url;
+      }
+    </script>
+
+</body>
+</html>

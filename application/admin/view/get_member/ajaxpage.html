@@ -1,0 +1,43 @@
+<table id="sort" class="table table-hover table-bordered">
+    <thead>
+    <tr>
+
+        <th style="width:20%">会员名称</th>
+        <th style="width:20%">头像</th>
+        <th style="width:15%;">手机号码</th>
+        <th style="width:15%">操作</th>
+    </tr>
+    </thead>
+
+    {if condition="$list->isEmpty() == false"}
+    {foreach name="list" item="v"}
+    <tbody id="member_table{$v['id']}">
+    <tr >
+        <input type="hidden" name="user_id" value="{$v.id}">
+        <td>{$v.user_name}</td>
+        <td>
+            <img src="{$v.headimgurl}" width="100px" height="100px" onerror="this.src='__PUBLIC__/admin/img/nopic.jpg'" />
+        </td>
+        <td>{:mix_phone($v['phone'])}</td>
+        <td>
+            <button type="button" class="btn btn-primary  btn-xs select_goods" onclick="select_member({$v.id});" data-id="{$v.id}">选择此会员</button>
+            <button type="button" class="btn btn-danger btn-xs" onclick="yichu(this);"><i class="fa fa-close"></i>&nbsp;移除</button>
+        </td>
+    </tr>
+    </tbody>
+    {/foreach}
+    {else/}
+    <tr><td colspan="4" style="text-align:center; font-size:14px;">没有找到相关数据</td></tr>
+    {/if}
+</table>
+<div class="row"><div class="pagination" style="float:right; margin-right:20px;">{$page}</div></div>
+<script>
+
+    function select_member($id){
+        javascript:window.parent.call_backmember($('#member_table'+$id).html());
+    }
+
+    function yichu(obj){
+        $(obj).parent().parent().remove();
+    }
+</script>

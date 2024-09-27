@@ -1,0 +1,20 @@
+
+  <div class="panel-body">
+    <div class="form-group">
+      <label  class="col-sm-2 control-label">商品图片:</label>
+      <div class="col-sm-6">
+        <div class="imglst" style="width:1000px; height:100%; overflow:hidden; margin-bottom:7px; margin-top:5px;">
+          {foreach name="goodpicres" item="v"}
+          <div class="imgli" del="pic" style="width:170px; height:250px; margin-right:10px; margin-bottom:10px; float:left;">
+            <img class="image" src="{$v.img_url}" width="150" height="100" border="0" /><br/>
+            <button type="button" class="btn btn-danger btn-xs" onclick="deletegp(this);">删除</button>
+            <input class="ypic_id" type="hidden" name="ypic_id[]" value="{$v.id}">
+            <div style="margin-top:15px;">排序:<input type="text" name="sort2[]" value="{$v.sort}"></div>
+          </div>
+          {/foreach}
+        </div>
+        <div id="uploaderInputs"></div>
+      </div>
+    </div>
+    <div class="hr-line-dashed"></div>
+  </div>

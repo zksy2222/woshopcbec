@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="favicon.ico"> 
+	<link href="__PUBLIC__/admin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/page.css" rel="stylesheet">
+    <!-- 全局js -->
+    <script src="__PUBLIC__/admin/js/jquery.min.js?v=2.1.4"></script>
+    <script src="__PUBLIC__/admin/js/plugins/layer/layer.min.js"></script>
+    <script src="__PUBLIC__/admin/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="__PUBLIC__/admin/js/plugins/validate/jquery.validate.min.js"></script>
+    <!-- iCheck -->
+    <script src="__PUBLIC__/admin/js/plugins/iCheck/icheck.min.js"></script>
+    <script src="__PUBLIC__/admin/js/common/admin.js"></script>
+    <script src="__PUBLIC__/admin/js/common/ajax.js"></script>
+</head>
+
+<script>
+//删除url
+var url = "/{$Request.module}/goods";
+var recycleUrl = "{:url('goods/recycle')}";
+var batchRecycleUrl = "{:url('goods/batchRecycle')}";
+</script>
+
+<body class="gray-bg">
+<style>
+    .qiehuan{
+        width:120px; height:40px; line-height:40px; font-size:14px; font-weight:bold; color:#333; background-color:#F5F5F6; float:left; margin-right:10px; text-align:center; cursor:pointer;
+    }
+    .integral-box{
+        text-align: center;
+        color: #ff0000;
+        border: 1px solid #ff0000;
+        border-radius: 3px;
+        padding: 3px;
+        width: 180px;
+        line-height: normal;
+        margin-bottom: 3px;
+    }
+</style>
+    <div class="wrapper wrapper-content" id="server">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>{if condition="isset($cate_name) && $cate_name"}{$cate_name}{/if}商品列表</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row" style="margin-top:10px;margin-bottom:20px;">  
+                        	<div class="col-sm-6 m-b-xs">
+                                <button type="button" class="btn btn-sm btn-primary" id="addgoods"><i class="fa fa-plus" style="color:#FFF;"></i>&nbsp;增加商品</button>
+                                <a href="{:url('goods/hslst')}" class="btn btn-sm btn-success m-l"><i class="fa fa-paste"></i>&nbsp;回收站</a>
+                                <button type="button" class="btn btn-sm btn-primary m-l" onclick="selectGoods(0);">批量修改分类</button>
+                                <button type="button" class="btn btn-sm btn-primary m-l" onclick="selectGoods(1);">批量放入回收站</button>
+                            </div>
+                        
+                            <form action="{:url('goods/search')}" method="post" id="form_search">
+                            <div class="col-sm-3" style="float:right;">
+                                <div class="input-group">
+                                    <input type="text" name="keyword" placeholder="请输入商品名称" {if condition="isset($goods_name) && $goods_name"}value="{$goods_name}"{/if} class="input-sm form-control"> <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-sm btn-primary" id="submit_search2">搜索</button></span>
+                                </div>
+                            </div>
+
+                            
+                            <div style="float:right; margin-right:10px; font-size:15px;">
+                                <select style="height:30px; line-height:30px; border:1px solid #e5e6e7;" name="brand_id">
+                                    <option value="0" {if condition="isset($brand_id) && $brand_id eq 0"}selected="selected"{/if}>所有品牌</option>
+                                    {foreach name="brandres" item="v"}
+                                    <option value="{$v.id}" {if condition="isset($brand_id) && $brand_id eq $v['id']"}selected="selected"{/if}>{$v.brand_name}</option>
+                                    {/foreach}
+                                </select>
+                            </div> 
+                            
+                            <div style="float:right; margin-right:10px; font-size:15px;">
+                                <select style="height:30px; line-height:30px; border:1px solid #e5e6e7;" name="cate_id">
+                                    <option value="0" {if condition="isset($cate_id) && $cate_id eq 0"}selected="selected"{/if}>所有分类</option>
+                                    {foreach name="cateres" item="v"}
+                                    <option value="{$v.id}" {if condition="isset($cate_id) && $cate_id eq $v['id']"}selected="selected"{/if}>{:str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $v['level'])}{if condition='$v["level"] gt 0'}|{/if}{$v.html}{$v.cate_name}</option>
+                                    {/foreach}
+                                </select>
+                            </div>                         
+                           </form>
+                           
+                        </div>  
+                        
+                        
+                        <div id="ajaxpagetest">
+                        {include file="goods/ajaxpage" /}
+                        </div>                        
+                        
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+	<script type="text/javascript">
+    $(function(){
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green',
+        });
+        
+        $('#addgoods').click(function(){
+        	if(cate_id == 0){        		
+        		location.href=url+'/add';
+        	}else{
+        		location.href=url+'/add/cate_id/'+cate_id;
+        	}
+        }); 
+          	
+    });
+    //获取选择的值
+    function selectGoods(type){
+        var ids=[];
+        var r = document.getElementsByName("id[]");
+        for (var i = 0; i < r.length; i++) {
+            if(r[i].checked){
+                ids[i]=r[i].value;
+            }
+        }
+        if(ids == ''){
+            layer.msg('请选择商品', {icon: 2,time: 1000});
+            return false;
+        }
+        if(type == 0){
+            var goodsurl="{:url('goods/setcate')}";
+            layer.open({
+                type: 2,
+                title: '批量修改分类',
+                shadeClose: true,
+                shade: 0.3,
+                area: ['70%', '80%'],
+                content: goodsurl,
+                success: function (layero, index) {
+                    //找到它的子窗口的body
+                    var body = layer.getChildFrame('body', index);  //巧妙的地方在这里哦
+                    //为子窗口元素赋值
+                    body.contents().find("#ids").val(ids);
+                }
+            });
+        }else if(type == 1){
+            layer.confirm('确定放进回收站么?', {
+                skin: 'layui-layer-molv',
+                closeBtn: 0,
+                shadeClose : true,
+                btn: ['确定','取消'] //按钮
+            },function(){
+                post(batchRecycleUrl,'GET',{'ids':ids},1);
+                return false;
+            });
+        }
+
+    }
+
+    function call_backcate(){
+        location.href = url+'/lst?page='+pnum;
+    }
+    //库存
+    function product(id,obj){
+    	location.href=url+'/product/id/'+id;
+    }
+    </script>
+	
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="favicon.ico"> 
+	<link href="__PUBLIC__/admin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/style.css?v=4.1.0" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/admin/Huploadify/Huploadify.css"/>
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/ueditor/ueditor.all.min.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/ueditor/lang/zh-cn/zh-cn.js"></script>
+</head>
+
+<script>
+{if condition="!isset($cate_id) || !$cate_id"}
+var url = "{:url('goods/lst')}";
+{else/}
+var url = "{:url('goods/catelist',array('cate_id'=>$cate_id))}";
+{/if}
+var insertUrl = "{:url('goods/add')}";
+</script>
+
+<body class="gray-bg">
+<style>
+input.error{
+	border:1px solid red;
+}
+span.error{
+	padding-top:10px;
+	color: #f00;
+	font-size:12px;
+}
+</style>
+    <div class="wrapper wrapper-content">
+        <div class="row">       
+        <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+               <div class="ibox-title">
+               <h5>批量修改商品分类及所属店铺分类</h5>
+               </div>
+               <div class="ibox-content">
+                <div class="form-horizontal">
+               <!-- <form  class="form-horizontal" id="form"> -->
+                <div class="tabs-container">
+                    
+                    <div class="tab-content">
+                    
+                        <div id="tab-1" class="tab-pane active">
+                            <div class="panel-body">
+                                <input type="hidden" id="ids" name="ids[]" value="" class="form-control">
+                           <div class="form-group">
+                                <label class="col-sm-2 control-label">所属平台分类:</label>
+
+                                <div class="col-sm-6">
+                                    <select class="form-control m-b" name="cate_id" id="cate_id">
+                                        <option value="">请选择</option>
+                                        {foreach name="cateres" item="v"}
+                                        <option value="{$v.id}">{:str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $v['level'])}{if condition='$v["level"] gt 0'}|{/if}{$v.html}{$v.cate_name}</option>
+                                        {/foreach}
+                                    </select>
+                                </div>
+                                <label class="col-sm-1" style="padding-top:7px; color:#F00; font-size:16px;">*</label>
+                            </div>
+                            <div class="hr-line-dashed"></div>                             
+
+                            
+                            
+<!--                            <div class="form-group">-->
+<!--                                <label class="col-sm-2 control-label">所属店铺分类:</label>-->
+
+<!--                                <div class="col-sm-6">-->
+<!--                                    <select class="form-control m-b" name="shcate_id"  id="shcate_id">-->
+<!--                                        <option value="">请选择</option>-->
+<!--                                        {foreach name="shcateres" item="v"}-->
+<!--                                        <option value="{$v.id}" {if condition="isset($cate_id) && $cate_id eq $v['id']"}selected = "selected"{/if}>{:str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $v['level'])}{if condition='$v["level"] gt 0'}|{/if}{$v.html}{$v.cate_name}</option>-->
+<!--                                        {/foreach}-->
+<!--                                    </select>-->
+<!--                                </div>-->
+<!--                                <label class="col-sm-1" style="padding-top:7px; color:#F00; font-size:16px;">*</label>-->
+<!--                            </div>-->
+<!--                            <div class="hr-line-dashed"></div> -->
+                            
+                            
+                
+                <!-- <div class="form-group">
+                    <div class="col-sm-4 col-sm-offset-2" style="margin-top:20px; margin-left:0%;">
+                        <button class="btn btn-primary" type="submit" id="doSubmit">提交</button>
+                    </div>
+                    </div> -->
+                <!-- </form> -->
+                <!-- </div> -->
+                <button class="btn btn-primary" type="submit" id="doSubmit" onclick="setcate()">提交</button>
+                </div>
+                </div>
+            </div>       
+        </div>
+    </div>
+
+
+    <!-- 全局js -->
+    <script src="__PUBLIC__/admin/js/jquery.min.js?v=2.1.4"></script>
+    <script src="__PUBLIC__/admin/js/bootstrap.min.js?v=3.3.6"></script>
+    <!-- 自定义js -->
+    <script type="text/javascript" src="__PUBLIC__/admin/Huploadify/jquery.Huploadify.js"></script> 
+    <script src="__PUBLIC__/admin/js/plugins/layer/layer.min.js"></script>
+    <script src="__PUBLIC__/admin/js/plugins/validate/jquery.validate.min.js"></script>	
+    <!-- iCheck -->
+    <script src="__PUBLIC__/admin/js/plugins/iCheck/icheck.min.js"></script>
+    <script src="__PUBLIC__/admin/js/common/ajax.js"></script>
+    
+    
+
+	<script>
+        function setcate(){
+             // var geturl="{:url('goods/getcate')}";
+             var ids=$("#ids").val();
+             var cate_id=$("#cate_id option:selected").val();
+             var shcate_id=$("#shcate_id option:selected").val();
+             if(cate_id !== '' || shcate_id !== ''){
+                $.ajax({ 
+                    type:'post',  
+                    url:"{:url('goods/setcate')}", 
+                    data:{ids:ids,cate_id:cate_id,shcate_id:shcate_id},  
+                    dataType:'json', 
+                        success:function(data){      
+                          if(data.status == 1){
+                            layer.msg(data.mess, {icon: 2, time: 2000});
+                            var index = parent.layer.getFrameIndex(window.name);
+                            parent.layer.close(index); 
+                          }
+                            
+                            javascript:window.parent.call_backcate();  
+                        }
+                   })
+            }else{
+                layer.msg('请选择分类或所属店铺分类', {icon: 2,time: 1000});
+                return false;
+            }
+        }
+      
+    </script>
+
+</body>
+</html>

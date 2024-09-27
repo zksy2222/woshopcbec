@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="__PUBLIC__/admin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/style.css?v=4.1.1" rel="stylesheet">
+</head>
+
+<body class="gray-bg">
+<style>
+    input.error{
+        border:1px solid red;
+    }
+    span.error{
+        padding-top:10px;
+        color: #f00;
+        font-size:12px;
+    }
+    span.rate-box{
+        float: left;
+        line-height: 2.6;
+    }
+    .alert-primary {
+        color: #259fdc;
+        background-color: #d9edf7;
+        border-color: #c5dce7;
+        font-size: 16px;
+        margin-top: 20px;
+    }
+    .qiehuan{
+        width:120px; height:40px; line-height:40px; font-size:14px; font-weight:bold; color:#333; background-color:#F5F5F6; float:left; margin-top:15px; margin-right:10px; text-align:center; cursor:pointer;
+    }
+</style>
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>分销明细</h5>
+                </div>
+                
+                <div class="alert alert-primary">
+                    下级分销商：{$user_str}
+                </div>
+                
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-5 m-b-xs">
+                            <div style="width:1300px; height:40px; margin-bottom:25px;">
+                                <a href="{:url('info',array('filter'=>10,'user_id'=>$userid))}"><div class="qiehuan" {if condition="$filter && $filter eq 10"}style="background-color: #1992FC;color: #FFF;"{/if}>全部</div></a>
+                                {if isset($diff_level['levelOne'])}
+                                <a href="{:url('info',array('filter'=>1,'user_id'=>$userid))}"><div class="qiehuan" {if condition="$filter && $filter eq 1"}style="background-color: #1992FC;color: #FFF;"{/if}>一级({$diff_level['levelOne']})</div></a>
+                                {/if}
+                                {if isset($diff_level['levelTwo'])}
+                                <a href="{:url('info',array('filter'=>2,'user_id'=>$userid))}"><div class="qiehuan" {if condition="$filter && $filter eq 2"}style="background-color: #1992FC;color: #FFF;"{/if}>二级({$diff_level['levelTwo']})</div></a>
+                                {/if}
+                                {if isset($diff_level['levelThr'])}
+                                <a href="{:url('info',array('filter'=>3,'user_id'=>$userid))}"><div class="qiehuan" {if condition="$filter && $filter eq 3"}style="background-color: #1992FC;color: #FFF;"{/if}>三级({$diff_level['levelThr']})</div></a>
+                                {/if}
+
+                            </div>
+                        </div>
+                    </div>
+                    <div id="ajaxpagetest">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>头像</th>
+                                    <th>用户名</th>
+                                    <th>手机号</th>
+                                    <th>累计佣金</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {if($list)}
+                                {foreach name="list" item="v"}
+                                <tr>
+                                    <td><img src="{$v.headimgurl|url_format}" class="w70 h70 well no-padding no-margins" /></td>
+                                    <td>{$v.user_name}</td>
+                                    <td>{$v.phone}</td>
+                                    <td>{$v.commission}</td>
+                                </tr>
+                                {/foreach}
+                                {else/}
+                                <tr><td colspan="4" style="text-align:center; font-size:14px;">没有找到相关数据</td></tr>
+                                {/if}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 全局js -->
+<script src="__PUBLIC__/admin/js/jquery.min.js?v=2.1.4"></script>
+<script src="__PUBLIC__/admin/js/bootstrap.min.js?v=3.3.6"></script>
+<!-- 自定义js -->
+<script src="__PUBLIC__/admin/js/plugins/layer/layer.min.js"></script>
+<script src="__PUBLIC__/admin/js/plugins/validate/jquery.validate.min.js"></script>
+<!-- iCheck -->
+<script src="__PUBLIC__/admin/js/plugins/iCheck/icheck.min.js"></script>
+<script src="__PUBLIC__/admin/js/common/ajax.js"></script>
+<script type="text/javascript">
+
+    $('.i-checks').iCheck({
+        checkboxClass: 'icheckbox_square-green',
+        radioClass: 'iradio_square-green',
+    });
+
+    var icon = "<i class='fa fa-times-circle'></i>&nbsp;&nbsp;";
+    $('#form').validate({
+        errorElement : 'span',
+        debug: true,//只验证不提交表单
+        //layer ajax提交表单
+        submitHandler:function(){
+            // 序列化 表单数据 后提交 ，太简洁了
+            post("{:url('DistributionGrade/add')}",'POST',$('#form').serialize(),1);
+            return false;
+        },//这是关键的语句，配置这个参数后表单不会自动提交，验证通过之后会去调用的方法
+
+        rules:{
+            grade_name:{required:true},
+            one_level_rate:{required:true,number:true},
+            two_level_rate:{required:true,number:true},
+            three_level_rate:{required:true,number:true}
+        },
+
+        messages:{
+            grade_name:{required:icon+'必填'},
+            one_level_rate:{required:icon+'必填',number:icon+'请填写数字'},
+            two_level_rate:{required:icon+'必填',number:icon+'请填写数字'},
+            three_level_rate:{required:icon+'必填',number:icon+'请填写数字'}
+        }
+    });
+
+    function cl(){
+        location.href = "{:url('DistributionGrade/lst')}";
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+
+  <div class="panel-body">
+    <div class="form-group">
+      <label class="col-sm-2 control-label">换购规则:</label>
+      <div class="col-sm-6">
+        <select class="form-control m-b" name="integral_cate">
+          <option value="0" {if condition="$goodss.integral_cate eq 0"}selected{/if}>请选择</option>
+          <option value="1" {if condition="$goodss.integral_cate eq 1"}selected{/if}>积分抵扣金额</option>
+          <option value="2" {if condition="$goodss.integral_cate eq 2"}selected{/if}>积分+商品金额</option>
+          <option value="3" {if condition="$goodss.integral_cate eq 3"}selected{/if}>积分换购</option>
+        </select>
+      </div>
+    </div>
+    <div class="hr-line-dashed"></div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">积分:</label>
+      <div class="col-sm-6">
+        <input type="text" name="integral" value="{$goodss.integral}" class="form-control">
+      </div>
+      <label id="integral_amount" class="col-sm-1" style="padding-top:7px; color:#F00; font-size:12px; {if condition='$goodss.integral_cate neq 1'}display:none{/if}">抵扣金额1元</label>
+    </div>
+    <div class="hr-line-dashed"></div>
+  </div>

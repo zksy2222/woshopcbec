@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>用户注册</title>
+	<meta name="keywords" content="{$configres.webtitle}">
+	<meta name="description" content="{$configres.webtitle}">
+	<meta name="author" content="Lxb">
+	<meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width">
+	<meta name="viewport" media="(device-height: 568px)" content="initial-scale=1.0,user-scalable=no,maximum-scale=1">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<link href="__PUBLIC__/mobile/css/register.css" rel="stylesheet" type="text/css">
+	<script src="__PUBLIC__/mobile/js/jquery-1.8.3.min.js"></script>
+	<!--
+    <script src="__PUBLIC__/mobile/js/toastr.min.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/mobile/css/toastr.min.css">
+    -->
+	<link href="__PUBLIC__/mobile/css/alertPopShow.css" rel="stylesheet" type="text/css">
+	<script src="__PUBLIC__/mobile/js/alertPopShow.js"></script>
+	<script src="__PUBLIC__/mobile/js/md5.pro.js"></script>
+
+	<style>
+		.layer-agreement{ border-radius: 4px!important;}
+		.layer-agreement .layui-layer-btn{ text-align: center}
+		.layer-agreement .layui-layer-btn .layui-layer-btn0{ width: 100px; border: none; background-color: #ff4e4d; background-image: linear-gradient(to right, #ff8864, #ff2121); margin-top: 10px; border-radius: 50px;}
+	</style>
+</head>
+<body style="">
+
+<div class="zhuce">
+	<div class="reg_1"><img src="__PUBLIC__/mobile/images/icon-logo.png" /></div>
+	<div class="reg_2">欢迎注册WoShop</div>
+	<form id="post_form" class="regform" method="post">
+		<input type="hidden" name="inviter" value="{$inviter}" />
+		<div class="text">
+			<input type="text" name="phone" placeholder="请输入手机号" class="input">
+		</div>
+		<div class="text">
+			<input type="text" id="sms_captcha" name="sms_captcha" placeholder="请输入验证码" class="input" style="width:55%">
+			<a id="sms_text" onclick="sendSmsCode()" class="sms-code" site="12" >获取验证码</a>
+		</div>
+		<div class="text">
+
+			<input placeholder="请输入密码" class="input" id="password" name="password" type="password">
+		</div>
+		<div class="text">
+
+			<input type="password" id="password_confirm" name="password_confirm" placeholder="请输入确认密码" class="input">
+		</div>
+		<div class="agreement-alert"><a href="javascript:;" class="agreement-handle"></a>勾选代表你同意
+			<!--			<li class="xieyi">《服务协议》</li></div>-->
+			<a class="agreement" title="阅读并同意">《服务协议》</a></div>
+		<div class="btndl"><a id="submitBtn" value="">立即注册</a></div>
+
+
+
+
+	</form>
+</div>
+<script src="__PUBLIC__/admin/js/plugins/layer/layer.min.js"></script>
+<script>
+
+	$('.agreement-handle').click(function () {
+		webToast("注册必须同意该协议！","middle", 3000);
+		return;
+
+	});
+
+	$(".agreement").click(function(){
+		layer.open({
+			title: '',
+			area: ['80%', '440px'],
+			skin: 'layer-agreement',
+			content: '{$agreement.ar_content}'
+		});
+	})
+
+	var _register_member = 0;
+
+</script>
+<script type="text/javascript" src="__STATIC__/pc/js/connect_sms.js" charset="utf-8"></script>
+
+<script>
+	$(function(){
+
+
+
+		var _sms_register_member = 0;
+		$("#submitBtn").click(function(){
+			var phonenum = $("input[name='phone']").val();
+			var inviter = $("input[name='inviter']").val();
+			var password = $("input[name='password']").val();
+			var password_confirm = $("input[name='password_confirm']").val();
+			var sms_captcha = $("input[name='sms_captcha']").val();
+			var xieyi = 1;
+			if(password !== password_confirm){
+				webToast("两次密码不一致","middle", 2000);
+				return;
+			}else{
+				console.log(1);
+				$.ajax({
+					url: "{:url('index')}",
+					type: 'post',
+					dataType: 'json',
+					data: {
+						phonecode: sms_captcha,
+						phone: phonenum,
+						xieyi: xieyi,
+						inviter:inviter,
+						password: password,
+						repwd: password_confirm,
+					},
+					success: function (msg) {
+						if (msg.status == 1){
+							webToast(msg.mess,"middle", 2000);
+							setInterval('location.href="{:url('mobile/download/index')}"',2000);
+
+						}else{
+							//alert(msg.mess);
+							webToast(msg.mess,"middle", 2000);
+						}
+					}
+				});
+			}
+
+
+
+		});
+
+
+
+	});
+
+	var countDownT = 60;
+	function sendSmsCode(){
+		var phonenum = $("input[name='phone']").val();
+		var date= new Date().format("yyyy-MM-dd");
+		if (phonenum == ''){
+			webToast("请输入手机号码","middle", 2000);
+			return false
+		}else{
+			$.ajax({
+				url: "{:url('api/SmsCode/send')}",
+				type: 'post',
+				dataType: 'json',
+				data: {
+					api_token: hex_md5('api/SmsCode/send'+'yiling6670238160ravntyoneapp7926'),
+					client_id: 1,
+					phone: phonenum,
+					type: 1,
+				},
+				success: function (res) {
+					webToast(res.mess,"middle", 2000);
+					if(res.status==200){
+						countDownT = 60;
+						setTime();
+					}
+				}
+			});
+
+		}
+	}
+
+	function  setTime(){
+		if (countDownT == 0){
+			$("#sms_text").attr("onclick","sendSmsCode()");
+			$("#sms_text").text("获取短信验证码");
+		} else{
+			$("#sms_text").attr("onclick","#");
+			$("#sms_text").text("重新发送("+countDownT+")");
+			countDownT--;
+			setTimeout(function () {
+				setTime();
+			},1000)
+		}
+	}
+
+	Date.prototype.format = function(fmt) {
+		var o = {
+			"M+" : this.getMonth()+1,                 //月份
+			"d+" : this.getDate(),                    //日
+			"h+" : this.getHours(),                   //小时
+			"m+" : this.getMinutes(),                 //分
+			"s+" : this.getSeconds(),                 //秒
+			"q+" : Math.floor((this.getMonth()+3)/3), //季度
+			"S"  : this.getMilliseconds()             //毫秒
+		};
+		if(/(y+)/.test(fmt)) {
+			fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
+		}
+		for(var k in o) {
+			if(new RegExp("("+ k +")").test(fmt)){
+				fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+			}
+		}
+		return fmt;
+	}
+</script>
+
+</body>
+</html>

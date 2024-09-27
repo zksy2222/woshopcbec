@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="favicon.ico"> 
+    <link href="__PUBLIC__/admin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/style.css?v=4.1.0" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/uploadify/uploadify.css"/>
+    <script src="__PUBLIC__/admin/js/jquery.min.js?v=2.1.4"></script>
+</head>
+
+<body class="gray-bg">
+<style>
+    input.error{
+        border:1px solid red;
+    }
+    span.error{
+        padding-top:10px;
+        color: #f00;
+        font-size:12px;
+    }
+</style>
+
+    <div class="wrapper wrapper-content">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>分销商提现详细</h5>
+                    </div>
+                    <div class="ibox-content">
+                    <div class="form-horizontal">
+                    
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">流水单号：</label>
+                                <div class="col-sm-6">
+                                    <div style="font-size:14px; width:200px; height:35px; line-height:35px;">{$withdraw_info.tx_number}</div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="form-group">
+                            <label class="col-sm-2 control-label">申请时间:</label>
+                                <div class="col-sm-6">
+                                    <div style="font-size:14px; width:200px; height:35px; line-height:35px;">{$withdraw_info.create_time}</div>
+                                </div> 
+                            </div>				
+                            <div class="hr-line-dashed"></div> 
+                    
+                    
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">状态：</label>
+                                <div class="col-sm-6">
+                                <div style="font-size:14px; width:200px; height:35px; line-height:35px;">
+                                {if condition="($withdraw_info['status'] eq 0) AND ($withdraw_info['pay_status'] eq 0)"}
+                                <span style="color:#1c84c6;">待审核</span>
+                                {elseif condition="($withdraw_info['status'] eq 1) AND ($withdraw_info['pay_status'] eq 0)"/}
+                                <span style="color:#1c84c6;">待打款</span>
+                                {elseif condition="($withdraw_info['status'] eq 1) AND ($withdraw_info['pay_status'] eq 1)"/}
+                                <span style="color:#1992FC;">已完成</span>
+                                {elseif condition="($withdraw_info['status'] eq 1) AND ($withdraw_info['pay_status'] eq 2)"/}
+                                <span style="color:#ed5565;">打款失败</span>
+                                {elseif condition="($withdraw_info['status'] eq 2) AND ($withdraw_info['pay_status'] eq 0)"/}
+                                <span style="color:#ed5565;">审核未通过</span>
+                                {/if}
+                                </div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            {if condition="($withdraw_info['status'] eq 1) AND ($withdraw_info['pay_status'] eq 1)"}
+                            <div class="form-group">
+                            <label class="col-sm-2 control-label">打款时间:</label>
+                                <div class="col-sm-6">
+                                    <div style="font-size:14px; width:200px; height:35px; line-height:35px;">{$withdraw_info.pay_time}</div>
+                                </div> 
+                            </div>				
+                            <div class="hr-line-dashed"></div> 
+                            {/if}
+                            
+                            {if condition="($withdraw_info['status'] eq 1) AND ($withdraw_info['pay_status'] eq 2)"}
+                            <div class="form-group">
+                            <label class="col-sm-2 control-label">失败原因:</label>
+                                <div class="col-sm-6">
+                                    <div style="font-size:14px; width:200px; height:35px; line-height:35px;">{$withdraw_info.remarks}</div>
+                                </div> 
+                            </div>				
+                            <div class="hr-line-dashed"></div> 
+                            {/if}
+                        
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">分销商名称：</label>
+                                <div class="col-sm-6">
+                                    <div style="font-size:14px; width:200px; height:35px; line-height:35px;">{$withdraw_info.real_name}</div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">手机号：</label>
+                                <div class="col-sm-6">
+                                    <div style="font-size:14px; width:200px; height:35px; line-height:35px;">{$withdraw_info.phone}</div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">可提现余额：</label>
+                                <div class="col-sm-6">
+                                    <div style="font-size:14px; width:200px; height:35px; line-height:35px;">{$withdraw_info.withdraw_amount}</div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">提现金额：</label>
+                                <div class="col-sm-6">
+                                    <div style="font-size:14px; width:200px; height:35px; line-height:35px;">{$withdraw_info.amount}</div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">银行卡号：</label>
+                                <div class="col-sm-6">
+                                    <div style="font-size:14px; width:200px; height:35px; line-height:35px;">{$bank_info.card_number}</div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">所属银行：</label>
+                                <div class="col-sm-6">
+                                    <div style="font-size:14px; width:200px; height:35px; line-height:35px;">{$bank_info.bank_name}</div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">开户行省市区：</label>
+                                <div class="col-sm-6">
+                                    <div style="font-size:14px; width:200px; height:35px; line-height:35px;">{$bank_info.province}{$bank_info.city}{$bank_info.area}</div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">所属支行：</label>
+                                <div class="col-sm-6">
+                                    <div style="font-size:14px; width:200px; height:35px; line-height:35px;">{$bank_info.branch_name}</div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">真实姓名：</label>
+                                <div class="col-sm-6">
+                                    <div style="font-size:14px; width:200px; height:35px; line-height:35px;">{$bank_info.name}</div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <button class="btn btn-primary" type="button" onclick="goBackLst('/{$Request.module}/distribution_withdraw/lst');">返回</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 全局js -->
+    <script src="__PUBLIC__/admin/js/bootstrap.min.js?v=3.3.6"></script>
+    <!-- 自定义js -->
+    <script type="text/javascript" src="__PUBLIC__/uploadify/jquery.uploadify.min.js"></script>
+    <script src="__PUBLIC__/admin/js/plugins/layer/layer.min.js"></script>
+    <script src="__PUBLIC__/admin/js/plugins/validate/jquery.validate.min.js"></script>	
+    <!-- iCheck -->
+    <script src="__PUBLIC__/admin/js/plugins/iCheck/icheck.min.js"></script>
+    <script src="__PUBLIC__/admin/js/common/ajax.js"></script>
+
+</body>
+</html>

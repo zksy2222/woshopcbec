@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link href="__PUBLIC__/admin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+  <link href="__PUBLIC__/admin/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+  <link href="__PUBLIC__/admin/css/style.css?v=4.1.0" rel="stylesheet">
+  <link href="__PUBLIC__/admin/css/page.css" rel="stylesheet">
+  <link href="__PUBLIC__/admin/css/double-date.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/admin/Huploadify/Huploadify.css"/>
+  <script src="__PUBLIC__/admin/js/jquery.min.js?v=2.1.4"></script>
+  <script src="__PUBLIC__/admin/js/double-date.js"></script>
+  <script src="__PUBLIC__/admin/js/jquery-ui-1.10.4.custom.min.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/admin/Huploadify/jquery.Huploadify.js"></script>
+
+</head>
+
+<style>
+  .ibox-content{ border: none;}
+  .submit-row{ position: absolute; bottom: 0; width: 100%;}
+  .wrapper-content{ height: 350px; position: relative;}
+</style>
+
+<script>
+  var url = '/{$Request.module}/getgoods';
+</script>
+
+<body class="white-bg">
+<div class="wrapper">
+  <div class="row wrapper-content">
+    <div class="col-sm-12">
+        <div class="ibox-content align-center">
+            <img id="imageinfo" src="__PUBLIC__/admin/img/nopic.jpg" width="180"  border="0" />
+            <br/><button type="button" class="btn btn-danger btn-xs del m-b" style="display:none;">删除</button>
+            <input type="hidden" name="pic" value="" >
+            <div id="uploaderBtn"></div>
+        </div>
+    </div>
+    <div class="submit-row align-center">
+      <button class="btn btn-primary" type="button" id="doSubmit">确定使用</button>
+      <button type="button" class="btn btn-white close-layer">取消</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- 全局js -->
+<script src="__PUBLIC__/admin/js/plugins/layer/layer.min.js"></script>
+<script src="__PUBLIC__/admin/js/bootstrap.min.js?v=3.3.6"></script>
+<script src="__PUBLIC__/admin/js/plugins/validate/jquery.validate.min.js"></script>
+<!-- iCheck -->
+<script src="__PUBLIC__/admin/js/plugins/iCheck/icheck.min.js"></script>
+<script src="__PUBLIC__/admin/js/common/admin.js"></script>
+<script src="__PUBLIC__/admin/js/common/ajax.js"></script>
+<script>
+  //上传缩略图
+  $('#uploaderBtn').Huploadify({
+    uploader : '{:url("Common/Upload/uploadPic")}',
+    method:'post',
+    formData:{name:"{$name}"},//发送给服务端的参数，格式：{key1:value1,key2:value2}
+    buttonText : '上传图像',
+    removeTimeout: 2000,
+    fileTypeDesc:'*.jpg;*.jpeg;*.gif;*.png;*.JPG;*.JPEG;*.GIF;*.PNG;',
+    fileTypeExts:'*.jpg;*.jpeg;*.gif;*.png;*.JPG;*.JPEG;*.GIF;*.PNG;',
+    fileObjName: 'file', //上传附件$_FILE标识
+    fileSizeLimit : 2048,
+    //showUploadedPercent:false,//是否实时显示上传的百分比，如20%
+    auto : true, //开启,自动上传
+    multi : false, //开启,多选文件
+    //开始上传
+    onUploadStart:function(file){
+      layer.load(2);
+    },
+    onUploadSuccess : function(file, data, response) {
+      //解析成json对象
+      eval('var data='+data);
+      if(data.status == 200){
+        var picpath = data.data.path;
+        $('#imageinfo').attr('src',picpath);
+        $('.del').show();
+        $('input[name=pic]').val(picpath);
+
+      }else{
+        layer.msg(data.mess, {icon: 2,time: 2000});
+      }
+    },
+    //上传完成后执行的操作
+    onUploadComplete:function(file){
+      layer.closeAll('loading');
+    },
+    //上传错误
+    onUploadError : function(file, errorCode, errorMsg, errorString) {
+      layer.msg('文件' + file.name + '上传失败:' + errorString, {icon: 2,time: 2000});
+    }
+  });
+  $('.del').click(function(){
+    $('input[name=pic]').val('');
+    var picval = $('.goods_thumb').text();
+    if(picval != ''){
+      $('#imageinfo').attr('src',picval);
+    }else{
+      $('#imageinfo').attr('src','__PUBLIC__/admin/img/nopic.jpg');
+    }
+    $('.del').hide();
+  });
+
+  var frameIndex = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+  $('.close-layer').click(function(){
+      parent.layer.close(frameIndex); //再执行关闭
+  })
+  $('#doSubmit').click(function () {
+      var picUrl = $('input[name=pic]').val();
+      if(picUrl == ''){
+          layer.msg('请上传图片');
+      }
+      var id = "{$id}";
+      var index = "{$index}";
+      window.parent.uploadCallback(picUrl,id,index);
+      parent.layer.close(frameIndex); //再执行关闭
+  })
+
+</script>
+</body>
+</html>

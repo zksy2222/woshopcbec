@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/application" isTestSource="false" packagePrefix="app\" />
+      <sourceFolder url="file://$MODULE_DIR$/extend/Guzzle/Batch/" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/extend/Guzzle/Cache/" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/extend/Guzzle/Common/" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/extend/Guzzle/Http/" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/extend/Guzzle/Inflection/" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/extend/Guzzle/Iterator/" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/extend/Guzzle/Log/" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/extend/Guzzle/Parser/" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/extend/Guzzle/Plugin/" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/extend/Guzzle/Plugin/Async/" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/extend/Guzzle/Plugin/Backoff/" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/extend/Guzzle/Plugin/Cache/" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/extend/Guzzle/Plugin/Cookie/" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/extend/Guzzle/Plugin/CurlAuth/" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/extend/Guzzle/Plugin/ErrorResponse/" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/extend/Guzzle/Plugin/History/" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/extend/Guzzle/Plugin/Log/" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/extend/Guzzle/Plugin/Md5/" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/extend/Guzzle/Plugin/Mock/" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/extend/Guzzle/Plugin/Oauth/" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/extend/Guzzle/Service/" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/extend/Guzzle/Stream/" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/extend/Symfony/Component/EventDispatcher/" isTestSource="false" packagePrefix="Symfony\Component\EventDispatcher\" />
+      <sourceFolder url="file://$MODULE_DIR$/thinkphp/library/think" isTestSource="false" packagePrefix="think\" />
+      <sourceFolder url="file://$MODULE_DIR$/thinkphp/tests" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/im/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/im/vendor/workerman/gateway-worker" />
+      <excludeFolder url="file://$MODULE_DIR$/im/vendor/workerman/gatewayclient" />
+      <excludeFolder url="file://$MODULE_DIR$/im/vendor/workerman/mysql" />
+      <excludeFolder url="file://$MODULE_DIR$/im/vendor/workerman/redis" />
+      <excludeFolder url="file://$MODULE_DIR$/im/vendor/workerman/workerman" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/5ini99/think-addons" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/cache/adapter-common" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/cache/filesystem-adapter" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/cache/tag-interop" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/clue/socket-raw" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/easywechat-composer/easywechat-composer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/guzzlehttp/command" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/guzzlehttp/guzzle" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/guzzlehttp/guzzle-services" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/guzzlehttp/promises" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/guzzlehttp/psr7" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/jaeger/g-http" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/jaeger/phpquery-single" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/jaeger/querylist" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/jaeger/querylist-puppeteer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/league/flysystem" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/league/mime-type-detection" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/monolog/monolog" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/nesk/puphpeteer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/nesk/rialto" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/overtrue/pinyin" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/overtrue/socialite" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/overtrue/wechat" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/paypal/rest-api-sdk-php" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/phpexcel/PHPExcel" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/phpmailer/phpmailer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/phpqrcode/bindings" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/phpqrcode/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/phpqrcode/tools" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/pimple/pimple" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/psr/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/psr/container" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/psr/event-dispatcher" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/psr/http-message" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/psr/log" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/psr/simple-cache" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/qcloud/cos-sdk-v5" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/ralouphie/getallheaders" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/cache-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/deprecation-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/event-dispatcher" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/event-dispatcher-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/http-foundation" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-intl-idn" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-intl-normalizer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-php72" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-php73" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-php80" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/process" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/psr-http-message-bridge" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/service-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/var-dumper" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/var-exporter" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/tencentcloud/tencentcloud-sdk-php" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/tightenco/collect" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/topthink/think-captcha" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/topthink/think-helper" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/topthink/think-image" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/topthink/think-installer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/topthink/think-migration" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/topthink/think-mongo" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/topthink/think-queue" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/vierbergenlars/php-semver" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/weiwei/api-doc" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/workerman/gatewayclient" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

@@ -1,0 +1,46 @@
+<script>
+    var pnum = {$pnum};
+    var goUrl = "{:addon_url('lang://LangTranslate/lst')}?page="+pnum;
+</script>
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th width="5%">ID</th>
+            <th>Lang键名</th>
+            {if($lang_list)}
+                {foreach name='lang_list' item='v'}
+                    <th>{$v.lang_name}</th>
+                {/foreach}
+            {else}
+                <th>暂无其他语言</th>
+            {/if}
+            <th width="10%">备注</th>
+            <th width="10%">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        {if condition="$list->isEmpty() == false"}
+        {foreach name="list" item="v"}
+        <tr>
+            <td>{$v.id}</td>
+            <td>{$v.key_name}</td>
+            {if($v.values)}
+            {foreach name='$v.values' item='l'}
+                <td>{$l.value_name}</td>
+            {/foreach}
+            {else}
+                <td>暂无其他语言</td>
+            {/if}
+            <td>{$v.remark}</td>
+            <td>
+                <a href="{:addon_url('lang://LangTranslate/edit',array('id'=>$v['id'],'page'=>$pnum))}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i>&nbsp;编辑</a>&nbsp;
+                <button type="button" class="btn btn-danger btn-xs" onclick="delone({$v.id}, this);"><i class="fa fa-close"></i>&nbsp;删除</button></td>
+            </td>
+        </tr>
+        {/foreach}
+        {else/}
+        <tr><td colspan="{:count($lang_list) + 4}" style="text-align:center; font-size:14px;">没有找到相关数据</td></tr>
+        {/if}
+    </tbody>
+</table>
+<div class="row"><div class="pagination" style="float:right; margin-right:20px;">{$page}</div></div>

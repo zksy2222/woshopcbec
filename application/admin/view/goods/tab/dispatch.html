@@ -1,0 +1,105 @@
+<div class="panel-body">
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">是否包邮:</label>
+        <div class="col-sm-6">
+            <label class="radio-inline"><input type="radio" name="is_send_free" {if condition="$goodss['is_send_free'] eq 1"}checked="checked"{/if} value="1">是</label>
+            <label class="radio-inline"><input type="radio" name="is_send_free" {if condition="$goodss['is_send_free'] eq 0"}checked="checked"{/if} value="0">否</label>
+        </div>
+    </div>
+
+
+    <div class="form-group splitter dispatch_info"></div>
+    <div class="form-group dispatch_info"}>
+        <label class="col-sm-2 control-label">运费设置</label>
+        <div class="col-sm-6 col-xs-6" style='padding-left:0'>
+
+            <div class="input-group">
+                <span class='input-group-addon' style='border:none'><label class="radio-inline" style='margin-top:-7px;' ><input type="radio" name="dispatch_type" value="0" {if empty($goodss['dispatch_type'])}checked="true"{/if} /> 运费模板</label></span>
+                <select class="form-control tpl-category-parent select2" id="dispatchid" name="dispatch_id">
+                    <option value="0">默认模板</option>
+                    {foreach $dispatchData as $dispatchItem}
+                    <option value="{$dispatchItem['id']}" {if $goodss['dispatch_id'] == $dispatchItem['id']}selected="true"{/if}>{$dispatchItem['dispatch_name']}</option>
+                    {/foreach}
+                </select>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="form-group dispatch_info">
+        <label class="col-sm-2 control-label"></label>
+        <div class="col-sm-6 col-xs-6" style='padding-left:0'>
+            <div class="input-group">
+                <span class='input-group-addon' style='border:none'><label class="radio-inline"  style='margin-top:-7px;' ><input type="radio"name="dispatch_type" value="1" {if $goodss['dispatch_type'] == 1}checked="true"{/if}  /> 统一邮费</label></span>
+                <input type="text" name="dispatch_price" id="dispatch_price" class="form-control" value="{$goodss['dispatch_price']}" />
+                <span class="input-group-addon">元</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">
+            单品满件包邮
+        </label>
+        <div class="col-sm-4">
+
+            <div class='input-group'>
+                            <span class="input-group-addon">
+                                满
+                            </span>
+                <input type="text" name="ednum" value="{$goodss['ednum']}" class="form-control"
+                />
+                <span class="input-group-addon">
+                                件
+                            </span>
+            </div>
+            <span class="help-block">
+                            如果设置0或空，则不支持满件包邮
+                        </span>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">
+            单品满额包邮
+        </label>
+        <div class="col-sm-4">
+
+            <div class='input-group'>
+                            <span class="input-group-addon">
+                                满
+                            </span>
+                <input type="text" name="edmoney" value="{$goodss['edmoney']}" class="form-control"
+                />
+                <span class="input-group-addon">
+                                元
+                            </span>
+            </div>
+            <span class="help-block">
+                            如果设置0或空，则不支持满额包邮
+                        </span>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">
+            不参与单品包邮地区
+        </label>
+        <div class="col-sm-9 col-xs-12">
+
+            <div id="areas" class="form-control-static">
+                {$goodss['edareas']}
+            </div>
+            <a href="javascript:;" class="btn btn-default" onclick="selectAreas()">
+                添加不参加满包邮的地区
+            </a>
+            <input type="hidden" id='selectedareas' name="edareas" value="{$goodss['edareas']}"/>
+            <input type="hidden" id='selectedareas_code' name="edareas_code" value="{$goodss['edareas_code']}"/>
+        </div>
+    </div>
+    <div class="hr-line-dashed"></div>
+
+</div>
+
+{include file="goods/tpl/select_areas"/}

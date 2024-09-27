@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>总台管理-{$webconfig.webtitle}</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href="__PUBLIC__/admin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="__PUBLIC__/admin/css/style.css?v=4.1.0" rel="stylesheet">
+    <script src="__PUBLIC__/admin/js/jquery.min.js?v=2.1.4"></script>
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+    <script>if(window.top !== window.self){ window.top.location = window.location;}</script>
+    <style>
+        input.error{
+            border:1px solid red;
+        }
+        span.error{
+            padding-top:10px;
+            color: #f00;
+            font-size:12px;
+        }
+        .gray-bg{
+            background:url("__PUBLIC__/admin/img/bg-admin2.jpg") no-repeat center fixed;
+            background-size: 100% 100%;
+            height: auto;
+        }
+        .main-wrap{
+            width: 980px;
+            background-color: #fff;
+            display: flex;
+            flex-wrap: nowrap;
+            overflow: hidden;
+            height: 590px;
+            position: fixed;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+        }
+        .main-wrap-left{
+            background-image: linear-gradient(157deg, #0C1741 0%, #071232 96%);
+            width: 540px;
+            position: relative;
+        }
+        .main-wrap-left-text{
+            color:#fff;
+            padding: 30px 30px;
+            text-align: left;
+        }
+        .main-wrap-left-title{
+            font-size: 36px;
+            font-weight: 600;
+            color: #fff;
+            line-height: 48px;
+            margin-top: 20px;
+            letter-spacing: 4px;
+        }
+        .main-wrap-left-subtitle{
+            font-size: 12px;
+            color:#797f91;
+            letter-spacing: 4px;
+            margin:5px 0 20px;
+        }
+        .main-wrap-left-img{
+            width:480px;
+            height: 400px;
+            position: absolute;
+            bottom: 50px;
+            right: 0;
+        }
+        .main-wrap-right{
+            width: 440px;
+            padding:60px 70px;
+            text-align: left;
+        }
+        .main-wrap-right-title{
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+            letter-spacing: 4px;
+
+        }
+        .main-wrap-right-subtitle{
+            margin:12px 0 40px;
+        }
+        .main-wrap-right-submit{
+            background-color: #3274F5;
+            border: none;
+            outline: none;
+            padding: 15px 80px;
+            width: 100%;
+            color:#fff;
+            border-radius: 4px;
+            margin-top: 40px;
+            font-size: 14px;
+            letter-spacing: 6px;
+        }
+        .main-wrap-right-logo{
+            margin-bottom:10px;
+        }
+        .main-wrap-right-bottom{
+            margin-top: 105px;
+            text-align: center;
+            color: #8d8d8d;
+        }
+        .copyright-bottom{
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            color: #9e9e9e;
+            line-height: 50px;
+        }
+        .verify{
+            width: 100px;
+            height:46px;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+        .form-group{
+            overflow: hidden;
+            position: relative;
+        }
+        .form-group-icon{
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            top:50%;
+            transform: translateY(-50%);
+            left: 10px;
+        }
+        .form-control{
+            padding:23px 0 23px 36px ;
+            border: 1px solid #eee;
+            background-color: #EDEFF5;
+            border: none;
+            border-radius: 4px;
+
+        }
+    </style>
+</head>
+<script>
+    var loginUrl = "{:url('login/index')}";
+    var url = "{:url('index/index')}";
+</script>
+
+<body class="gray-bg">
+
+
+<div class=" text-center loginscreen  animated fadeInDown backStagea main-wrap">
+    <div class="main-wrap-left">
+        <div  class="main-wrap-left-text">
+            <img class="main-wrap-right-logo" src="__PUBLIC__/admin/img/main-logo.png" width="120px"  />
+            <h1  class="main-wrap-left-title">跨境商城系统</h1>
+            <p class="main-wrap-left-subtitle">Cross-Border Mall System</p>
+        </div>
+        <img  class="main-wrap-left-img" src="__PUBLIC__/admin/img/img-main.png"/>
+    </div>
+    <div class="main-wrap-right">
+        <h1 class="main-wrap-right-title">总台管理系统</h1>
+        <p class="main-wrap-right-subtitle">欢迎登录WoShop商城总台管理系统</p>
+        <form class="m-t" method="post" id="form">
+            <div class="form-group">
+                <img class="form-group-icon" src="__PUBLIC__/admin/img/icon-user.png" />
+                <input type="text" name="username" class="form-control" placeholder="请输入用户名" >
+            </div>
+            <div class="form-group">
+                <img class="form-group-icon"  src="__PUBLIC__/admin/img/icon-password.png" />
+                <input type="password" name="password" class="form-control" placeholder="请输入密码" >
+            </div>
+            <div class="form-group">
+                <img class="form-group-icon"  src="__PUBLIC__/admin/img/icon-vertifaction.png" />
+                <input type="text" name="captcha" class="form-control" placeholder="请输入验证码">
+                <img id="cap" alt="验证码" title="点击刷新" class="verify" onclick="this.src='{:captcha_src()}?'+Math.random()" src="{:captcha_src()}"/>
+            </div>
+            <button type="submit" id="submitBtn" class="main-wrap-right-submit">登录</button>
+        </form>
+        <p class="main-wrap-right-bottom">{$webconfig.web_banquan}</p>
+    </div>
+
+</div>
+
+<!-- 全局js -->
+<script src="__PUBLIC__/admin/js/plugins/layer/layer.min.js"></script>
+<script src="__PUBLIC__/admin/js/plugins/validate/jquery.validate.min.js"></script>
+<script src="__PUBLIC__/admin/js/bootstrap.min.js?v=3.3.6"></script>
+<script src="__PUBLIC__/admin/js/common/ajax.js"></script>
+
+<script>
+    $(function(){
+        var icon = "<i class='fa fa-times-circle'></i>&nbsp;&nbsp;";
+        $('#form').validate({
+            errorElement : 'span',
+            debug: true,//只验证不提交表单
+            //layer ajax提交表单
+            submitHandler:function(){
+                $.ajax({
+                    url:loginUrl,
+                    type:'POST',
+                    data:$('#form').serialize(),
+                    dataType:'json',
+                    success:function(data){
+                        if(data.status == 1){
+                            layer.closeAll('loading');
+                            layer.msg(data.mess, {icon: 1,time: 1000},function(){
+                                cl();
+                            });
+                        }else{
+                            layer.closeAll('loading');
+                            $('#cap').attr('src',"{:captcha_src()}?"+Math.random());
+                            layer.msg(data.mess, {icon: 2,time: 2000});
+                        }
+                    },
+                    error:function(){
+                        layer.closeAll('loading');
+                        layer.msg('操作失败或您没有权限，请重试', {icon: 2,time: 2000});
+                    }
+                });
+                return false;
+            },//这是关键的语句，配置这个参数后表单不会自动提交，验证通过之后会去调用的方法
+
+            rules:{
+                username:{required:true},
+                password:{required:true},
+            },
+
+            messages:{
+                username:{required:icon+'必填'},
+                password:{required:icon+'必填'},
+            }
+        });
+    });
+    function cl(){
+        location.href=url;
+    }
+</script>
+</body>
+</html>
